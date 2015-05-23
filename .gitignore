@@ -1,0 +1,29 @@
+/bin/
+# ignore object and class files
+*.o
+*.class
+
+# ignore libraries
+*.lib
+*.a
+
+# ignore shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# ignore executables
+*.exe
+*.out
+*.app
+
+# ignore metada files
+.metadata
+
+# ignore classpath and project files
+.classpath
+.project
+
+# ignore Mac OS X specific files
+.DS_Store
