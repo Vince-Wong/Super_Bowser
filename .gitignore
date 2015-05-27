@@ -7,11 +7,11 @@
 *.lib
 *.a
 
-# ignore shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# ignore shared objects
+#*.dll
+#*.so
+#*.so.*
+#*.dylib
 
 # ignore executables
 *.exe
