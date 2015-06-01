@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import javax.management.timer.Timer;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.*;
-import org.newdawn.slick.state.*;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -26,6 +23,7 @@ public class Play extends BasicGameState
     private Animation bowserAnimation,bowserBackAnimation,Bowser
     ,bowserStill, bowserBackStill;
     public int xpos,ypos = 100;
+    private boolean faceRight = true;
     
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
@@ -56,21 +54,39 @@ public class Play extends BasicGameState
         Input input = gc.getInput();
         if(input.isKeyDown(Input.KEY_W))
         {
-            ypos -= delta * .5f;
+           if (faceRight) {
+              Bowser = bowserAnimation;
+           }
+           else {
+              Bowser = bowserBackAnimation;
+           }            
+           ypos -= delta * .5f;
+           System.out.println("ypos="+ypos);
         }
         if(input.isKeyDown(Input.KEY_S))
         {
-            ypos += delta * .5f;
+           if (faceRight) {
+              Bowser = bowserAnimation;
+           }
+           else {
+              Bowser = bowserBackAnimation;
+           }
+           ypos += delta * .5f;
+           System.out.println("ypos="+ypos);
         }
        if(input.isKeyDown(Input.KEY_A))
         {
+           faceRight = false;
            Bowser = bowserBackAnimation;
-            xpos -= delta * .5f;
+           xpos -= delta * .5f;
+           System.out.println("xpos="+xpos);
         }
        if(input.isKeyDown(Input.KEY_D))
        {
+           faceRight = true;
            Bowser = bowserAnimation;
            xpos += delta * .5f;
+           System.out.println("xpos="+xpos);
        }
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
@@ -80,12 +96,6 @@ public class Play extends BasicGameState
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
           && Bowser == bowserBackAnimation)
            Bowser = bowserBackStill;
- 
-     
     }
     public int getID(){return 1;}     
 }
-    
-
-    
-    

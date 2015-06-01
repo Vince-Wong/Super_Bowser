@@ -21,17 +21,13 @@ public class Game extends StateBasedGame{
     }
     public static void main(String[] args) {
         AppGameContainer appgc;
-        try{
-            
+        try {
             appgc = new AppGameContainer(new Game(gamename));
             appgc.setDisplayMode(1002, 750, false);
+            appgc.setTargetFrameRate(60);
             appgc.start();
-            }catch(SlickException e){
+        } catch(SlickException e) {
                 e.printStackTrace();
-            }
-
+        }
     }
-  
-
-
 }
