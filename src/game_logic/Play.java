@@ -18,82 +18,83 @@ public class Play extends BasicGameState
 {   
     public Play(int State){}
     
-    private SpriteSheet bowserSheet, bowserBackSheet, 
-                        bowserStillSheet, bowserBackStillSheet;
-    private Animation bowserAnimation,bowserBackAnimation,Bowser
-    ,bowserStill, bowserBackStill;
-    public int xpos,ypos = 100;
-    private boolean faceRight = true;
+//    private SpriteSheet bowserSheet, bowserBackSheet, 
+//                        bowserStillSheet, bowserBackStillSheet;
+//    private Animation bowserAnimation,bowserBackAnimation,Bowser
+//    ,bowserStill, bowserBackStill;
+    int xpos,ypos = 100;
+    Bowser bowser;
     
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-        bowserStillSheet = new SpriteSheet("res/bowserStill.png",76,75);
-        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",77,75);
-        bowserSheet = new SpriteSheet("res/Bowser Walks.png",77,75);
-        bowserBackSheet = new SpriteSheet("res/Bowser Walks Back.png",79,75);
-        
-        bowserStill = new Animation(bowserStillSheet,250);
-        bowserBackStill = new Animation(bowserBackStillSheet,250);
-        
-        bowserAnimation = new Animation(bowserSheet,250);
-        bowserBackAnimation = new Animation(bowserBackSheet,250);
-        
-        Bowser = bowserAnimation;
+//        bowserStillSheet = new SpriteSheet("res/bowserStill.png",76,75);
+//        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",77,75);
+//        bowserSheet = new SpriteSheet("res/Bowser Walks.png",77,75);
+//        bowserBackSheet = new SpriteSheet("res/Bowser Walks Back.png",79,75);
+//        
+//        bowserStill = new Animation(bowserStillSheet,250);
+//        bowserBackStill = new Animation(bowserBackStillSheet,250);
+//        
+//        bowserAnimation = new Animation(bowserSheet,250);
+//        bowserBackAnimation = new Animation(bowserBackSheet,250);
+//        
+//        Bowser = bowserAnimation;
+       bowser = new Bowser();
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {  
-        Bowser.draw(xpos, ypos);
+        bowser.getCurrentAnim().draw(xpos, ypos);
     }
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
-        bowserAnimation.update(delta);
+        bowser.getCurrentAnim().update(delta);
         Input input = gc.getInput();
         if(input.isKeyDown(Input.KEY_W))
         {
-           if (faceRight) {
-              Bowser = bowserAnimation;
+           if (bowser.getFace()) {
+              bowser.setCurrentAnim(Character.FWD);
            }
            else {
-              Bowser = bowserBackAnimation;
-           }            
+              bowser.setCurrentAnim(Character.BACK);
+           }
            ypos -= delta * .5f;
-           System.out.println("ypos="+ypos);
+//           System.out.println("ypos="+ypos);
         }
         if(input.isKeyDown(Input.KEY_S))
         {
-           if (faceRight) {
-              Bowser = bowserAnimation;
+           if (bowser.getFace()) {
+              bowser.setCurrentAnim(Character.FWD);
            }
            else {
-              Bowser = bowserBackAnimation;
+              bowser.setCurrentAnim(Character.BACK);
            }
            ypos += delta * .5f;
-           System.out.println("ypos="+ypos);
+//           System.out.println("ypos="+ypos);
         }
        if(input.isKeyDown(Input.KEY_A))
         {
-           faceRight = false;
-           Bowser = bowserBackAnimation;
+           bowser.faceLeft();
+           bowser.setCurrentAnim(Character.BACK);
            xpos -= delta * .5f;
-           System.out.println("xpos="+xpos);
+//           System.out.println("xpos="+xpos);
         }
        if(input.isKeyDown(Input.KEY_D))
        {
-           faceRight = true;
-           Bowser = bowserAnimation;
+           bowser.faceRight();
+           bowser.setCurrentAnim(Character.FWD);
            xpos += delta * .5f;
            System.out.println("xpos="+xpos);
        }
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-          && Bowser == bowserAnimation)
-           Bowser = bowserStill;
+          && bowser.getCurrentAnim() == bowser.getAnimation(Character.FWD))
+           bowser.setCurrentAnim(Character.FWD_STILL);
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-          && Bowser == bowserBackAnimation)
-           Bowser = bowserBackStill;
+          && bowser.getCurrentAnim() == bowser.getAnimation(Character.BACK))
+          bowser.setCurrentAnim(Character.BACK_STILL);
     }
     public int getID(){return 1;}     
 }
