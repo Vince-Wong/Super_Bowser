@@ -1,4 +1,4 @@
-package game_logic;
+package src.game_logic;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
