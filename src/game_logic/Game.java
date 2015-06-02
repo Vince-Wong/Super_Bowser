@@ -4,7 +4,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class Game extends StateBasedGame{
-    public static final String gamename = "Super Wario: "
+    public static final String gamename = "Super Bowser: "
                                         + "The Quest to Defend the Castle";
     public static final int menu = 0;
     public static final int play = 1;

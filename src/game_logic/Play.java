@@ -28,7 +28,7 @@ public class Play extends BasicGameState
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
         bowserStillSheet = new SpriteSheet("res/bowserStill.png",76,75);
-        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",80,75);
+        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",77,75);
         bowserSheet = new SpriteSheet("res/Bowser Walks.png",77,75);
         bowserBackSheet = new SpriteSheet("res/Bowser Walks Back.png",79,75);
         
@@ -39,8 +39,6 @@ public class Play extends BasicGameState
         bowserBackAnimation = new Animation(bowserBackSheet,250);
         
         Bowser = bowserAnimation;
-        
-
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
