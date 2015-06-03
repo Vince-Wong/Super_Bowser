@@ -5,52 +5,39 @@ import java.util.ArrayList;
 import javax.management.timer.Timer;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState
 {   
     public Play(int State){}
-    
-//    private SpriteSheet bowserSheet, bowserBackSheet, 
-//                        bowserStillSheet, bowserBackStillSheet;
-//    private Animation bowserAnimation,bowserBackAnimation,Bowser
-//    ,bowserStill, bowserBackStill;
-    int xpos,ypos = 100;
     Bowser bowser;
     
+    // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-//        bowserStillSheet = new SpriteSheet("res/bowserStill.png",76,75);
-//        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",77,75);
-//        bowserSheet = new SpriteSheet("res/Bowser Walks.png",77,75);
-//        bowserBackSheet = new SpriteSheet("res/Bowser Walks Back.png",79,75);
-//        
-//        bowserStill = new Animation(bowserStillSheet,250);
-//        bowserBackStill = new Animation(bowserBackStillSheet,250);
-//        
-//        bowserAnimation = new Animation(bowserSheet,250);
-//        bowserBackAnimation = new Animation(bowserBackSheet,250);
-//        
-//        Bowser = bowserAnimation;
        bowser = new Bowser();
     }
+    // render changes to bowser
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {  
-        bowser.getCurrentAnim().draw(xpos, ypos);
+       ShapeRenderer.fill(bowser.getShape()); 
+       bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
+                                     bowser.getY()-Bowser.PADDING);
     }
+    // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
         bowser.getCurrentAnim().update(delta);
         Input input = gc.getInput();
+        // Input is the UP command
         if(input.isKeyDown(Input.KEY_W))
         {
            if (bowser.getFace()) {
@@ -59,9 +46,9 @@ public class Play extends BasicGameState
            else {
               bowser.setCurrentAnim(Character.BACK);
            }
-           ypos -= delta * .5f;
-//           System.out.println("ypos="+ypos);
+           bowser.setY(bowser.getY() - delta * .5f);
         }
+        // Input is the DOWN command
         if(input.isKeyDown(Input.KEY_S))
         {
            if (bowser.getFace()) {
@@ -70,23 +57,23 @@ public class Play extends BasicGameState
            else {
               bowser.setCurrentAnim(Character.BACK);
            }
-           ypos += delta * .5f;
-//           System.out.println("ypos="+ypos);
+           bowser.setY(bowser.getY() + delta * .5f);
         }
-       if(input.isKeyDown(Input.KEY_A))
+        // Input is the LEFT command
+        if(input.isKeyDown(Input.KEY_A))
         {
            bowser.faceLeft();
            bowser.setCurrentAnim(Character.BACK);
-           xpos -= delta * .5f;
-//           System.out.println("xpos="+xpos);
+           bowser.setX(bowser.getX() - delta * .5f);
         }
+        // Input is the RIGHT command
        if(input.isKeyDown(Input.KEY_D))
        {
            bowser.faceRight();
            bowser.setCurrentAnim(Character.FWD);
-           xpos += delta * .5f;
-           System.out.println("xpos="+xpos);
+           bowser.setX(bowser.getX() + delta * .5f);
        }
+       // No input, but need to show bowser standing still
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
           && bowser.getCurrentAnim() == bowser.getAnimation(Character.FWD))

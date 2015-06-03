@@ -39,6 +39,14 @@ public abstract class Character extends Entity
    
    public Inventory getInventory() { return inventory; }
    public void setInventory(Inventory myInventory) { inventory = myInventory; }
+   
+   public void moveHorizontal(int pixels) { getShape().setX(getShape().getX() + pixels); }
+   public void moveVertical(int pixels) { getShape().setY(getShape().getY() + pixels); }
+   
+   public float getX() { return getShape().getX(); }
+   public void setX(float deltaX) { getShape().setX(deltaX); }
+   public float getY() { return getShape().getY(); }
+   public void setY(float deltaY) { getShape().setY(deltaY); }
 }
 
 class Inventory {}

@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 public class Bowser extends Character
 {
    private static final int START_HEALTH = 10;
+   protected static final int PADDING = 13;
    
    public Bowser() throws SlickException {
       setName("Bowser");
