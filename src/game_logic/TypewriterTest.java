@@ -1,4 +1,4 @@
-package src.game_logic;
+package game_logic;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.AppGameContainer;
