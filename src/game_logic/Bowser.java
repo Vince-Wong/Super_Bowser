@@ -19,10 +19,10 @@ public class Bowser extends Character
       setShape(new Rectangle(13, 13, 77-26, 75-26));
       
       SpriteSheet[] bowserSprites = new SpriteSheet[4];
-      bowserSprites[FWD] = new SpriteSheet("res/Bowser Walks.png",77,75);
-      bowserSprites[BACK] = new SpriteSheet("res/Bowser Walks Back.png",79,75);
-      bowserSprites[FWD_STILL] = new SpriteSheet("res/bowserStill.png",76,75);
-      bowserSprites[BACK_STILL] = new SpriteSheet("res/bowserBackStill.png",77,75);
+      bowserSprites[FWD] = new SpriteSheet("res/Bowser Walks.png",32,32);
+      bowserSprites[BACK] = new SpriteSheet("res/Bowser Walks Back.png",32,32);
+      bowserSprites[FWD_STILL] = new SpriteSheet("res/bowserStill.png",32,32);
+      bowserSprites[BACK_STILL] = new SpriteSheet("res/bowserBackStill.png",32,32);
       setSprites(bowserSprites);
       
       Animation[] bowserAnimations = new Animation[4];
