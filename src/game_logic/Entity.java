@@ -8,6 +8,11 @@ public class Entity
    protected String name;
    protected Rectangle entityBox;
    
+   public Entity(String name)
+   {
+      this.name = name;
+   }
+   
    public String getName()
    {
       return this.name;
