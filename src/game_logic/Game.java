@@ -8,7 +8,7 @@ public class Game extends StateBasedGame{
                                         + "The Quest to Defend the Castle";
     public static final int menu = 0;
     public static final int play = 1;
-//
+    
     public Game(String gamename){
         super(gamename);
         this.addState(new Menu(menu));
