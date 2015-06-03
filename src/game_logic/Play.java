@@ -17,9 +17,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState
 {   
-    private Image Map;
+    //private Image Map;
     private boolean quit = false;
-    private Bowser bowser;
+    protected static Bowser bowser;
     private boolean debug = false;
     
     public Play(int State){}
@@ -29,7 +29,7 @@ public class Play extends BasicGameState
     {
        bowser = new Bowser();
      //TEMP MAP
-       Map = new Image("res/TempBackground.jpg");
+       //Map = new Image("res/TempBackground.jpg");
 
        //sets the max frames per second
        int maxFPS = 60;
@@ -126,7 +126,7 @@ public class Play extends BasicGameState
      //Inventory.
        if(input.isKeyPressed(Input.KEY_I)) 
        {
-             sbg.enterState(9);
+          sbg.enterState(Game.backpack);
        }
        
        ///// menu  //////////////
@@ -153,8 +153,14 @@ public class Play extends BasicGameState
           }
        }
        
+       if(input.isKeyPressed(Input.KEY_F11)) {
+          sbg.enterState(Game.test01);
+          System.out.println("go to test map");
+       }
+       
        if (input.isKeyPressed(Input.KEY_F12)) {
           debug = !debug;
+          System.out.println("debug mode");
        }
     }
     
