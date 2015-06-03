@@ -1,4 +1,4 @@
-package src.game_logic;
+package game_logic;
 
 import java.util.ArrayList;
 
@@ -119,7 +119,7 @@ public class Play extends BasicGameState
 			Bowser = bowserBackStill;
 
 		//Inventory.
-		if(input.isKeyDown(Input.KEY_I))
+		if(input.isKeyPressed(Input.KEY_I))
 			{
 				sbg.enterState(9);
 			}
@@ -148,10 +148,6 @@ public class Play extends BasicGameState
 			if(input.isKeyDown(Input.KEY_Q))
 			{
 				System.exit(0);
-			}
-			if(input.isKeyDown(Input.KEY_I))
-			{
-				sbg.enterState(9);
 			}
 		}
 

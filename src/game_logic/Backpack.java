@@ -1,4 +1,4 @@
-package src.game_logic;
+package game_logic;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
@@ -33,7 +33,7 @@ public class Backpack extends BasicGameState{
 		int xpos = Mouse.getX();
 		int ypos = 750-Mouse.getY();
 		mouse = ("x: " + xpos + " y: "+ ypos);
-		if(input.isKeyDown(Input.KEY_I))
+		if(input.isKeyPressed(Input.KEY_I))
 		{
 			sbg.enterState(1);	
 		}

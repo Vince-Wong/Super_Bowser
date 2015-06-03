@@ -1,4 +1,4 @@
-package src.game_logic;
+package game_logic;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
