@@ -18,8 +18,10 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState
 {   
     private Image Map;
-    boolean quit = false;
+    private boolean quit = false;
     private Bowser bowser;
+    private boolean debug = false;
+    
     public Play(int State){}
     
     // make bowser at the beginning
@@ -63,9 +65,11 @@ public class Play extends BasicGameState
           }
        }
     // renders bowser
-       ShapeRenderer.fill(bowser.getShape()); 
        bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
                                      bowser.getY()-Bowser.PADDING);
+       if (debug) {
+          ShapeRenderer.fill(bowser.getShape()); 
+       }
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -147,6 +151,10 @@ public class Play extends BasicGameState
           {
              System.exit(0);
           }
+       }
+       
+       if (input.isKeyPressed(Input.KEY_F12)) {
+          debug = !debug;
        }
     }
     
