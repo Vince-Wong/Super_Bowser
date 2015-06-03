@@ -16,7 +16,7 @@ public class Backpack extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
 		backpack = new Image("res/Backpack.png");
-		bowserSheet = new SpriteSheet("res/BowserExcited.png",87,80);
+		bowserSheet = new SpriteSheet("res/Bowser FireClaw.png",32,32);
 		bowserAnimation = new Animation(bowserSheet,250);
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
