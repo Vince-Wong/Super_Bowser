@@ -11,7 +11,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -20,7 +19,7 @@ public class Play extends BasicGameState
     //private Image Map;
     private boolean quit = false;
     protected static Bowser bowser;
-    private boolean debug = false;
+    protected boolean debug = false;
     
     public Play(int State){}
     
@@ -68,7 +67,8 @@ public class Play extends BasicGameState
        bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
                                      bowser.getY()-Bowser.PADDING);
        if (debug) {
-          ShapeRenderer.fill(bowser.getShape()); 
+          g.setColor(Color.red);
+          g.fill(bowser.getShape()); 
        }
     }
     // based on input, update bowser's state
@@ -154,6 +154,9 @@ public class Play extends BasicGameState
        }
        
        if(input.isKeyPressed(Input.KEY_F11)) {
+          // Spawn location is set here for the stage transition!
+          bowser.setX(40);
+          bowser.setY(40);
           sbg.enterState(Game.test01);
           System.out.println("go to test map");
        }
