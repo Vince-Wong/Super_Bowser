@@ -7,7 +7,8 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    
-   public Item(String name, boolean stackable, int quantity, int maxQuantity, String description)
+   public Item(String name, boolean stackable, int quantity, int maxQuantity, 
+      String description)
    {
       super(name);
       this.stackable = stackable;
@@ -62,6 +63,17 @@ public class Item extends Entity
    {
       return this;
    }
+   
+   public int getQuantity()
+   {
+      return quantity;
+   }
+   
+   public String getDescription()
+   {
+      return description;
+   }
+   
    public static void main(String[] args)
    {
       // TODO Auto-generated method stub
@@ -80,7 +92,6 @@ public class Item extends Entity
       System.out.println(itemTwo.toString());
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
-
    }
    
    
