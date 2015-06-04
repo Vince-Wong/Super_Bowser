@@ -2,7 +2,6 @@ package game_logic;
 
 public class Inventory
 {
-
    public static final int MAX_SIZE = 8, MIN_SIZE = 0;
    public int currentSize;
    private Item[] items;
@@ -151,11 +150,7 @@ public class Inventory
       System.out.println("\nRemove sword which is not in inventory");
       inventoryOne.removeItem(itemOne);
       System.out.println(inventoryOne.toString());
-       
-      
-      
-      
-      
+         
    }
 
 }

@@ -1,27 +1,22 @@
 package game_logic;
 
-import java.awt.Rectangle;
+import org.newdawn.slick.geom.Rectangle;
 
-public class Entity
+/**
+ * Abstract entity class that defines boundaries for each 
+ */
+public abstract class Entity
 {
 
    protected String name;
-   protected Rectangle entityBox;
+   protected Rectangle shape;
    
-   public Entity(String name)
-   {
-      this.name = name;
-   }
+ 	public abstract void onCollision(Entity ent);
    
-   public String getName()
-   {
-      return this.name;
-   }
+   public String getName() { return name; }
+   public void setName(String myName) { name = myName; }
    
-   public static void main(String[] args)
-   {
-      // TODO Auto-generated method stub
-
-   }
-
+   public Rectangle getShape() { return shape; }
+   public void setShape(Rectangle rect) { shape = rect; }
+   
 }

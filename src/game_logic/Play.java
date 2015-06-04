@@ -5,87 +5,151 @@ import java.util.ArrayList;
 import javax.management.timer.Timer;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.*;
-import org.newdawn.slick.state.*;
-import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState
 {   
+    private Image Map;
+    boolean quit = false;
+    private Bowser bowser;
     public Play(int State){}
     
-    private SpriteSheet bowserSheet, bowserBackSheet, 
-                        bowserStillSheet, bowserBackStillSheet;
-    private Animation bowserAnimation,bowserBackAnimation,Bowser
-    ,bowserStill, bowserBackStill;
-    public int xpos,ypos = 100;
-    
+    // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-        bowserStillSheet = new SpriteSheet("res/bowserStill.png",76,75);
-        bowserBackStillSheet = new SpriteSheet("res/bowserBackStill.png",80,75);
-        bowserSheet = new SpriteSheet("res/Bowser Walks.png",77,75);
-        bowserBackSheet = new SpriteSheet("res/Bowser Walks Back.png",79,75);
-        
-        bowserStill = new Animation(bowserStillSheet,250);
-        bowserBackStill = new Animation(bowserBackStillSheet,250);
-        
-        bowserAnimation = new Animation(bowserSheet,250);
-        bowserBackAnimation = new Animation(bowserBackSheet,250);
-        
-        Bowser = bowserAnimation;
-        
+       bowser = new Bowser();
+     //TEMP MAP
+       Map = new Image("res/TempBackground.jpg");
 
+       //sets the max frames per second
+       int maxFPS = 60;
+       gc.setTargetFrameRate(maxFPS);
     }
+    
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
-    {  
-        Bowser.draw(xpos, ypos);
+    {
+     //window size 1000, 750
+       int width = 1000;
+       int height = 750;
+
+       //g.drawImage(Map,0,0);
+
+       // renders the menu
+       if(quit)
+       {
+          g.setColor(Color.red);
+          g.fillRect(width/2 - 40, height/2 - 140, 200, 200);
+
+          g.setColor(Color.black);
+          g.fillRect(width/2 - 30, height/2 - 130, 180, 180);
+
+
+          g.setColor(Color.white);
+          g.drawString("Resume (R)", width/2, height/2 - 100);
+          g.drawString("Main Menu (M)", width/2, height/2 - 50);
+          g.drawString("Quit Game (Q)", width/2, height/2);
+          if(!quit)
+          {
+             g.clear();
+          }
+       }
+    // renders bowser
+       ShapeRenderer.fill(bowser.getShape()); 
+       bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
+                                     bowser.getY()-Bowser.PADDING);
     }
+    // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
-        bowserAnimation.update(delta);
+        bowser.getCurrentAnim().update(delta);
         Input input = gc.getInput();
+        // Input is the UP command
         if(input.isKeyDown(Input.KEY_W))
         {
-            ypos -= delta * .5f;
+           if (bowser.getFace()) {
+              bowser.setCurrentAnim(Character.FWD);
+           }
+           else {
+              bowser.setCurrentAnim(Character.BACK);
+           }
+           bowser.setY(bowser.getY() - delta * .5f);
         }
+        // Input is the DOWN command
         if(input.isKeyDown(Input.KEY_S))
         {
-            ypos += delta * .5f;
+           if (bowser.getFace()) {
+              bowser.setCurrentAnim(Character.FWD);
+           }
+           else {
+              bowser.setCurrentAnim(Character.BACK);
+           }
+           bowser.setY(bowser.getY() + delta * .5f);
         }
-       if(input.isKeyDown(Input.KEY_A))
+        // Input is the LEFT command
+        if(input.isKeyDown(Input.KEY_A))
         {
-           Bowser = bowserBackAnimation;
-            xpos -= delta * .5f;
+           bowser.faceLeft();
+           bowser.setCurrentAnim(Character.BACK);
+           bowser.setX(bowser.getX() - delta * .5f);
         }
+        // Input is the RIGHT command
        if(input.isKeyDown(Input.KEY_D))
        {
-           Bowser = bowserAnimation;
-           xpos += delta * .5f;
+           bowser.faceRight();
+           bowser.setCurrentAnim(Character.FWD);
+           bowser.setX(bowser.getX() + delta * .5f);
        }
+       // No input, but need to show bowser standing still
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-          && Bowser == bowserAnimation)
-           Bowser = bowserStill;
+          && bowser.getCurrentAnim() == bowser.getAnimation(Character.FWD))
+           bowser.setCurrentAnim(Character.FWD_STILL);
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
           &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-          && Bowser == bowserBackAnimation)
-           Bowser = bowserBackStill;
- 
-     
-    }
-    public int getID(){return 1;}     
-}
-    
+          && bowser.getCurrentAnim() == bowser.getAnimation(Character.BACK))
+          bowser.setCurrentAnim(Character.BACK_STILL);
+       
+     //Inventory.
+       if(input.isKeyPressed(Input.KEY_I)) 
+       {
+             sbg.enterState(9);
+       }
+       
+       ///// menu  //////////////
+       //escape 
+       if(input.isKeyDown(Input.KEY_ESCAPE))
+       {
+          quit = true;
+       }
 
+       //when menu is up
+       if(quit)
+       {
+          if(input.isKeyDown(Input.KEY_R))
+          {
+             quit = false;
+          }
+          if(input.isKeyDown(Input.KEY_M))
+          {
+             sbg.enterState(0);
+          }
+          if(input.isKeyDown(Input.KEY_Q))
+          {
+             System.exit(0);
+          }
+       }
+    }
     
-    
+    public int getID() { return 1; }
+  
+}

@@ -10,7 +10,7 @@ public class Item extends Entity
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
    {
-      super(name);
+      this.name = name;
       this.stackable = stackable;
       this.description = description;
       this.quantity = quantity;
@@ -92,6 +92,13 @@ public class Item extends Entity
       System.out.println(itemTwo.toString());
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
+   }
+
+   @Override
+   public void onCollision(Entity ent)
+   {
+      // TODO Auto-generated method stub
+      
    }
    
    
