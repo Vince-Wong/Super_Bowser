@@ -16,7 +16,7 @@ public class Menu extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
 		menu = new Image("res/menuMario.png");
-		bowserSheet = new SpriteSheet("res/BowserExcited.png",87,80);
+		bowserSheet = new SpriteSheet("res/Bowser HammerTime.png",32,64);
 		bowserAnimation = new Animation(bowserSheet,250);
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
