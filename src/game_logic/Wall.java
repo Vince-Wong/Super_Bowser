@@ -12,8 +12,12 @@ public class Wall extends Entity
    @Override
    public void onCollision(Entity ent)
    {
-      // TODO Auto-generated method stub
-
+      if (ent instanceof Bowser) {
+         Bowser guy = (Bowser)ent;
+         guy.setX(guy.getPrevX());
+         guy.setY(guy.getPrevY());
+      }
+      
    }
 
 }

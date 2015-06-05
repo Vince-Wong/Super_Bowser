@@ -20,6 +20,11 @@ public class Play extends BasicGameState
     private boolean quit = false;
     protected static Bowser bowser;
     protected boolean debug = false;
+    protected ArrayList<Entity> entities;
+    //window size 1000, 750
+    protected final int WINDOW_WIDTH = 1000;
+    protected final int WINDOW_HEIGHT = 750;
+    
     
     public Play(int State){}
     
@@ -29,7 +34,8 @@ public class Play extends BasicGameState
        bowser = new Bowser();
      //TEMP MAP
        //Map = new Image("res/TempBackground.jpg");
-
+       entities = new ArrayList<>();
+       
        //sets the max frames per second
        int maxFPS = 60;
        gc.setTargetFrameRate(maxFPS);
@@ -38,26 +44,22 @@ public class Play extends BasicGameState
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
-     //window size 1000, 750
-       int width = 1000;
-       int height = 750;
-
        //g.drawImage(Map,0,0);
 
        // renders the menu
        if(quit)
        {
           g.setColor(Color.red);
-          g.fillRect(width/2 - 40, height/2 - 140, 200, 200);
+          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
 
           g.setColor(Color.black);
-          g.fillRect(width/2 - 30, height/2 - 130, 180, 180);
+          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
 
 
           g.setColor(Color.white);
-          g.drawString("Resume (R)", width/2, height/2 - 100);
-          g.drawString("Main Menu (M)", width/2, height/2 - 50);
-          g.drawString("Quit Game (Q)", width/2, height/2);
+          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
+          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
+          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
           if(!quit)
           {
              g.clear();
@@ -76,7 +78,9 @@ public class Play extends BasicGameState
            throws SlickException
     {
         bowser.getCurrentAnim().update(delta);
+        bowser.setPrevXY();
         Input input = gc.getInput();
+        //EVERYTHING BELOW THIS IS HANDLING USER INPUT EXCEPT THE LAST LINE
         // Input is the UP command
         if(input.isKeyDown(Input.KEY_W))
         {
@@ -86,7 +90,7 @@ public class Play extends BasicGameState
            else {
               bowser.setCurrentAnim(Character.BACK);
            }
-           bowser.setY(bowser.getY() - delta * .5f);
+           bowser.setY(bowser.getY() - delta * .25f);
         }
         // Input is the DOWN command
         if(input.isKeyDown(Input.KEY_S))
@@ -97,21 +101,21 @@ public class Play extends BasicGameState
            else {
               bowser.setCurrentAnim(Character.BACK);
            }
-           bowser.setY(bowser.getY() + delta * .5f);
+           bowser.setY(bowser.getY() + delta * .25f);
         }
         // Input is the LEFT command
         if(input.isKeyDown(Input.KEY_A))
         {
            bowser.faceLeft();
            bowser.setCurrentAnim(Character.BACK);
-           bowser.setX(bowser.getX() - delta * .5f);
+           bowser.setX(bowser.getX() - delta * .25f);
         }
         // Input is the RIGHT command
        if(input.isKeyDown(Input.KEY_D))
        {
            bowser.faceRight();
            bowser.setCurrentAnim(Character.FWD);
-           bowser.setX(bowser.getX() + delta * .5f);
+           bowser.setX(bowser.getX() + delta * .25f);
        }
        // No input, but need to show bowser standing still
        if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
@@ -164,6 +168,19 @@ public class Play extends BasicGameState
        if (input.isKeyPressed(Input.KEY_F12)) {
           debug = !debug;
           System.out.println("debug mode");
+       }
+       
+       
+       
+       //EVERYTHING ABOVE THIS IS HANDLING USER INPUT
+       detectCollision();
+    }
+    
+    private void detectCollision() {
+       for (Entity thing : entities) {
+          if (bowser.getShape().intersects(thing.getShape())) {
+             thing.onCollision(bowser);
+          }
        }
     }
     
