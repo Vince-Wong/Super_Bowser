@@ -98,6 +98,25 @@ public class Item extends Entity
    public void onCollision(Entity ent)
    {
       // TODO Auto-generated method stub
+      String otherObject = ent.getClass().toString();
+      
+      switch(otherObject)
+      {
+         case "class Bowser":
+         {
+            Bowser myBow = (Bowser)ent;
+            myBow.getInventory().addItem(this);
+            break;
+         }
+//         case "class Mob":
+//         {
+//            Mob myMob = (Mob)ent;
+//            myMob.getInventory().addItem(this);
+//            break;
+//         }
+         default: break;
+      }
+      
       
    }
    
