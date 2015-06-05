@@ -7,14 +7,16 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public abstract class Entity
 {
-   private String name;
-   private Rectangle shape;
+
+   protected String name;
+   protected Rectangle shape;
    
-   public abstract void onCollision(Entity ent);
+ 	public abstract void onCollision(Entity ent);
    
    public String getName() { return name; }
    public void setName(String myName) { name = myName; }
    
    public Rectangle getShape() { return shape; }
    public void setShape(Rectangle rect) { shape = rect; }
+   
 }

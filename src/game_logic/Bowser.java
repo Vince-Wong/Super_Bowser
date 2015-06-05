@@ -61,6 +61,4 @@ public class Bowser extends Character
 //TODO Classes not made yet, declared as non-public class here to avoid red lines 
 class Mob {}
 
-class Item {}
-
 class Door {}

@@ -48,5 +48,3 @@ public abstract class Character extends Entity
    public float getY() { return getShape().getY(); }
    public void setY(float deltaY) { getShape().setY(deltaY); }
 }
-
-class Inventory {}
