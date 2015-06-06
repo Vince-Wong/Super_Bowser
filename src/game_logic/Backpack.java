@@ -4,27 +4,27 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class Menu extends BasicGameState{
-	Image menu;
+public class Backpack extends BasicGameState{
+	Image backpack;
 	public String mouse = "No Input yet..";
-	public String Play = "PRESS ENTER TO PLAY!";
+	public String Play = "PRESS I TO TO GO BACK TO GAME!";
 	private SpriteSheet bowserSheet;
 	private Animation bowserAnimation;
-	public Menu(int State){
+	public Backpack(int State){
 		
 	}
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
-		menu = new Image("res/menuMario.png");
-		bowserSheet = new SpriteSheet("res/Bowser HammerTime.png",32,64);
+		backpack = new Image("res/Backpack.png");
+		bowserSheet = new SpriteSheet("res/Bowser FireClaw.png",32,32);
 		bowserAnimation = new Animation(bowserSheet,250);
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException{
-		g.drawImage(menu,0,0);
+		g.drawImage(backpack,0,0);
 		g.drawString(mouse,10,30);
 		g.drawString(Play,400,640);
-		bowserAnimation.draw(300, 610);
+		bowserAnimation.draw(100, 100);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException{
@@ -33,13 +33,14 @@ public class Menu extends BasicGameState{
 		int xpos = Mouse.getX();
 		int ypos = 750-Mouse.getY();
 		mouse = ("x: " + xpos + " y: "+ ypos);
-		if(input.isKeyDown(Input.KEY_ENTER))
+		if(input.isKeyPressed(Input.KEY_I))
 		{
 			sbg.enterState(1);	
 		}
 	}
 	
+	//cause "i" is 9 in the alphabet
 	public int getID(){
-		return 0;
+		return 9;
 	}	
 }
