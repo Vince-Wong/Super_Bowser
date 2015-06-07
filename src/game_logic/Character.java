@@ -56,5 +56,3 @@ public abstract class Character extends Entity
    public float getPrevX() { return prevX; }
    public float getPrevY() { return prevY; }
 }
-
-class Inventory {}
