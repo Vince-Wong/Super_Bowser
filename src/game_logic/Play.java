@@ -19,7 +19,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Play extends BasicGameState
 {   
-    //private Image Map;
+    private Image Map;
     private boolean quit = false;
     protected static Bowser bowser;
     protected boolean debug = false;
@@ -31,7 +31,6 @@ public class Play extends BasicGameState
     
     public Play(int State){}
     Item testItem;
-    ArrayList<Entity> entities;
     
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
@@ -173,9 +172,6 @@ public class Play extends BasicGameState
           }
        }
        detectCollision();
-    }
-    {
-       
        if(input.isKeyPressed(Input.KEY_F11)) {
           // Spawn location is set here for the stage transition!
           bowser.setX(40);
@@ -187,8 +183,7 @@ public class Play extends BasicGameState
        if (input.isKeyPressed(Input.KEY_F12)) {
           debug = !debug;
           System.out.println("debug mode");
-       }
-           
+       }              
        //EVERYTHING ABOVE THIS IS HANDLING USER INPUT
        detectCollision();
     }
