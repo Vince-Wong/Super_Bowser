@@ -2,7 +2,7 @@ package game_logic;
 
 public class Inventory
 {
-   public static final int MAX_SIZE = 8, MIN_SIZE = 0;
+   public static final int MAX_SIZE = 8, MIN_SIZE = 0;   //max at 2 for testing
    public int currentSize;
    private Item[] items;
    

@@ -1,5 +1,7 @@
 package game_logic;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public class Item extends Entity
 {
    protected boolean stackable;
@@ -15,6 +17,7 @@ public class Item extends Entity
       this.description = description;
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
+      setShape(new Rectangle(100, 100, 32, 32));   //TODO must fix later
    }
    
    /**
@@ -99,10 +102,10 @@ public class Item extends Entity
    {
       // TODO Auto-generated method stub
       String otherObject = ent.getClass().toString();
-      
+      System.out.println(otherObject);
       switch(otherObject)
       {
-         case "class Bowser":
+         case "class game_logic.Bowser":
          {
             Bowser myBow = (Bowser)ent;
             myBow.getInventory().addItem(this);

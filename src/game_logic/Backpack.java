@@ -3,6 +3,8 @@ package game_logic;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Backpack extends BasicGameState{
 	Image backpack;
@@ -35,7 +37,7 @@ public class Backpack extends BasicGameState{
 		mouse = ("x: " + xpos + " y: "+ ypos);
 		if(input.isKeyPressed(Input.KEY_I))
 		{
-			sbg.enterState(1);	
+			sbg.enterState(1, new FadeOutTransition(), new FadeInTransition());	
 		}
 	}
 	

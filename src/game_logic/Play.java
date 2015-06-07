@@ -14,6 +14,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Play extends BasicGameState
 {   
@@ -21,6 +23,8 @@ public class Play extends BasicGameState
     boolean quit = false;
     private Bowser bowser;
     public Play(int State){}
+    Item testItem;
+    ArrayList<Entity> entities;
     
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
@@ -28,7 +32,10 @@ public class Play extends BasicGameState
        bowser = new Bowser();
      //TEMP MAP
        Map = new Image("res/TempBackground.jpg");
-
+       
+       testItem = new Item("Box", false, 1, 1, "test item"); //test item
+       entities = new ArrayList<>();
+       entities.add(testItem);
        //sets the max frames per second
        int maxFPS = 60;
        gc.setTargetFrameRate(maxFPS);
@@ -60,12 +67,14 @@ public class Play extends BasicGameState
           if(!quit)
           {
              g.clear();
-          }
+          }   
        }
     // renders bowser
        ShapeRenderer.fill(bowser.getShape()); 
        bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
                                      bowser.getY()-Bowser.PADDING);
+     //TODO spawn test item
+       g.fill(testItem.getShape());
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -122,7 +131,7 @@ public class Play extends BasicGameState
      //Inventory.
        if(input.isKeyPressed(Input.KEY_I)) 
        {
-             sbg.enterState(9);
+             sbg.enterState(9, new FadeOutTransition(), new FadeInTransition());
        }
        
        ///// menu  //////////////
@@ -146,6 +155,16 @@ public class Play extends BasicGameState
           if(input.isKeyDown(Input.KEY_Q))
           {
              System.exit(0);
+          }
+       }
+       detectCollision();
+    }
+    
+    private void detectCollision() {
+       for (Entity thing : entities) {
+          if (bowser.getShape().intersects(thing.getShape())) 
+          {
+             thing.onCollision(bowser);
           }
        }
     }
