@@ -9,7 +9,7 @@ public class Inventory
    public Inventory()
    {
       this.currentSize = 0;
-      this.items = new Item[MAX_SIZE + 1];
+      this.items = new Item[MAX_SIZE];
    }
       
    /**
@@ -22,28 +22,22 @@ public class Inventory
       //TODO
       int k;
       //for adding items in inventory is empty
-      if(currentSize == 0)
+      if(currentSize == MIN_SIZE)
       {
          items[currentSize] = newItem;
          currentSize ++;
          return true;
       }   
-      if(currentSize <= MAX_SIZE)
+      else if(currentSize <= MAX_SIZE)
       {
          for(k = 0; k < currentSize; k++)
          {
             //for increasing item quantity
             if(newItem.getName().equals(items[k].getName()))
                {
-                  if(items[k].increaseQuantity())
-                  {
-                     return true;
-                  }
-                  //maybe put in a flag for inventory is full?
-                  return false;
+                  return items[k].increaseQuantity();
+                  //TODO maybe put in a flag for inventory is full?
                }
-            else
-               continue;
          }
          //for adding a new item to the inventory
          if(currentSize < MAX_SIZE)
@@ -73,15 +67,15 @@ public class Inventory
       {
          if(itemRemoved.getName().equals(items[k].getName()))
          {   
-            if(!items[k].decreaesQuantity())
+            if(!items[k].decreaseQuantity())
             {
+               currentSize --;
                for(j = k; j < currentSize; j++)
                {
                   temp = items[j];
                   items[j] = items[j+1];
                   items[j+1] = temp;
                }
-               currentSize --;
                return true;
             }  
          }   

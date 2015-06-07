@@ -37,7 +37,7 @@ public class Item extends Entity
    /**
     * decrease item quantity
     */
-   public boolean decreaesQuantity()
+   public boolean decreaseQuantity()
    {
       if(quantity > 1)
       {
@@ -48,13 +48,29 @@ public class Item extends Entity
          return false;    
    }
    
-   public String toString()
+   @Override
+   public void onCollision(Entity ent)
    {
-      String details = "\nItem Name: " + this.name + "\nstackable: " + this.stackable 
-         + "\nquantity: " + this.quantity + "\nmax Quantity: " + this.maxQuantity
-         + "\ndescription: " + this.description;
-      return details;
-   }
+      // TODO Auto-generated method stub
+      String otherObject = ent.getClass().toString();
+      System.out.println(otherObject);
+      switch(otherObject)
+      {
+         case "class game_logic.Bowser":
+         {
+            Bowser myBow = (Bowser)ent;
+            myBow.getInventory().addItem(this);
+            break;
+         }
+//         case "class Mob":
+//         {
+//            Mob myMob = (Mob)ent;
+//            myMob.getInventory().addItem(this);
+//            break;
+//         }
+         default: break;
+      } 
+   } 
    
    public boolean isStackable()
    {
@@ -77,6 +93,14 @@ public class Item extends Entity
       return description;
    }
    
+   public String toString()
+   {
+      String details = "\nItem Name: " + this.name + "\nstackable: " + this.stackable 
+         + "\nquantity: " + this.quantity + "\nmax Quantity: " + this.maxQuantity
+         + "\ndescription: " + this.description;
+      return details;
+   }
+   
    public static void main(String[] args)
    {
       // TODO Auto-generated method stub
@@ -95,33 +119,5 @@ public class Item extends Entity
       System.out.println(itemTwo.toString());
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
-   }
-
-   @Override
-   public void onCollision(Entity ent)
-   {
-      // TODO Auto-generated method stub
-      String otherObject = ent.getClass().toString();
-      System.out.println(otherObject);
-      switch(otherObject)
-      {
-         case "class game_logic.Bowser":
-         {
-            Bowser myBow = (Bowser)ent;
-            myBow.getInventory().addItem(this);
-            break;
-         }
-//         case "class Mob":
-//         {
-//            Mob myMob = (Mob)ent;
-//            myMob.getInventory().addItem(this);
-//            break;
-//         }
-         default: break;
-      }
-      
-      
-   }
-   
-   
+   } 
 }
