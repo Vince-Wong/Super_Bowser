@@ -17,6 +17,7 @@ public class Item extends Entity
       this.description = description;
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
+      setOnScreen(true);
       setShape(new Rectangle(100, 100, 32, 32));   //TODO must fix later
    }
    
@@ -59,7 +60,8 @@ public class Item extends Entity
          case "class game_logic.Bowser":
          {
             Bowser myBow = (Bowser)ent;
-            myBow.getInventory().addItem(this);
+            if(myBow.getInventory().addItem(this))
+               this.setOnScreen(false);
             break;
          }
 //         case "class Mob":

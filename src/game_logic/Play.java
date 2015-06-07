@@ -19,7 +19,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Play extends BasicGameState
 {   
-    private Image Map;
+//    private Image Map;
     private boolean quit = false;
     protected static Bowser bowser;
     protected boolean debug = false;
@@ -30,7 +30,6 @@ public class Play extends BasicGameState
     
     
     public Play(int State){}
-    Item testItem;
     
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
@@ -38,13 +37,11 @@ public class Play extends BasicGameState
        bowser = new Bowser();
      //TEMP MAP
 
-       Map = new Image("res/TempBackground.jpg");
+//     Map = new Image("res/TempBackground.jpg");
        
-       testItem = new Item("Box", false, 1, 1, "test item"); //test item
        entities = new ArrayList<>();
-       entities.add(testItem);
-       //Map = new Image("res/TempBackground.jpg");
-       entities = new ArrayList<>();
+       
+
        //sets the max frames per second
        int maxFPS = 60;
        gc.setTargetFrameRate(maxFPS);
@@ -74,18 +71,22 @@ public class Play extends BasicGameState
              g.clear();
           }   
        }
-    // renders bowser
-       bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
-                                     bowser.getY()-Bowser.PADDING);
-
-     //TODO spawn test item
-       g.fill(testItem.getShape());
-
+    
        if (debug) {
           g.setColor(Color.red);
-          g.fill(bowser.getShape()); 
+          g.fill(bowser.getShape());
        }
-
+          
+       //TODO draw all entities and remove them?
+       if(!(entities == null))
+       for (Entity thing : entities)
+       {
+          g.fill(thing.getShape());
+       }
+       
+       // renders bowser
+       bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
+                                     bowser.getY()-Bowser.PADDING);
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -171,7 +172,6 @@ public class Play extends BasicGameState
              System.exit(0);
           }
        }
-       detectCollision();
        if(input.isKeyPressed(Input.KEY_F11)) {
           // Spawn location is set here for the stage transition!
           bowser.setX(40);
@@ -188,10 +188,26 @@ public class Play extends BasicGameState
        detectCollision();
     }
     
+//    private void detectCollision() {
+//       for (Entity thing : entities) {
+//          if (bowser.getShape().intersects(thing.getShape())) {
+//             thing.onCollision(bowser);
+//          }
+//       }
+//    }
+    
+    //modified collision method to account for item removal
     private void detectCollision() {
-       for (Entity thing : entities) {
-          if (bowser.getShape().intersects(thing.getShape())) {
-             thing.onCollision(bowser);
+       int k;
+       for (k = 0; k < entities.size(); k++) {
+          if (bowser.getShape().intersects(entities.get(k).getShape())) {
+             entities.get(k).onCollision(bowser);
+          //Does this work in arraylists?
+          if(!entities.get(k).getOnScreen())
+          {
+             entities.remove(k);
+             System.out.println(bowser.getInventory().toString()); //TODO For testing
+          }
           }
        }
     }

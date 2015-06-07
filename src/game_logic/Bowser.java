@@ -37,6 +37,7 @@ public class Bowser extends Character
       setHealth(START_HEALTH);
       setInventory(new Inventory());
       faceRight();
+      setOnScreen(true);
    }
    
    public void onCollision(Mob enemy) {

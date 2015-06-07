@@ -13,6 +13,7 @@ public class Test01 extends Play
 {
    private Wall wall1, topWall, bottomWall, leftWall, rightWall;
    private Image map;
+   private Item testItem, testItem2, testItem3;
    
    public Test01(int state) {
       super(state);
@@ -34,6 +35,16 @@ public class Test01 extends Play
       entities.add(leftWall);
       entities.add(rightWall);
       
+    //test item
+      testItem = new Item("Box", false, 1, 1, "test item"); 
+      testItem2 = new Item("Box", false, 1, 2, "test item2");
+      testItem2.getShape().setLocation(200, 500);
+      testItem3 = new Item("Box", false, 1, 1, "test item3");
+      testItem3.getShape().setLocation(375, 400);
+      entities.add(testItem);
+      entities.add(testItem2);
+      entities.add(testItem3);
+      
    }
    
    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -47,9 +58,13 @@ public class Test01 extends Play
          g.fill(bottomWall.getShape());
          g.fill(leftWall.getShape());
          g.fill(rightWall.getShape());
+
       }
       super.render(gc, sbg, g);
    }
    
    public int getID() { return 901; }
 }
+
+
+
