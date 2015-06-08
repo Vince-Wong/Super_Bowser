@@ -27,7 +27,8 @@ public class Menu extends BasicGameState{
 		bowserAnimation.draw(300, 610);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException{
+			throws SlickException
+	{
 		bowserAnimation.update(delta);
 		Input input = gc.getInput();
 		int xpos = Mouse.getX();
@@ -37,6 +38,10 @@ public class Menu extends BasicGameState{
 		{
 			sbg.enterState(1);	
 		}
+		 if(input.isKeyDown(Input.KEY_3))
+	      {
+	         sbg.enterState(3);   
+	      }
 	}
 	
 	public int getID(){
