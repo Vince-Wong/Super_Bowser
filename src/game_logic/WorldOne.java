@@ -55,7 +55,7 @@ public class WorldOne extends BasicGameState
        map.getTileId(0,0, itemsLayer);
        
         // Input is the UP command
-       if(map.getTileId(x,y,itemsLayer)==3)
+       if(map.getTileId(x,y,itemsLayer)==2)
        {   
            System.out.println("NEW ITEM!!");        
        }
