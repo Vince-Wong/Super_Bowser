@@ -20,6 +20,7 @@ public abstract class Character extends Entity
    private boolean face;
    private int health;
    private Inventory inventory;
+   float prevX, prevY;
    
    public void setSprites(SpriteSheet[] mySprites) { sprites = mySprites; }
    
@@ -47,4 +48,12 @@ public abstract class Character extends Entity
    public void setX(float deltaX) { getShape().setX(deltaX); }
    public float getY() { return getShape().getY(); }
    public void setY(float deltaY) { getShape().setY(deltaY); }
+   
+   public void setPrevXY() { 
+      prevX = (int)getX();
+      prevY = (int)getY();
+   }
+   public float getPrevX() { return prevX; }
+   public float getPrevY() { return prevY; }
+
 }

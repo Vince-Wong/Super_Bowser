@@ -9,6 +9,9 @@ public class Bowser extends Character
 {
    private static final int START_HEALTH = 10;
    protected static final int PADDING = 13;
+ 
+   protected static final int SIZE = 32;
+
    
    public Bowser() throws SlickException {
       setName("Bowser");
@@ -16,8 +19,7 @@ public class Bowser extends Character
        * shape a little bit smaller due to whitespace around sprite.
        * Estimated this visually, giving the shape 13px padding on all sides
        */
-      setShape(new Rectangle(13, 13, 77-26, 75-26));
-      
+      setShape(new Rectangle(PADDING, PADDING, SIZE-PADDING*2, SIZE-PADDING*2));
       SpriteSheet[] bowserSprites = new SpriteSheet[4];
       bowserSprites[FWD] = new SpriteSheet("res/Bowser Walks.png",32,32);
       bowserSprites[BACK] = new SpriteSheet("res/Bowser Walks Back.png",32,32);
@@ -57,6 +59,7 @@ public class Bowser extends Character
       
    }
 }
+   
 
 //TODO Classes not made yet, declared as non-public class here to avoid red lines 
 class Mob {}
