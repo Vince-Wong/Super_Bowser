@@ -104,6 +104,7 @@ public class Inventory
    
    public static void main(String[] args)
    {
+      //Vincent Use case test
       // CHANGE MAX_SIZE TO 2 WHEN RUNNING MAIN FOR TESTING
       System.out.println("Creating predefined items");
       Item itemOne = new Item("Sword", false, 1, 1, "test item one, non stackable");
