@@ -22,7 +22,6 @@ public abstract class Character extends Entity
    private boolean face;
    private int health;
    private Inventory inventory;
-   float prevX, prevY;
    
    public void setSprites(SpriteSheet[] mySprites) { sprites = mySprites; }
    
