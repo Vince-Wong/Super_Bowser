@@ -18,13 +18,13 @@ public class Game extends StateBasedGame{
         this.addState(new Play(play));
         this.addState(new Backpack(backpack));
         this.addState(new WorldOne(worldOne));
-        this.addState(new Test01(test01));
+//        this.addState(new Test01(test01));
     }
     public void initStatesList(GameContainer gc) throws SlickException{
         this.getState(menu).init(gc, this);
         this.getState(play).init(gc, this);
         this.getState(backpack).init(gc, this);
-        this.getState(test01).init(gc, this);
+//        this.getState(test01).init(gc, this);
         this.enterState(menu);
     }
     public static void main(String[] args) {

@@ -22,6 +22,7 @@ public class WorldOne extends BasicGameState
     boolean quit = false;
     private TiledMap map;
     private Bowser bowser;
+    private final int DELAY = 250;
     public WorldOne(int State){}
     int x =5;
     int y =5;
@@ -45,6 +46,8 @@ public class WorldOne extends BasicGameState
        
        
     }
+    
+    private long counter = 0;
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
@@ -54,37 +57,50 @@ public class WorldOne extends BasicGameState
        int itemsLayer = map.getLayerIndex("Items");
        map.getTileId(0,0, itemsLayer);
        
+       counter += delta;
         // Input is the UP command
        if(map.getTileId(x,y,itemsLayer)==2)
        {   
            System.out.println("NEW ITEM!!");        
        }
-        if(gc.getInput().isKeyPressed(Input.KEY_W))
+        if(gc.getInput().isKeyDown(Input.KEY_W))
         {
            if(map.getTileId(x,y-1,objectLayer)==0)
            {  
-              y--;                     
+              if (counter >= DELAY) {
+                 counter = 0;
+                 y--;                  
+              }
            }         
         }
-        if(gc.getInput().isKeyPressed(Input.KEY_S))
+        if(gc.getInput().isKeyDown(Input.KEY_S))
         {
            if(map.getTileId(x,y+1,objectLayer)==0)
            {   
-              y++;              
+              if (counter >= DELAY) {
+                 counter = 0;
+                 y++;                     
+              }           
            }
         }
-        if(gc.getInput().isKeyPressed(Input.KEY_A))
+        if(gc.getInput().isKeyDown(Input.KEY_A))
         {
            if(map.getTileId(x-1,y,objectLayer)==0)
            {   
-              x--;             
+              if (counter >= DELAY) {
+                 counter = 0;
+                 x--;                     
+              }           
            }         
         }
-        if(gc.getInput().isKeyPressed(Input.KEY_D))
+        if(gc.getInput().isKeyDown(Input.KEY_D))
         {
            if(map.getTileId(x+1,y,objectLayer)==0)
            {   
-              x++;            
+              if (counter >= DELAY) {
+                 counter = 0;
+                 x++;                     
+              }            
            }          
         }
     } 
