@@ -40,7 +40,9 @@ public class Menu extends BasicGameState{
 		}
 		 if(input.isKeyDown(Input.KEY_3))
 	      {
-	         sbg.enterState(3);   
+	         sbg.enterState(3);
+	         WorldTemplate.bowser.setX(2);
+	         WorldTemplate.bowser.setY(10);
 	      }
 	}
 	

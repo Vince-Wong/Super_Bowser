@@ -15,7 +15,7 @@ public class Game extends StateBasedGame{
     public Game(String gamename){
         super(gamename);
         this.addState(new Menu(menu));
-        this.addState(new Play(play));
+        this.addState(new WorldTemplate(play));
         this.addState(new Backpack(backpack));
         this.addState(new WorldOne(worldOne));
 //        this.addState(new Test01(test01));
@@ -24,6 +24,7 @@ public class Game extends StateBasedGame{
         this.getState(menu).init(gc, this);
         this.getState(play).init(gc, this);
         this.getState(backpack).init(gc, this);
+        this.getState(worldOne).init(gc, this);
 //        this.getState(test01).init(gc, this);
         this.enterState(menu);
     }
