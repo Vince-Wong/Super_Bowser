@@ -18,11 +18,16 @@ public class NPC extends Character{
 		
 	}
 	
-	//use the ID to determine which dialog to receive.
+	/**
+	 * use the ID to determine which dialog to receive.
+	 * @param index at which dialogue want to retrive
+	 * @return 
+	 */
 	public String getDialogue(int index)
 	{
-		//String dialogue = fileReader.getDialogueAt(ID, index);
-		return null;
+		
+		String dialogueStr = dialogue[ID][index];
+		return dialogueStr;
 	}
 	
 	
