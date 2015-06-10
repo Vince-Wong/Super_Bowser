@@ -36,14 +36,16 @@ public class Menu extends BasicGameState{
 		mouse = ("x: " + xpos + " y: "+ ypos);
 		if(input.isKeyDown(Input.KEY_ENTER))
 		{
-			sbg.enterState(1);	
+		   sbg.enterState(3);
+         WorldTemplate.bowser.setX(2);
+         WorldTemplate.bowser.setY(13);	
 		}
-		 if(input.isKeyDown(Input.KEY_3))
-	      {
-	         sbg.enterState(3);
-	         WorldTemplate.bowser.setX(2);
-	         WorldTemplate.bowser.setY(13);
-	      }
+		if(input.isKeyDown(Input.KEY_3))
+		{
+		   sbg.enterState(3);
+		   WorldTemplate.bowser.setX(2);
+		   WorldTemplate.bowser.setY(13);
+		}
 	}
 	
 	public int getID(){

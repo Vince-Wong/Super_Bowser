@@ -17,7 +17,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldTemplate extends BasicGameState
 {   
-    private static final int DELAY = 250;
+    private static final int DELAY = 200;
     protected static final int WINDOW_WIDTH = 800;
     protected static final int WINDOW_HEIGHT = 640;
 
@@ -64,141 +64,93 @@ public class WorldTemplate extends BasicGameState
        // renders bowser
        g.fill(bowser.getShape()); 
        bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
-                                     bowser.getY() * Character.SIZE);
+                                    bowser.getY() * Character.SIZE);
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
        Input input = gc.getInput();
-       readInput(input, delta);
-       
-//        bowser.getCurrentAnim().update(delta);          
-//        // Input is the UP command
-//        if(input.isKeyDown(Input.KEY_W))
-//        {
-//           if (bowser.getFace()) {
-//              bowser.setCurrentAnim(Character.FWD);
-//           }
-//           else {
-//              bowser.setCurrentAnim(Character.BACK);
-//           }
-//           bowser.setY(bowser.getY() - delta * .5f);
-//        }
-//        // Input is the DOWN command
-//        if(input.isKeyDown(Input.KEY_S))
-//        {
-//           if (bowser.getFace()) {
-//              bowser.setCurrentAnim(Character.FWD);
-//           }
-//           else {
-//              bowser.setCurrentAnim(Character.BACK);
-//           }
-//           bowser.setY(bowser.getY() + delta * .5f);
-//        }
-//        // Input is the LEFT command
-//        if(input.isKeyDown(Input.KEY_A))
-//        {
-//           bowser.faceLeft();
-//           bowser.setCurrentAnim(Character.BACK);
-//           bowser.setX(bowser.getX() - delta * .5f);
-//        }
-//        // Input is the RIGHT command
-//       if(input.isKeyDown(Input.KEY_D))
-//       {
-//           bowser.faceRight();
-//           bowser.setCurrentAnim(Character.FWD);
-//           bowser.setX(bowser.getX() + delta * .5f);
-//       }
-//       // No input, but need to show bowser standing still
-//       if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
-//          &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-//          && bowser.getCurrentAnim() == bowser.getAnimation(Character.FWD))
-//           bowser.setCurrentAnim(Character.FWD_STILL);
-//       if(!input.isKeyDown(Input.KEY_A) &&!input.isKeyDown(Input.KEY_D)
-//          &&!input.isKeyDown(Input.KEY_S) &&!input.isKeyDown(Input.KEY_W)
-//          && bowser.getCurrentAnim() == bowser.getAnimation(Character.BACK))
-//          bowser.setCurrentAnim(Character.BACK_STILL);
-       
-     //Inventory.
-       if(input.isKeyPressed(Input.KEY_I)) 
-       {
-             sbg.enterState(9);
+       // Menu not open
+       if (!quit) {
+          readMoveInput(input, delta);
+       }
+       // Menu is open
+       else {
+          readMenuOption(input, sbg);
        }
        
-       ///// menu  //////////////
-       //escape 
+       // Open Backpack
+       if(input.isKeyPressed(Input.KEY_I)) 
+       {
+          sbg.enterState(9);
+       }
+       
+       // Open Menu
        if(input.isKeyDown(Input.KEY_ESCAPE))
        {
           quit = true;
        }
-
-       //when menu is up
-       if(quit)
+    }
+    
+    private void readMenuOption(Input in, StateBasedGame sbg) {
+       if(in.isKeyDown(Input.KEY_R))
        {
-          if(input.isKeyDown(Input.KEY_R))
-          {
-             quit = false;
-          }
-          if(input.isKeyDown(Input.KEY_M))
-          {
-             sbg.enterState(0);
-          }
-          if(input.isKeyDown(Input.KEY_Q))
-          {
-             System.exit(0);
-          }
+          quit = false;
+       }
+       else if(in.isKeyDown(Input.KEY_M))
+       {
+          sbg.enterState(0);
+       }
+       else if(in.isKeyDown(Input.KEY_Q))
+       {
+          System.exit(0);
        }
     }
     
-    private void readInput(Input in, long delta) {
+    private void readMoveInput(Input in, long delta) {
        counter += delta;
-       if(map.getTileId(bowser.getX(),bowser.getY(),itemsLayer)==2)
-       {   
-          System.out.println("NEW ITEM!!");        
-       }
-       if(in.isKeyDown(Input.KEY_W))
+       // if Bowser hasn't moved in the last DELAY milliseconds
+       if (counter >= DELAY)
        {
-          if(map.getTileId(bowser.getX(),bowser.getY()-1,objectLayer)==0)
-          {  
-             if (counter >= DELAY) {
+          // if input is UP
+          if(in.isKeyDown(Input.KEY_W))
+          {
+             // if the tile above Bowser's current position is the floor layer
+             if(map.getTileId(bowser.getX(),bowser.getY()-1,objectLayer)==0)
+             {
+                // move Bowser and reset the counter
                 counter = 0;
                 bowser.moveVertical(-1);                  
-             }
-          }         
-       }
-       if(in.isKeyDown(Input.KEY_S))
-       {
-          if(map.getTileId(bowser.getX(),bowser.getY()+1,objectLayer)==0)
-          {   
-             if (counter >= DELAY) {
+             }         
+          }
+          else if(in.isKeyDown(Input.KEY_S))
+          {
+             if(map.getTileId(bowser.getX(),bowser.getY()+1,objectLayer)==0)
+             {
                 counter = 0;
                 bowser.moveVertical(1);                  
-             }           
+             }
           }
-       }
-       if(in.isKeyDown(Input.KEY_A))
-       {
-          if(map.getTileId(bowser.getX()-1,bowser.getY(),objectLayer)==0)
-          {   
-             if (counter >= DELAY) {
+          else if(in.isKeyDown(Input.KEY_A))
+          {
+             if(map.getTileId(bowser.getX()-1,bowser.getY(),objectLayer)==0)
+             {   
                 counter = 0;
                 bowser.moveHorizontal(-1);                  
-             }           
-          }         
-       }
-       if(in.isKeyDown(Input.KEY_D))
-       {
-          if(map.getTileId(bowser.getX()+1,bowser.getY(),objectLayer)==0)
-          {   
-             if (counter >= DELAY) {
+             }         
+          }
+          else if(in.isKeyDown(Input.KEY_D))
+          {
+             if(map.getTileId(bowser.getX()+1,bowser.getY(),objectLayer)==0)
+             {   
                 counter = 0;
                 bowser.moveHorizontal(1);                  
-             }            
-          }          
+             }          
+          }
        }
     }
     
-    public int getID() { return 1; }
+    public int getID() { return 10; }
   
 }
