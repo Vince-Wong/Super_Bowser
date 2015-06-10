@@ -42,7 +42,7 @@ public class Menu extends BasicGameState{
 	      {
 	         sbg.enterState(3);
 	         WorldTemplate.bowser.setX(2);
-	         WorldTemplate.bowser.setY(10);
+	         WorldTemplate.bowser.setY(13);
 	      }
 	}
 	

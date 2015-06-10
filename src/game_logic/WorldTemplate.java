@@ -63,8 +63,8 @@ public class WorldTemplate extends BasicGameState
        }
        // renders bowser
        g.fill(bowser.getShape()); 
-       bowser.getCurrentAnim().draw(bowser.getX()-Bowser.PADDING,
-                                     bowser.getY()-Bowser.PADDING);
+       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
+                                     bowser.getY() * Character.SIZE);
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -153,7 +153,6 @@ public class WorldTemplate extends BasicGameState
     
     private void readInput(Input in, long delta) {
        counter += delta;
-       // Input is the UP command
        if(map.getTileId(bowser.getX(),bowser.getY(),itemsLayer)==2)
        {   
           System.out.println("NEW ITEM!!");        
@@ -164,7 +163,7 @@ public class WorldTemplate extends BasicGameState
           {  
              if (counter >= DELAY) {
                 counter = 0;
-                bowser.setY(bowser.getY()-1);                  
+                bowser.moveVertical(-1);                  
              }
           }         
        }
@@ -174,7 +173,7 @@ public class WorldTemplate extends BasicGameState
           {   
              if (counter >= DELAY) {
                 counter = 0;
-                bowser.setY(bowser.getY()+1);                  
+                bowser.moveVertical(1);                  
              }           
           }
        }
@@ -184,7 +183,7 @@ public class WorldTemplate extends BasicGameState
           {   
              if (counter >= DELAY) {
                 counter = 0;
-                bowser.setX(bowser.getX()-1);                  
+                bowser.moveHorizontal(-1);                  
              }           
           }         
        }
@@ -194,7 +193,7 @@ public class WorldTemplate extends BasicGameState
           {   
              if (counter >= DELAY) {
                 counter = 0;
-                bowser.setX(bowser.getX()+1);                  
+                bowser.moveHorizontal(1);                  
              }            
           }          
        }

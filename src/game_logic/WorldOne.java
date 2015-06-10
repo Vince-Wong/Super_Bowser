@@ -36,14 +36,7 @@ public class WorldOne extends WorldTemplate
     {
        map.render(0,0);
        super.render(gc, sbg, g);
-    }
-    
-    public void update(GameContainer gc, StateBasedGame sbg, int delta)
-          throws SlickException
-   {
-       super.update(gc, sbg, delta);
-   }
-    
+    }    
      
     public int getID() { return 3; }
   
