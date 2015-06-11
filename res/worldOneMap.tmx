@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="9">
+ <tileset firstgid="1" name="mapTiles" tilewidth="32" tileheight="32">
+  <image source="mapTiles.png" trans="ff00ff" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="grass" tilewidth="32" tileheight="32">
+  <image source="grassTile.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="11" name="grass inverted" tilewidth="32" tileheight="32">
+  <image source="grass inverted.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="17" name="Trees" tilewidth="32" tileheight="32">
+  <image source="Trees.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="1206" name="trees2" tilewidth="32" tileheight="32">
+  <image source="trees2.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="2395" name="masterSet" tilewidth="32" tileheight="32">
+  <image source="masterSet.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="3584" name="ChainSaw" tilewidth="32" tileheight="32">
+  <image source="ChainSaw.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NlYGBgoyFmB2IOIOakIeaigR0MNLZjBSd2PGoHdjsojY9VnITtQBcj1g5cYYANU2IHueE33OzAF56jduC2g9g0Se04pwQPJzv4gJifhlgAiAGifv3M0AcAAA==
+  </data>
+ </layer>
+ <layer name="Buildings" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgoD0QHSBMiTsFgVgIDZNrLjn24wOMWDA59tDKDlr4g9z4QDaXVv6gBJBiB7npnlQ7yAGk5D9K7SBW7agd9LEDW5xTozzGZg4twGCtj8gBAGDijEjQBwAA
+  </data>
+ </layer>
+ <layer name="Flowers" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWDGRih8XNwqEMXR9dHChhOdhghmQFj47J7FCBA9kA7gETgP9AOwAKwpV1K0vNAgcEYtsQAYsJ6qPoNFwAAlEY2etAHAAA=
+  </data>
+ </layer>
+ <layer name="Items" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYJgAvoF2wCigGhhqcTnU3DsKhiUAADayKMTQBwAA
+  </data>
+ </layer>
+</map>

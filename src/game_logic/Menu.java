@@ -27,7 +27,8 @@ public class Menu extends BasicGameState{
 		bowserAnimation.draw(300, 610);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException{
+			throws SlickException
+	{
 		bowserAnimation.update(delta);
 		Input input = gc.getInput();
 		int xpos = Mouse.getX();
@@ -35,7 +36,15 @@ public class Menu extends BasicGameState{
 		mouse = ("x: " + xpos + " y: "+ ypos);
 		if(input.isKeyDown(Input.KEY_ENTER))
 		{
-			sbg.enterState(1);	
+		   sbg.enterState(3);
+         WorldTemplate.bowser.setX(2);
+         WorldTemplate.bowser.setY(13);	
+		}
+		if(input.isKeyDown(Input.KEY_3))
+		{
+		   sbg.enterState(3);
+		   WorldTemplate.bowser.setX(2);
+		   WorldTemplate.bowser.setY(13);
 		}
 	}
 	
