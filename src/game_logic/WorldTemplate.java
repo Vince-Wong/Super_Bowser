@@ -84,6 +84,7 @@ public class WorldTemplate extends BasicGameState
        if(input.isKeyPressed(Input.KEY_I)) 
        {
           sbg.enterState(9);
+          Backpack.prevScreenID = getID();
        }
        
        // Open Menu
@@ -121,6 +122,12 @@ public class WorldTemplate extends BasicGameState
              {
                 // move Bowser and reset the counter
                 counter = 0;
+                if (bowser.getFace()) {
+                   bowser.setCurrentAnim(Character.FWD);
+                }
+                else {
+                   bowser.setCurrentAnim(Character.BACK);
+                }
                 bowser.moveVertical(-1);                  
              }         
           }
@@ -129,6 +136,12 @@ public class WorldTemplate extends BasicGameState
              if(map.getTileId(bowser.getX(),bowser.getY()+1,objectLayer)==0)
              {
                 counter = 0;
+                if (bowser.getFace()) {
+                   bowser.setCurrentAnim(Character.FWD);
+                }
+                else {
+                   bowser.setCurrentAnim(Character.BACK);
+                }
                 bowser.moveVertical(1);                  
              }
           }
@@ -137,6 +150,8 @@ public class WorldTemplate extends BasicGameState
              if(map.getTileId(bowser.getX()-1,bowser.getY(),objectLayer)==0)
              {   
                 counter = 0;
+                bowser.faceLeft();
+                bowser.setCurrentAnim(Character.BACK);
                 bowser.moveHorizontal(-1);                  
              }         
           }
@@ -145,8 +160,18 @@ public class WorldTemplate extends BasicGameState
              if(map.getTileId(bowser.getX()+1,bowser.getY(),objectLayer)==0)
              {   
                 counter = 0;
+                bowser.faceRight();
+                bowser.setCurrentAnim(Character.FWD);
                 bowser.moveHorizontal(1);                  
              }          
+          }
+          else {
+             if (bowser.getFace()) {
+                bowser.setCurrentAnim(Character.FWD_STILL);
+             }
+             else {
+                bowser.setCurrentAnim(Character.BACK_STILL);
+             }
           }
        }
     }

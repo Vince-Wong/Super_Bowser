@@ -10,6 +10,7 @@ public class Backpack extends BasicGameState{
 	public String Play = "PRESS I TO TO GO BACK TO GAME!";
 	private SpriteSheet bowserSheet;
 	private Animation bowserAnimation;
+	public static int prevScreenID;
 	public Backpack(int State){
 		
 	}
@@ -35,7 +36,7 @@ public class Backpack extends BasicGameState{
 		mouse = ("x: " + xpos + " y: "+ ypos);
 		if(input.isKeyPressed(Input.KEY_I))
 		{
-			sbg.enterState(1);	
+			sbg.enterState(prevScreenID);	
 		}
 	}
 	
