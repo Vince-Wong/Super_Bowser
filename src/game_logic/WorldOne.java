@@ -29,12 +29,19 @@ public class WorldOne extends WorldTemplate
        map.getTileId(0,0, objectLayer);
        itemsLayer = map.getLayerIndex("Items");
        map.getTileId(0,0, itemsLayer);
+       
+       mobs = new ArrayList<>();
+       mobs.add(new Mob("testToad", 16, 3));
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
        map.render(0,0);
+       for (Mob toad : mobs) {
+          toad.getCurrentAnim().draw(toad.getX() * Character.SIZE, 
+                                     toad.getY() * Character.SIZE);
+       }
        super.render(gc, sbg, g);
     }    
      

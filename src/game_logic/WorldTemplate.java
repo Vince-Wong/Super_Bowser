@@ -18,16 +18,19 @@ import org.newdawn.slick.tiled.TiledMap;
 public class WorldTemplate extends BasicGameState
 {   
     private static final int DELAY = 200;
+    private static final int LONG_DELAY = 750;
     protected static final int WINDOW_WIDTH = 800;
     protected static final int WINDOW_HEIGHT = 640;
 
     protected boolean quit = false;
     private long counter = 0;
+    private long ticks = 0;
     
     protected static Bowser bowser;
     protected TiledMap map;
     protected int objectLayer;
     protected int itemsLayer;
+    protected ArrayList<Mob> mobs;
 
     public WorldTemplate(int State){}
     
@@ -42,6 +45,10 @@ public class WorldTemplate extends BasicGameState
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
+       // renders bowser
+       g.fill(bowser.getShape()); 
+       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
+                                    bowser.getY() * Character.SIZE);
        // renders the menu
        if(quit)
        {
@@ -61,10 +68,6 @@ public class WorldTemplate extends BasicGameState
              g.clear();
           }
        }
-       // renders bowser
-       g.fill(bowser.getShape()); 
-       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
-                                    bowser.getY() * Character.SIZE);
     }
     // based on input, update bowser's state
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -74,6 +77,13 @@ public class WorldTemplate extends BasicGameState
        // Menu not open
        if (!quit) {
           readMoveInput(input, delta);
+          ticks += delta;
+          if (ticks >= LONG_DELAY) {
+             for (Mob toad : mobs) {
+                toad.move();
+             }
+             ticks = 0;
+          }
        }
        // Menu is open
        else {

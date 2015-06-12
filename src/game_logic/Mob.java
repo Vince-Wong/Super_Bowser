@@ -13,13 +13,13 @@ public class Mob extends Character
           throws SlickException 
    {
       setName(name);
-      setShape(new Rectangle(spawnX, spawnY, SIZE-PADDING*2, SIZE-PADDING*2));
-      // TODO get some SpriteSheets for Mob!
+      setShape(new Rectangle(spawnX*SIZE, spawnY*SIZE, SIZE-PADDING*2, SIZE-PADDING*2));
       SpriteSheet[] mobSprites = new SpriteSheet[4];
-      mobSprites[FWD] = new SpriteSheet("res/Bowser Walks.png",SIZE,SIZE);
-      mobSprites[BACK] = new SpriteSheet("res/Bowser Walks Back.png",SIZE,SIZE);
-      mobSprites[FWD_STILL] = new SpriteSheet("res/bowserStill.png",SIZE,SIZE);
-      mobSprites[BACK_STILL] = new SpriteSheet("res/bowserBackStill.png",SIZE,SIZE);
+      mobSprites[FWD] = new SpriteSheet("res/Boo_Sprites_R.png",SIZE,SIZE);
+      mobSprites[BACK] = new SpriteSheet("res/Boo_Sprites_L.png",SIZE,SIZE);
+      // TODO make some SpriteSheets for Mob walking animation!
+      mobSprites[FWD_STILL] = new SpriteSheet("res/Boo_Sprites_R.png",SIZE,SIZE);
+      mobSprites[BACK_STILL] = new SpriteSheet("res/Boo_Sprites_L.png",SIZE,SIZE);
       setSprites(mobSprites);
       
       Animation[] mobAnimations = new Animation[4];
@@ -40,22 +40,35 @@ public class Mob extends Character
    public void move() {
       int direction;
       if (getX() != WorldTemplate.bowser.getX() && getY() != WorldTemplate.bowser.getY()) {
+         // randomly move vertically or horizontally towards Bowser
          if (Math.random() > 0.5) {
             direction = WorldTemplate.bowser.getX() - getX();
-            moveHorizontal((int)(direction/direction));
+            moveHorizontal(direction/Math.abs(direction));
+            if (direction > 0) {
+               setCurrentAnim(FWD);
+            }
+            else {
+               setCurrentAnim(BACK);
+            }
          }
          else {
             direction = WorldTemplate.bowser.getY() - getY();
-            moveVertical((int)(direction/direction));
+            moveVertical(direction/Math.abs(direction));
          }
       }
       else if (getX() != WorldTemplate.bowser.getX()) {
          direction = WorldTemplate.bowser.getX() - getX();
-         moveHorizontal((int)(direction/direction));
+         moveHorizontal(direction/Math.abs(direction));
+         if (direction > 0) {
+            setCurrentAnim(FWD);
+         }
+         else {
+            setCurrentAnim(BACK);
+         }
       }
       else if (getY() != WorldTemplate.bowser.getY()) {
          direction = WorldTemplate.bowser.getY() - getY();
-         moveVertical((int)(direction/direction));
+         moveVertical(direction/Math.abs(direction));
       }
    }
 
