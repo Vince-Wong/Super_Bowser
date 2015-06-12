@@ -10,6 +10,7 @@ public class Game extends StateBasedGame{
     public static final int play = 1;
     public static final int backpack = 9;
     public static final int worldOne = 3;   
+    public static final int worldTwo = 4;  
     public static final int test01 = 901;
     
     public Game(String gamename){
@@ -18,14 +19,18 @@ public class Game extends StateBasedGame{
         this.addState(new Play(play));
         this.addState(new Backpack(backpack));
         this.addState(new WorldOne(worldOne));
-        this.addState(new Test01(test01));
+        this.addState(new WorldTwo(worldTwo));
+       // this.addState(new Test01(test01));
     }
     public void initStatesList(GameContainer gc) throws SlickException{
         this.getState(menu).init(gc, this);
         this.getState(play).init(gc, this);
         this.getState(backpack).init(gc, this);
-        this.getState(test01).init(gc, this);
+     //   this.getState(test01).init(gc, this);
+        this.getState(worldOne).init(gc, this);
+        this.getState(worldTwo).init(gc, this);
         this.enterState(menu);
+
     }
     public static void main(String[] args) {
         AppGameContainer appgc;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="grass inverted" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/grass inverted.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="7" name="grassTile" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/grassTile.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="13" name="mapTiles" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/mapTiles.png" trans="ff00ff" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="17" name="trees2" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/trees2.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="1206" name="Trees" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/Trees.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="2395" name="masterSet" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/masterSet.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <tileset firstgid="3584" name="masterSet2" tilewidth="32" tileheight="32">
+  <image source="../../../Documents/Bowser Animation/masterSet.png" trans="ff00ff" width="928" height="1312"/>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2vjY2BoB+I2KI0NY5PDJ4ZOz+OhLQbZc5+X9hgE4jkR9GVO6vNzhwkmNWy5GQhjcs2mxA4uBtL8PVjtYKCTHcTqGbVj8NlBTv4eSXZgK1MieEirPwgBSusoAC3OnP3QBwAA
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+vlZmDoA+J+IJ4AxL1U5oPAKiC9GojXAPFaburzQXat4KQ9XgmlWbgp44MANj4I/+NiIBvEcxJWAzL/IQV2XCbSDlpgWpuPzQ5iwhQZgNQTwgNhByNpVozaMczswJbGKQEjxQ5qljssQDNYoZhW5RcAJ/lQ6dAHAAA=
+  </data>
+ </layer>
+ <layer name="PLANTS" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGD5Alpt4ProcMfq3cTIwxAPxOx4ITW1+DRBf4iTf/4QAzOx/XAwMlznJwyCASxwmR0uAHD6XyHA7qXaQAq4ToQ+mZtSOUTtgcjeQMC79N4jA+Owgxb2EwGCxAzm8KCnPcNkBA/jihhxAjfDBBQCPvKpW0AcAAA==
+  </data>
+ </layer>
+</map>

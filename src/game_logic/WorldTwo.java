@@ -16,20 +16,20 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldOne extends BasicGameState
+public class WorldTwo extends BasicGameState
 {   
     //private Image Map;
     boolean quit = false;
     private TiledMap map;
     private Bowser bowser;
-    public WorldOne(int State){}
-    int x =5;
-    int y =5;
+    public WorldTwo(int State){}
+    int x =1;
+    int y =18;
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
        //tiled map with 3 layers: background, flowers, and buildings
-       map = new TiledMap("res/worldOneMap.tmx");
+       map = new TiledMap("res/worldTwoMap.tmx");
       
        //sets the max frames per second
        int maxFPS = 60;
@@ -50,17 +50,14 @@ public class WorldOne extends BasicGameState
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
-       int objectLayer = map.getLayerIndex("Buildings");
+       int objectLayer = map.getLayerIndex("Tile Layer 2");
        map.getTileId(0,0, objectLayer);
-       int itemsLayer = map.getLayerIndex("Items");
-       map.getTileId(0,0, itemsLayer);
        
        Input input = gc.getInput();
        
        counter+=delta;
        if(counter>=5000)
        {
-     
            if(input.isKeyDown(Input.KEY_W))
            {
               if(map.getTileId(x,y-1,objectLayer)==0)
@@ -93,13 +90,13 @@ public class WorldOne extends BasicGameState
            //entering a new state that represents the room.
            if(x==11 && y==7)
            {   
-              sbg.enterState(4);
+              sbg.enterState(1);
            }
           counter = 0;
        }
        
                                
     } 
-    public int getID() { return 3; }
+    public int getID() { return 4; }
   
 }
