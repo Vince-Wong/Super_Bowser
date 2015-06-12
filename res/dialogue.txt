@@ -1,0 +1,12 @@
+USE '&' TO SEPERATE DIALOGUES.   This first line is skipped. 
+0&Hello player welcome. &I am the old lady.
+1&Ohhhhhh hello my presciouse.& i am the monster you must slay.& OH NO TEAM ROCKET!!!!
+2&tweet, tweet
+3&nofin to say
+4&I hope you all know by now,
+5&this is not what is actually going to be said in the game.
+6&123 &456
+7&I am 
+8&just testing
+9&this out &cause its
+10&so cool
