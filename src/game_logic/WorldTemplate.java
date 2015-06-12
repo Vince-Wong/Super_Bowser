@@ -36,8 +36,7 @@ public class WorldTemplate extends BasicGameState
     public void init(GameContainer gc, StateBasedGame sbg)
           throws SlickException
     {
-       bowser = new Bowser();
-       
+       bowser = new Bowser();  
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -62,6 +61,14 @@ public class WorldTemplate extends BasicGameState
              g.clear();
           }
        }
+       
+       //renders items
+       if(!(items == null))
+          for (Entity thing : items)
+          {
+             g.fill(thing.getShape());
+          }
+       
        // renders bowser
        g.fill(bowser.getShape()); 
        bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,

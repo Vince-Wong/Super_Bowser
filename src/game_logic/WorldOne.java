@@ -20,6 +20,10 @@ public class WorldOne extends WorldTemplate
     public WorldOne(int state){
        super(state);
     }
+    
+    //TODO test items, remove later
+    private Item testItem, testItem2, testItem3;
+    
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
@@ -29,6 +33,17 @@ public class WorldOne extends WorldTemplate
        map.getTileId(0,0, objectLayer);
        itemsLayer = map.getLayerIndex("Items");
        map.getTileId(0,0, itemsLayer);
+       
+       //TODO test items, remove later
+       items = new ArrayList<>();
+       testItem = new Item("Box", false, 1, 1, "test item"); 
+       testItem2 = new Item("Box", false, 1, 2, "test item2");
+       testItem2.getShape().setLocation(Character.SIZE * 3, Character.SIZE * 3);
+       testItem3 = new Item("Box", false, 1, 1, "test item3");
+       testItem3.getShape().setLocation(Character.SIZE * 5, Character.SIZE * 5);
+       items.add(testItem);
+       items.add(testItem2);
+       items.add(testItem3);
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -36,7 +51,13 @@ public class WorldOne extends WorldTemplate
     {
        map.render(0,0);
        super.render(gc, sbg, g);
-    }    
+    }
+    
+    public void update(GameContainer gc, StateBasedGame sbg, int delta)
+          throws SlickException
+   {
+       super.update(gc, sbg, delta);
+   }
      
     public int getID() { return 3; }
   

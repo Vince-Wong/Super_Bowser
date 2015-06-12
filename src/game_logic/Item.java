@@ -1,5 +1,7 @@
 package game_logic;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public class Item extends Entity
 {
    protected boolean stackable;
@@ -7,6 +9,7 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    protected boolean onScreen;
+   public static final int ITEM_WIDTH = 31, ITEM_HEIGHT = 31;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
@@ -17,6 +20,7 @@ public class Item extends Entity
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
       this.onScreen = true;
+      setShape(new Rectangle(64, 64, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
    }
    
    /**
