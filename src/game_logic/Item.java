@@ -6,6 +6,7 @@ public class Item extends Entity
    protected int quantity;
    protected int maxQuantity;
    protected String description;
+   protected boolean onScreen;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
@@ -15,6 +16,7 @@ public class Item extends Entity
       this.description = description;
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
+      this.onScreen = true;
    }
    
    /**
@@ -45,6 +47,16 @@ public class Item extends Entity
          return false;    
    }
    
+   public void onCollision(Entity ent)
+   {
+      // TODO for testing
+//      String otherObject = ent.getClass().toString();
+//      System.out.println(otherObject);
+      Bowser myBow = (Bowser)ent;
+      if(myBow.getInventory().addItem(this))
+         this.setOnScreen(false);
+   } 
+   
    public String toString()
    {
       String details = "\nItem Name: " + this.name + "\nstackable: " + this.stackable 
@@ -74,6 +86,9 @@ public class Item extends Entity
       return description;
    }
    
+   public boolean getOnScreen() { return onScreen; }
+   public void setOnScreen(Boolean state) { onScreen = state;}
+   
    public static void main(String[] args)
    {
       // TODO Auto-generated method stub
@@ -93,13 +108,4 @@ public class Item extends Entity
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
    }
-
-   @Override
-   public void onCollision(Entity ent)
-   {
-      // TODO Auto-generated method stub
-      
-   }
-   
-   
 }

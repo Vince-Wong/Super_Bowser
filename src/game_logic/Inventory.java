@@ -22,28 +22,22 @@ public class Inventory
       //TODO
       int k;
       //for adding items in inventory is empty
-      if(currentSize == 0)
+      if(currentSize == MIN_SIZE)
       {
          items[currentSize] = newItem;
          currentSize ++;
          return true;
       }   
-      if(currentSize <= MAX_SIZE)
+      else if(currentSize <= MAX_SIZE)
       {
          for(k = 0; k < currentSize; k++)
          {
             //for increasing item quantity
             if(newItem.getName().equals(items[k].getName()))
                {
-                  if(items[k].increaseQuantity())
-                  {
-                     return true;
-                  }
-                  //maybe put in a flag for inventory is full?
-                  return false;
+                  return items[k].increaseQuantity();
+                  //TODO maybe put in a flag for inventory is full?
                }
-            else
-               continue;
          }
          //for adding a new item to the inventory
          if(currentSize < MAX_SIZE)

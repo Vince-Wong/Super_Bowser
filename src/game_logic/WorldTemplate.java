@@ -28,6 +28,7 @@ public class WorldTemplate extends BasicGameState
     protected TiledMap map;
     protected int objectLayer;
     protected int itemsLayer;
+    protected ArrayList<Item> items;
 
     public WorldTemplate(int State){}
     
@@ -91,6 +92,10 @@ public class WorldTemplate extends BasicGameState
        {
           quit = true;
        }
+       
+       //for item collision as of right now
+       if(items != null)
+          detectCollision();
     }
     
     private void readMenuOption(Input in, StateBasedGame sbg) {
@@ -147,6 +152,22 @@ public class WorldTemplate extends BasicGameState
                 counter = 0;
                 bowser.moveHorizontal(1);                  
              }          
+          }
+       }
+    }
+    
+    private void detectCollision() {
+       int k;
+       for (k = 0; k < items.size(); k++) {
+          if (bowser.getShape().intersects(items.get(k).getShape())) 
+          {
+             items.get(k).onCollision(bowser);
+             //Does this work in arraylists?
+             if(!items.get(k).getOnScreen())
+             {
+                items.remove(k);
+                System.out.println(bowser.getInventory().toString()); //TODO For testing
+             }
           }
        }
     }
