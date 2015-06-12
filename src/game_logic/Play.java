@@ -1,5 +1,6 @@
 package game_logic;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.management.timer.Timer;
@@ -23,6 +24,8 @@ public class Play extends BasicGameState {
 	boolean quit = false;
 	private Bowser bowser;
 	private boolean drawTEXT = false;
+	private boolean checkForMaxDial = false;
+	int dialogueNumber = 0;
 
 	public Play(int State) {
 	}
@@ -50,14 +53,16 @@ public class Play extends BasicGameState {
 		int width = 1000;
 		int height = 750;
 
-		g.drawImage(Map, 0, 0);
-
-		//g.drawImage(oldWomanImage, 50, 50);
-		oldWomanImage.getSubImage(218, 68, 41, 38).draw(300, 300, 2f);
-		OWI.getSubImage(218, 68, 41, 38).draw(400, 400);
+		//g.drawImage(Map, 0, 0);
 		
+		//g.drawImage(oldWomanImage, 50, 50);
+		oldWomanImage.getSubImage(218, 68, 41, 38).draw(300, 300);
+		//OWI.getSubImage(218, 68, 41, 38).draw(400, 400);
 		if(drawTEXT)
-		{g.drawString(oldWoman.getDialogue(1), 400, 350);}
+		{
+			
+				g.drawString(oldWoman.getDialogue(dialogueNumber), 400, 350);
+		}
 		
 		// renders bowser
 		ShapeRenderer.fill(bowser.getShape());
@@ -86,27 +91,28 @@ private long counter = 0;
 		bowser.getCurrentAnim().update(delta);
 		Input input = gc.getInput();
 		
-		if(bowser.getShape() == oldWoman.getShape() && input.isKeyPressed(Input.KEY_E))
-		{
-			oldWoman.getDialogue(0);
-		}
 		
+		int size = oldWoman.getSizeDialogue() - 1;
+		///System.out.println(size);
 		counter += delta;
-		if(counter >= 5000)
+		if(counter >= 10000)
 		{
 			counter = 0;
-			System.out.println("OMG 5 Second Counter");
+			drawTEXT = false;
+			dialogueNumber = 0;
+			//System.out.println("OMG 5 Second Counter");
 		} 
-		if (input.isKeyPressed(Input.KEY_E)) {
+		
+		
+		if(bowser.getShape().intersects(oldWoman.getShape()) && input.isKeyPressed(Input.KEY_E))
+		{
 			drawTEXT = true;
-			
-			String concat ="";
-			concat += oldWoman.getDialogue(1);
-			concat += " ";
-			concat += oldWoman.getDialogue(2);
-			System.out.println("concat >> " + concat);
-		}
-			
+			if(size > dialogueNumber)
+			{
+				dialogueNumber++;
+				System.out.println(dialogueNumber);
+			}
+		}	
 		
 		// Input is the UP command
 		if (input.isKeyDown(Input.KEY_W)) {

@@ -1,5 +1,7 @@
 package game_logic;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public class NPC extends Character{
 
 	final String FILENAME = "res/dialogue.txt";	// Directory path for Mac OS X
@@ -10,6 +12,10 @@ public class NPC extends Character{
 	public int ID;
 	//public FileReader fileReader = new FileReader(FILENAME);
 	
+	public NPC()
+	{
+		setShape(new Rectangle(300, 300, 41, 38));
+	}
 	
 	/**
 	 * The NPC will interact on collision and action key pressed
@@ -28,6 +34,13 @@ public class NPC extends Character{
 		
 		String dialogueStr = dialogue[ID][index];
 		return dialogueStr;
+	}
+	
+	
+	public int getSizeDialogue()
+	{
+		int length = dialogue[ID].length;
+		return length;
 	}
 	
 	
