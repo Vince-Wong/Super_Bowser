@@ -5,11 +5,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 
-public class MobLR extends Mob
+public class MobUD extends Mob
 {
-   final int x0, x1;
+   final int y0, y1;
 
-   public MobLR(String name, int spawnX, int spawnY, int rangeX) 
+   public MobUD(String name, int spawnX, int spawnY, int rangeY) 
          throws SlickException
    {
       setName(name);
@@ -33,29 +33,31 @@ public class MobLR extends Mob
       setDamage(3);
       faceRight();
       
-      x0 = spawnX;
-      x1 = rangeX;
+      y0 = spawnY;
+      y1 = rangeY;
    }
    
    public void move() {
-      int x = getX();
-      if (x == x0) {
-         moveHorizontal(1);
-         setCurrentAnim(FWD);
+      int y = getY();
+      if (y == y0) {
+         moveVertical(1);
       } 
-      else if (x == x1) {
-         moveHorizontal(-1);
-         setCurrentAnim(BACK);
+      else if (y == y1) {
+         moveVertical(-1);
       } 
       else {
          if (Math.random() > 0.5) {
-            moveHorizontal(1);
-            setCurrentAnim(FWD);
+            moveVertical(1);
          }
          else {
-            moveHorizontal(-1);
-            setCurrentAnim(BACK);
+            moveVertical(-1);
          }
+      }
+      if (WorldTemplate.bowser.getX() > getX()) {
+         setCurrentAnim(FWD);
+      }
+      else {
+         setCurrentAnim(BACK);
       }
    }
 }

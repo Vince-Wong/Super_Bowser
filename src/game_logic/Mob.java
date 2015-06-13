@@ -1,14 +1,11 @@
 package game_logic;
 
-import org.newdawn.slick.Animation;
-
-public interface Mob
+public abstract class Mob extends Character
 {
-   public void move();
-
-   public Animation getCurrentAnim();
-
-   public int getX();
-
-   public int getY();
+   private int damage;
+   
+   public void setDamage(int dam) { damage = dam; }
+   public int getDamage() { return damage; }
+   
+   public abstract void move();
 }

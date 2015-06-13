@@ -33,6 +33,7 @@ public class WorldOne extends WorldTemplate
        mobs = new ArrayList<>();
        mobs.add(new MobFollow("testBoo", 16, 3));
        mobs.add(new MobLR("testYToad", 14, 13, 17));
+       mobs.add(new MobUD("testYToad2", 21, 9, 18));
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 

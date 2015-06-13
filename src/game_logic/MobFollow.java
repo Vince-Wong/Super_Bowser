@@ -5,10 +5,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 
-public class MobFollow extends Character implements Mob
+public class MobFollow extends Mob
 {
-   private int damage;
-
    public MobFollow(String name, int spawnX, int spawnY)
           throws SlickException 
    {
@@ -30,6 +28,7 @@ public class MobFollow extends Character implements Mob
       
       setCurrentAnim(FWD_STILL);
       setInventory(new Inventory());
+      setDamage(1);
       faceRight();
    }
    
