@@ -31,7 +31,8 @@ public class WorldOne extends WorldTemplate
        map.getTileId(0,0, itemsLayer);
        
        mobs = new ArrayList<>();
-       mobs.add(new Mob("testToad", 16, 3));
+       mobs.add(new MobFollow("testBoo", 16, 3));
+       mobs.add(new MobLR("testYToad", 14, 13, 17));
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
