@@ -35,7 +35,6 @@ public class WorldOne extends WorldTemplate
            throws SlickException
     {
        map.render(0,0);
-<<<<<<< HEAD
        
        g.fillRect(x*32,y*32,32,32);
        
@@ -93,14 +92,9 @@ public class WorldOne extends WorldTemplate
            }
           counter = 0;
        }
-       
-                               
-    } 
-=======
        super.render(gc, sbg, g);
     }    
-     
->>>>>>> branch 'Brians_Branch' of https://github.com/FH-CS40A/project02_team02.git
+
     public int getID() { return 3; }
   
 }
