@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="BuildingSprite" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
+  <image source="BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
   <tile id="1849">
    <animation>
     <frame tileid="1781" duration="100"/>

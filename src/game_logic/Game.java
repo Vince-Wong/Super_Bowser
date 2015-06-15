@@ -9,8 +9,8 @@ public class Game extends StateBasedGame{
     public static final int menu = 0;
     public static final int worldTemp = 10;
     public static final int backpack = 9;
-    public static final int worldOne = 3;   
-    public static final int worldTwo = 4;  
+    public static final int worldOne = 1;   
+    public static final int worldTwo = 2;  
     public static final int test01 = 901;  
     public Game(String gamename){
         super(gamename);

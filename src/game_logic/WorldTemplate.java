@@ -92,7 +92,7 @@ public class WorldTemplate extends BasicGameState
        }
     }
     
-    private void readMenuOption(Input in, StateBasedGame sbg) {
+     public void readMenuOption(Input in, StateBasedGame sbg) {
        if(in.isKeyDown(Input.KEY_R))
        {
           quit = false;
@@ -107,7 +107,7 @@ public class WorldTemplate extends BasicGameState
        }
     }
     
-    private void readMoveInput(Input in, long delta) {
+    public void readMoveInput(Input in, long delta) {
        counter += delta;
        // if Bowser hasn't moved in the last DELAY milliseconds
        if (counter >= DELAY)

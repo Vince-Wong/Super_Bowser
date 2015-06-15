@@ -11,92 +11,89 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldTwo extends BasicGameState
+public class WorldTwo extends WorldTemplate
 {   
-    //private Image Map;
-    boolean quit = false;
-    private TiledMap map;
-    private Bowser bowser;
-    public WorldTwo(int State){}
-    int x =1;
-    int y =18;
+    public WorldTwo(int state){
+       super(state);
+    }
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
        //tiled map with 3 layers: background, flowers, and buildings
        map = new TiledMap("res/worldTwoMap.tmx");
-      
-       //sets the max frames per second
-       int maxFPS = 60;
-       gc.setTargetFrameRate(maxFPS);
+       objectLayer = map.getLayerIndex("Buildings");
+       map.getTileId(0,0, objectLayer);
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
        map.render(0,0);
-       
-       g.fillRect(x*32,y*32,32,32);
-       
-       
+       // renders the menu
+       if(quit)
+       {
+          g.setColor(Color.red);
+          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
+
+          g.setColor(Color.black);
+          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
+
+
+          g.setColor(Color.white);
+          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
+          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
+          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+          if(!quit)
+          {
+             g.clear();
+          }
+       }
+       // renders bowser
+       g.fill(bowser.getShape()); 
+       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
+                                    bowser.getY() * Character.SIZE);     
     }
-    // based on input, update bowser's state
-    private long counter = 0;
+
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
-       int objectLayer = map.getLayerIndex("Tile Layer 2");
+       int objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       
        Input input = gc.getInput();
-       
-       counter+=delta;
-       if(counter>=5000)
-       {
-           if(input.isKeyDown(Input.KEY_W))
-           {
-              if(map.getTileId(x,y-1,objectLayer)==0)
-              {  
-                 y--;                     
-              }         
-           }
-           if(input.isKeyDown(Input.KEY_S))
-           {
-              if(map.getTileId(x,y+1,objectLayer)==0)
-              {   
-                 y++;              
-              }
-           }
-           if(input.isKeyDown(Input.KEY_A))
-           {
-              if(map.getTileId(x-1,y,objectLayer)==0)
-              {   
-                 x--;             
-              }         
-           }
-           if(input.isKeyDown(Input.KEY_D))
-           {
-              if(map.getTileId(x+1,y,objectLayer)==0)
-              {   
-                 x++;            
-              }          
-           }
-           //Entrance for house and changes state to Play() for now. This will be 
-           //entering a new state that represents the room.
-           if(x==11 && y==7)
-           {   
-              sbg.enterState(1);
-           }
-          counter = 0;
-       }
-       
-                               
-    } 
-    public int getID() { return 4; }
+        
+     
+          // Menu not open
+          if (!quit) {
+             readMoveInput(input, delta);
+          }
+          // Menu is open
+          else {
+             readMenuOption(input, sbg);
+          }
+          
+          // Open Backpack
+          if(input.isKeyPressed(Input.KEY_I)) 
+          {
+             sbg.enterState(9);
+          }
+          
+          // Open Menu
+          if(input.isKeyDown(Input.KEY_ESCAPE))
+          {
+             quit = true;
+          }
+          if(WorldTemplate.bowser.getX()==12 && WorldTemplate.bowser.getY()==20)
+          {
+             WorldTemplate.bowser.setX(8);
+             WorldTemplate.bowser.setY(8); 
+             sbg.enterState(3);  
+          }
+    }    
+
+    public int getID() { return 1; }
   
 }

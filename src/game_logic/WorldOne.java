@@ -1,9 +1,7 @@
 package game_logic;
 
 import java.util.ArrayList;
-
 import javax.management.timer.Timer;
-
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -27,8 +25,6 @@ public class WorldOne extends WorldTemplate
        map = new TiledMap("res/worldOneMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       itemsLayer = map.getLayerIndex("Items");
-       map.getTileId(0,0, itemsLayer);
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -36,65 +32,58 @@ public class WorldOne extends WorldTemplate
     {
        map.render(0,0);
        
-       g.fillRect(x*32,y*32,32,32);
+       // renders the menu
+       if(quit)
+       {
+          g.setColor(Color.red);
+          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
+          g.setColor(Color.black);
+          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
+          g.setColor(Color.white);
+          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
+          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
+          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+          if(!quit)
+          {
+             g.clear();
+          }
+       }
        
-       
+       // renders bowser
+       g.fill(bowser.getShape()); 
+       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
+                                    bowser.getY() * Character.SIZE);     
     }
-    // based on input, update bowser's state
-    private long counter = 0;
+
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
            throws SlickException
     {
        int objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       int itemsLayer = map.getLayerIndex("Items");
-       map.getTileId(0,0, itemsLayer);
-       
        Input input = gc.getInput();
-       
-       counter+=delta;
-       if(counter>=5000)
-       {
-     
-           if(input.isKeyDown(Input.KEY_W))
-           {
-              if(map.getTileId(x,y-1,objectLayer)==0)
-              {  
-                 y--;                     
-              }         
-           }
-           if(input.isKeyDown(Input.KEY_S))
-           {
-              if(map.getTileId(x,y+1,objectLayer)==0)
-              {   
-                 y++;              
-              }
-           }
-           if(input.isKeyDown(Input.KEY_A))
-           {
-              if(map.getTileId(x-1,y,objectLayer)==0)
-              {   
-                 x--;             
-              }         
-           }
-           if(input.isKeyDown(Input.KEY_D))
-           {
-              if(map.getTileId(x+1,y,objectLayer)==0)
-              {   
-                 x++;            
-              }          
-           }
-           //Entrance for house and changes state to Play() for now. This will be 
-           //entering a new state that represents the room.
-           if(x==11 && y==7)
-           {   
-              sbg.enterState(4);
-           }
-          counter = 0;
-       }
-       super.render(gc, sbg, g);
+            
+          // Menu not open
+          if (!quit) {
+             readMoveInput(input, delta);
+          }
+          // Menu is open
+          else {
+             readMenuOption(input, sbg);
+          }          
+          // Open Backpack
+          if(input.isKeyPressed(Input.KEY_I)) 
+          {
+             sbg.enterState(9);
+          }         
+          // Open Menu
+          if(input.isKeyDown(Input.KEY_ESCAPE))
+          {
+             quit = true;
+          }
+          if(bowser.getX()==12 && bowser.getY()==20)
+          {
+             sbg.enterState(2);
+          }
     }    
-
-    public int getID() { return 3; }
-  
+    public int getID() { return 1; }  
 }
