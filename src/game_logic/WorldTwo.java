@@ -24,7 +24,7 @@ public class WorldTwo extends WorldTemplate
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
        //tiled map with 3 layers: background, flowers, and buildings
-       map = new TiledMap("res/worldTwoMap.tmx");
+       map = new TiledMap("res/WorldTwoMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
     }
@@ -33,75 +33,24 @@ public class WorldTwo extends WorldTemplate
            throws SlickException
     {
        map.render(0,0);
-       // renders the menu
-       if(quit)
+       super.render(gc, sbg, g);
+
+       //bowser re-enters previous world
+       if(bowser.getX()==0 && bowser.getY()==10)
        {
-          g.setColor(Color.red);
-          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
-
-          g.setColor(Color.black);
-          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
-
-
-          g.setColor(Color.white);
-          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
-          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
-          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-          if(!quit)
-          {
-             g.clear();
-          }
+          sbg.enterState(1);
+          WorldTemplate.bowser.setX(23);
+          WorldTemplate.bowser.setY(11);
        }
-       // renders bowser
-       g.fill(bowser.getShape()); 
-       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
-                                    bowser.getY() * Character.SIZE);     
-    }
-
-    public void update(GameContainer gc, StateBasedGame sbg, int delta)
-           throws SlickException
-    {
-       int objectLayer = map.getLayerIndex("Buildings");
-       map.getTileId(0,0, objectLayer);
-       Input input = gc.getInput();
-        
-     
-          // Menu not open
-          if (!quit) {
-             readMoveInput(input, delta);
-          }
-          // Menu is open
-          else {
-             readMenuOption(input, sbg);
-          }
-          
-          // Open Backpack
-          if(input.isKeyPressed(Input.KEY_I)) 
-          {
-             sbg.enterState(9);
-          }
-          
-          // Open Menu
-          if(input.isKeyDown(Input.KEY_ESCAPE))
-          {
-             quit = true;
-          }
-          //bowser re-enters previous world
-          if(bowser.getX()==0 && bowser.getY()==10)
-          {
-             sbg.enterState(1);
-             WorldTemplate.bowser.setX(23);
-             WorldTemplate.bowser.setY(11);
-          }
-          //bowser enters new world.
-          if(bowser.getX()==24 && bowser.getY()==3)
-          {
-             sbg.enterState(3);
-             WorldTemplate.bowser.setX(1);
-             WorldTemplate.bowser.setY(3);
-          }
+       //bowser enters new world.
+       if(bowser.getX()==24 && bowser.getY()==3)
+       {
+          sbg.enterState(3);
+          WorldTemplate.bowser.setX(1);
+          WorldTemplate.bowser.setY(3);
+       }   
     }    
-
+     
     public int getID() { return 2; }
   
 }
