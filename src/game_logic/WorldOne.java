@@ -1,7 +1,9 @@
 package game_logic;
 
 import java.util.ArrayList;
+
 import javax.management.timer.Timer;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -80,9 +82,12 @@ public class WorldOne extends WorldTemplate
           {
              quit = true;
           }
-          if(bowser.getX()==12 && bowser.getY()==20)
+          //Bowser enters second map if he exits the first map
+          if(bowser.getX()==24 && bowser.getY()==11)
           {
              sbg.enterState(2);
+             WorldTemplate.bowser.setX(1);
+             WorldTemplate.bowser.setY(10);
           }
     }    
     public int getID() { return 1; }  

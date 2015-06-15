@@ -10,12 +10,12 @@
  </layer>
  <layer name="Buildings" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA1vEx8CwaJjg+zTGIDuoDQTYGRYg80F2AMVQsAMbA4MjEDuxYcoRgwXZUc3H5o9aNghdz0a5n3DZQU0wnOy4Twc7aA1g+aOem2GBEzdqmsYFXoiQjkF2NADNd6axHY1A810I2EGO2aTYQYn5A2XHHy4Ghr9c1DOfGH9Qy44moPmuWOyghvkwO5qB5rvR0A4AD8D+/dAHAAA=
+   H4sIAAAAAAAAA1vEx8CwaJjg+zTGIDuoDXi5UPkgOwTYUbEDGwODIxA7sWHKEYOR7ViEwx+1bBC6no1yP+Gyg5pgONlxnw520BqQkz9eiJCOB5Md5JhNih2UmD9QdvwBljV/uahnPjH+oLUd1DCfXnYAAJnMK5LQBwAA
   </data>
  </layer>
  <layer name="Misc 1" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGD7AG4h9qEhjAx1A3ElFGgScxRCYFkCQnWEBMebXsZFnPrL7aeUHetgxChDgMxdt1GIDySwMDClAnMpCmtxIBT5k5tNRMPwBACcjYZfQBwAA
+   H4sIAAAAAAAAA2NgGD7AG4h9qEhjAx1A3ElFGgScxRCYVoAY8+vYKDObln6ghx2jAAE+c9FGLTaQzMLAkALEqSzEyU3mp8w+YgDIDlrbA7ODVHt8SMinyHbQyj+0Nh/ZDlqC4WAHAHZevabQBwAA
   </data>
  </layer>
 </map>
