@@ -11,8 +11,6 @@ public abstract class Entity
    protected String name;
    protected Rectangle shape;
    
- 	public abstract void onCollision(Entity ent);
-   
    public String getName() { return name; }
    public void setName(String myName) { name = myName; }
    

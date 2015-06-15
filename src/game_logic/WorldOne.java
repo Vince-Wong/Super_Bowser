@@ -11,35 +11,31 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldOne extends BasicGameState
+public class WorldOne extends WorldTemplate
 {   
-    //private Image Map;
-    boolean quit = false;
-    private TiledMap map;
-    private Bowser bowser;
-    public WorldOne(int State){}
-    int x =5;
-    int y =5;
+    public WorldOne(int state){
+       super(state);
+    }
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
        //tiled map with 3 layers: background, flowers, and buildings
        map = new TiledMap("res/worldOneMap.tmx");
-      
-       //sets the max frames per second
-       int maxFPS = 60;
-       gc.setTargetFrameRate(maxFPS);
+       objectLayer = map.getLayerIndex("Buildings");
+       map.getTileId(0,0, objectLayer);
+       itemsLayer = map.getLayerIndex("Items");
+       map.getTileId(0,0, itemsLayer);
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
        map.render(0,0);
+<<<<<<< HEAD
        
        g.fillRect(x*32,y*32,32,32);
        
@@ -100,6 +96,11 @@ public class WorldOne extends BasicGameState
        
                                
     } 
+=======
+       super.render(gc, sbg, g);
+    }    
+     
+>>>>>>> branch 'Brians_Branch' of https://github.com/FH-CS40A/project02_team02.git
     public int getID() { return 3; }
   
 }
