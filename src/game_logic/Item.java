@@ -17,9 +17,7 @@ public class Item extends Entity
       this.maxQuantity = maxQuantity;
    }
    
-   /**
-    * increase item quantity if stackable
-    */
+
    public boolean increaseQuantity()
    {
       if(stackable == true && quantity < maxQuantity)
@@ -31,9 +29,6 @@ public class Item extends Entity
          return false;
    }
    
-   /**
-    * decrease item quantity
-    */
    public boolean decreaesQuantity()
    {
       if(quantity > 1)
@@ -94,7 +89,6 @@ public class Item extends Entity
       System.out.println(itemTwo.toString());
    }
 
-   @Override
    public void onCollision(Entity ent)
    {
       // TODO Auto-generated method stub

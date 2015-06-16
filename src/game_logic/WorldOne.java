@@ -23,12 +23,9 @@ public class WorldOne extends WorldTemplate
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-       //tiled map with 3 layers: background, flowers, and buildings
        map = new TiledMap("res/worldOneMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       itemsLayer = map.getLayerIndex("Items");
-       map.getTileId(0,0, itemsLayer);
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -36,8 +33,16 @@ public class WorldOne extends WorldTemplate
     {
        map.render(0,0);
        super.render(gc, sbg, g);
+   
+       //Bowser enters second map if he exits the first map
+       if(bowser.getX()==24 && bowser.getY()==11)
+       {
+          sbg.enterState(2);
+          WorldTemplate.bowser.setX(1);
+          WorldTemplate.bowser.setY(10);
+       }
     }    
      
-    public int getID() { return 3; }
+    public int getID() { return 1; }
   
 }
