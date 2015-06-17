@@ -20,8 +20,12 @@ public class NPC extends Character{
 	/**
 	 * The NPC will interact on collision and action key pressed
 	 */
-	public void onCollision(Entity ent) {
-		
+	public boolean onCollision(NPC npc) {
+		if(npc.getX() == this.getX() && npc.getY() == this.getY())
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	/**
