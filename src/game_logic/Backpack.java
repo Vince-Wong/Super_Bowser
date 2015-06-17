@@ -7,7 +7,7 @@ import org.newdawn.slick.state.*;
 public class Backpack extends BasicGameState{
 	Image backpack;
 	public String mouse = "No Input yet..";
-	public String Play = "PRESS I TO TO GO BACK TO GAME!";
+	public String Play = "PRESS I TO GO BACK TO GAME!";
 	private SpriteSheet bowserSheet;
 	private Animation bowserAnimation;
 	public static int prevScreenID;
@@ -17,14 +17,15 @@ public class Backpack extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
 		backpack = new Image("res/Backpack.png");
-		bowserSheet = new SpriteSheet("res/Bowser FireClaw.png",32,32);
+		bowserSheet = new SpriteSheet("res/EnterInventory.png",32,32);
 		bowserAnimation = new Animation(bowserSheet,250);
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException{
 		g.drawImage(backpack,0,0);
 		g.drawString(mouse,10,30);
-		g.drawString(Play,400,640);
+		g.drawString(Play,410,70);
+		g.drawString(WorldTemplate.bowser.toString(), 410, 90);
 		bowserAnimation.draw(100, 100);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -32,7 +33,7 @@ public class Backpack extends BasicGameState{
 		bowserAnimation.update(delta);
 		Input input = gc.getInput();
 		int xpos = Mouse.getX();
-		int ypos = 750-Mouse.getY();
+		int ypos = WorldTemplate.WINDOW_HEIGHT-Mouse.getY();
 		mouse = ("x: " + xpos + " y: "+ ypos);
 		if(input.isKeyPressed(Input.KEY_I))
 		{
