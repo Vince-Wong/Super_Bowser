@@ -11,7 +11,7 @@ public class MobFollow extends Mob
           throws SlickException 
    {
       setName(name);
-      setShape(new Rectangle(spawnX*SIZE, spawnY*SIZE, SIZE-PADDING*2, SIZE-PADDING*2));
+      setShape(new Rectangle(spawnX*SIZE+PADDING, spawnY*SIZE+PADDING, SIZE-PADDING*2, SIZE-PADDING*2));
       SpriteSheet[] mobSprites = new SpriteSheet[4];
       mobSprites[FWD] = new SpriteSheet("res/Boo_Sprites_R.png",SIZE,SIZE);
       mobSprites[BACK] = new SpriteSheet("res/Boo_Sprites_L.png",SIZE,SIZE);
