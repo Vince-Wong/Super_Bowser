@@ -22,7 +22,7 @@ public class WorldOne extends WorldTemplate
     }
     
     //TODO test items, remove later
-    private Item testItem, testItem2, testItem3;
+    private Item testItem1, testItem2, testItem3;
     
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
@@ -36,12 +36,13 @@ public class WorldOne extends WorldTemplate
        
        //TODO test items, remove later
        items = new ArrayList<>();
-       testItem = new Item("Box", false, 1, 1, "test item"); 
+       testItem1 = new Item("Box1", false, 1, 1, "test item");
+//       testItem1.setImage
        testItem2 = new Item("Box", false, 1, 2, "test item2");
        testItem2.getShape().setLocation(Character.SIZE * 3, Character.SIZE * 3);
        testItem3 = new Item("Box", false, 1, 1, "test item3");
        testItem3.getShape().setLocation(Character.SIZE * 5, Character.SIZE * 5);
-       items.add(testItem);
+       items.add(testItem1);
        items.add(testItem2);
        items.add(testItem3);
     }

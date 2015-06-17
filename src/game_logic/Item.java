@@ -9,6 +9,8 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    protected boolean onScreen;
+//   protected Image
+   
    public static final int ITEM_WIDTH = 31, ITEM_HEIGHT = 31;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
@@ -20,7 +22,7 @@ public class Item extends Entity
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
       this.onScreen = true;
-      setShape(new Rectangle(64, 64, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
+      setShape(new Rectangle(64, 32*6, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
    }
    
    /**
