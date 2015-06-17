@@ -44,10 +44,18 @@ public class WorldTemplate extends BasicGameState
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
            throws SlickException
     {
-       // renders bowser
-       g.fill(bowser.getShape()); 
+       // renders the map
+       map.render(0, 0);
+       // renders Bowser
        bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
                                     bowser.getY() * Character.SIZE);
+       
+       // renders Mobs
+       for (Mob toad : mobs) {
+          toad.getCurrentAnim().draw(toad.getX() * Character.SIZE, 
+                                     toad.getY() * Character.SIZE);
+       }
+       
        // renders the menu
        if(quit)
        {

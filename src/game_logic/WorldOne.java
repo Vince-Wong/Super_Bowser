@@ -28,20 +28,13 @@ public class WorldOne extends WorldTemplate
        map.getTileId(0,0, objectLayer);
        
        mobs = new ArrayList<>();
-       mobs.add(new MobFollow("testBoo", 16, 3));
-       mobs.add(new MobLR("testYToad", 14, 13, 17));
-       mobs.add(new MobUD("testYToad2", 21, 9, 18));
+       mobs.add(new MobFollow("testBoo", 3, 9));
     }
     
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
-       map.render(0,0);
-       for (Mob toad : mobs) {
-          toad.getCurrentAnim().draw(toad.getX() * Character.SIZE, 
-                                     toad.getY() * Character.SIZE);
-       }
-       super.render(gc, sbg, g);
+       super.update(gc, sbg, delta);
    
        //Bowser enters second map if he exits the first map
        if(bowser.getX()==24 && bowser.getY()==11)
