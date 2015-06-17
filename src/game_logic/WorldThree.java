@@ -28,13 +28,14 @@ public class WorldThree extends WorldTemplate
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
 
+       mobs = new ArrayList<>();
     }
     
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
-       map.render(0,0);
-       super.render(gc, sbg, g);
+       super.update(gc, sbg, delta);
+       
 	    //Bowser enters previous world
        if(bowser.getX()==0 && bowser.getY()==3)
        {
