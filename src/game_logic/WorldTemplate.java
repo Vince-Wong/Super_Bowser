@@ -38,8 +38,7 @@ public class WorldTemplate extends BasicGameState
     public void init(GameContainer gc, StateBasedGame sbg)
           throws SlickException
     {
-       bowser = new Bowser();
-       
+       bowser = new Bowser();    
     }
     
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -104,7 +103,7 @@ public class WorldTemplate extends BasicGameState
        }
     }
     
-    private void readMenuOption(Input in, StateBasedGame sbg) {
+     public void readMenuOption(Input in, StateBasedGame sbg) {
        if(in.isKeyDown(Input.KEY_R))
        {
           quit = false;
@@ -119,7 +118,7 @@ public class WorldTemplate extends BasicGameState
        }
     }
     
-    private void readMoveInput(Input in, long delta) {
+    public void readMoveInput(Input in, long delta) {
        counter += delta;
        // if Bowser hasn't moved in the last DELAY milliseconds
        if (counter >= DELAY)

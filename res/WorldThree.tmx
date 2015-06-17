@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="BuildingSprite.png" tilewidth="32" tileheight="32">
+  <image source="BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
+  <tile id="1849">
+   <animation>
+    <frame tileid="1781" duration="100"/>
+    <frame tileid="1782" duration="100"/>
+    <frame tileid="1783" duration="100"/>
+    <frame tileid="1784" duration="100"/>
+    <frame tileid="1785" duration="100"/>
+    <frame tileid="1786" duration="100"/>
+    <frame tileid="1787" duration="100"/>
+    <frame tileid="1788" duration="100"/>
+    <frame tileid="1789" duration="100"/>
+    <frame tileid="1842" duration="100"/>
+    <frame tileid="1843" duration="100"/>
+    <frame tileid="1844" duration="100"/>
+    <frame tileid="1845" duration="100"/>
+    <frame tileid="1846" duration="100"/>
+    <frame tileid="1847" duration="100"/>
+    <frame tileid="1848" duration="100"/>
+    <frame tileid="1849" duration="100"/>
+    <frame tileid="1850" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA/MVYWDwpREWEGNgMAFiW3EGhr0itMEwO66IQjBIDJ0NU4ssjk0Olxi6HbTCIDt88fiVGDMIhRcsbvDZgU//cLIDlC6xYWQ7KAlvYu2gRVjRyw5kjC+MqJV2iTUDBGiRrghhetlBDB4KdtArPvCV+/SID1rVsegYAMlBSUbQBwAA
+  </data>
+ </layer>
+ <layer name="Buildings" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA9XVv08UQRTA8bnbhQJYqG5BDWCQIIn2qKC1HNiIVIJClAR7UNREaESo+KGNnkYqYquikqD/gkjDr3CEgwBRE20BxfCd7G521mVvVxIKX/LJvElm3tvbmbvLxIVYxRrWsYFNpDQhnuMFMsoaGYUoslKRjwIY9vwl68fwqsCay7GMeTmOowInUIl5LGBR866RexrY22jvv8hYjyQu5QmxxJo0ljW3x1XyFrTiOtrQjoQuhIli3btGxgAG7ed+iH48sudHWH8Ux3S3x2GH7DFCv1E8xhP9YHUexIToRV/Mmidgohgl+EzdaXzBTEAP9VzV83Ziitof8cnucRlNuIJmuT+H/TBQmLN/D/VcnfNWY4va29ixewxhGCMYlfupW48kGgJ6qOeqnne2aOFDt+Ka4X+mv+MH34mfcf8YFk+p/Qwpw3qmb+z5jq9xN3fiFPf1tOYfw2KW2nOYRxXrT6Ja8+ZOdJLf0vyjGr94x7+xiz/O+84VIpZr3d0brL+JDs2bR40a6pzBWZxDLepwHhfsHmHfw3TC4sSc6ZLRRZ1u3MYd9OAu7uG+3cOpkU2pGdzjNXXe4C0m8A7v8QGTEXvI+tl6hMX/0mNF/r9gVQvOs9Ufj9CjlN+4MpTrwXmUHuPKvfrXiHqvJOeeH8QegtQbBtAHAAA=
+  </data>
+ </layer>
+ <layer name="Misc 1" width="25" height="20" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBQMB/CDjYHhJxtt7TBlZ2AwY6etHdQA6UCcQWM7lgDxUhrb8RCIH9HYDjlGBgZ5RtraEQ00P4bGdswAmj+TxnYMdgAAP2fSBdAHAAA=
+  </data>
+ </layer>
+</map>

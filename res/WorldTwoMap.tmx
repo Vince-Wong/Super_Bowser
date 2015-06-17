@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="BuildingSprite" tilewidth="32" tileheight="32">
+  <image source="BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2MXZWBgH8WjeBSPYiAOFINgRzbSMSnmgzAt3U8rO+jp/qEePqN+oL8dAGzVl1bQBwAA
+  </data>
+ </layer>
+ <layer name="Buildings" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA1vEx8CwaJjg+zTGIDuoDXi5UPkgOwTYUbEDGwODIxA7sWHKEYOR7ViEwx+1bBC6no1yP+Gyg5pgONlxnw520BqQkz9eiJCOB5Md5JhNih2UmD9QdvwBljV/uahnPjH+oLUd1DCfXnYAAJnMK5LQBwAA
+  </data>
+ </layer>
+ <layer name="Misc 1" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGD7AG4h9qEhjAx1A3ElFGgScxRCYVoAY8+vYKDObln6ghx2jAAE+c9FGLTaQzMLAkALEqSzEyU3mp8w+YgDIDlrbA7ODVHt8SMinyHbQyj+0Nh/ZDlqC4WAHAHZevabQBwAA
+  </data>
+ </layer>
+</map>
