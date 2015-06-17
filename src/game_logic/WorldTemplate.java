@@ -106,6 +106,10 @@ public class WorldTemplate extends BasicGameState
          }
 
          checkDamage();
+         // Check if Bowser dies
+         if (bowser.getHealth() <= 0) {
+            sbg.enterState(666);
+         }
       }
       // Menu is open
       else {
@@ -199,6 +203,7 @@ public class WorldTemplate extends BasicGameState
       for (Mob guy : mobs) {
          if (bowser.getShape().intersects(guy.getShape())) {
             bowser.changeHealth(-guy.getDamage());
+            // Bowser gets knocked back 2 tiles from the direction he is facing
             if (bowser.getFace()) {
                bowser.moveHorizontal(-2);
             }
