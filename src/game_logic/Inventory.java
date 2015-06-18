@@ -2,7 +2,7 @@ package game_logic;
 
 public class Inventory
 {
-   public static final int MAX_SIZE = 8, MIN_SIZE = 0;
+   public static final int MAX_SIZE = 21, MIN_SIZE = 0;
    public int currentSize;
    private Item[] items;
    
@@ -81,6 +81,10 @@ public class Inventory
          }   
       }
       return false;    
+   }
+   
+   public Item[] getItems() {
+      return items;
    }
    
    //returns the whole inventory as a string

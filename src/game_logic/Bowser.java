@@ -33,4 +33,8 @@ public class Bowser extends Character
       setInventory(new Inventory());
       faceRight();
    }
+   
+   public String toString() {
+      return "Name: " + getName() + "\nHealth: " + getHealth(); 
+   }
 }

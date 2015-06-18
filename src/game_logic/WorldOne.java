@@ -31,35 +31,37 @@ public class WorldOne extends WorldTemplate
        map = new TiledMap("res/worldOneMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       itemsLayer = map.getLayerIndex("Items");
-       map.getTileId(0,0, itemsLayer);
        
        //TODO test items, remove later
        items = new ArrayList<>();
-       testItem1 = new Item("Box1", false, 1, 1, "test item");
-//       testItem1.setImage
-       testItem2 = new Item("Box", false, 1, 2, "test item2");
-       testItem2.getShape().setLocation(Character.SIZE * 3, Character.SIZE * 3);
-       testItem3 = new Item("Box", false, 1, 1, "test item3");
-       testItem3.getShape().setLocation(Character.SIZE * 5, Character.SIZE * 5);
-       items.add(testItem1);
+       testItem2 = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
+       testItem2.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
+       testItem2.setImage(new Image("res/ChainSaw.png"));
+       testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
+       testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
+       testItem3.setImage(new Image("res/Hammer.png"));
        items.add(testItem2);
        items.add(testItem3);
+
+       mobs = new ArrayList<>();
+       mobs.add(new MobFollow("testBoo", 3, 9));
     }
     
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
-           throws SlickException
-    {
-       map.render(0,0);
-       super.render(gc, sbg, g);
-    }
-    
-    public void update(GameContainer gc, StateBasedGame sbg, int delta)
+
+   public void update(GameContainer gc, StateBasedGame sbg, int delta)
           throws SlickException
    {
        super.update(gc, sbg, delta);
-   }
+ 
+       //Bowser enters second map if he exits the first map
+       if(bowser.getX()==24 && bowser.getY()==11)
+       {
+          sbg.enterState(2);
+          WorldTemplate.bowser.setX(1);
+          WorldTemplate.bowser.setY(10);
+       }
+    }    
      
-    public int getID() { return 3; }
+    public int getID() { return 1; }
   
 }

@@ -1,7 +1,7 @@
 package game_logic;
 
 import org.newdawn.slick.geom.Rectangle;
-
+import org.newdawn.slick.Image;
 public class Item extends Entity
 {
    protected boolean stackable;
@@ -9,9 +9,8 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    protected boolean onScreen;
-//   protected Image
-   
    public static final int ITEM_WIDTH = 31, ITEM_HEIGHT = 31;
+   protected Image image;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
@@ -25,9 +24,7 @@ public class Item extends Entity
       setShape(new Rectangle(64, 32*6, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
    }
    
-   /**
-    * increase item quantity if stackable
-    */
+
    public boolean increaseQuantity()
    {
       if(stackable == true && quantity < maxQuantity)
@@ -39,9 +36,6 @@ public class Item extends Entity
          return false;
    }
    
-   /**
-    * decrease item quantity
-    */
    public boolean decreaesQuantity()
    {
       if(quantity > 1)
@@ -55,9 +49,6 @@ public class Item extends Entity
    
    public void onCollision(Entity ent)
    {
-      // TODO for testing
-//      String otherObject = ent.getClass().toString();
-//      System.out.println(otherObject);
       Bowser myBow = (Bowser)ent;
       if(myBow.getInventory().addItem(this))
          this.setOnScreen(false);
@@ -76,12 +67,6 @@ public class Item extends Entity
       return this.stackable;
    }
    
-   //Do we need this method???
-   public Item getItem()
-   {
-      return this;
-   }
-   
    public int getQuantity()
    {
       return quantity;
@@ -94,7 +79,13 @@ public class Item extends Entity
    
    public boolean getOnScreen() { return onScreen; }
    public void setOnScreen(Boolean state) { onScreen = state;}
+   public Image getImage() {
+      return image;
+   }
    
+   public void setImage(Image im) {
+      image = im;
+   }
    public static void main(String[] args)
    {
       // TODO Auto-generated method stub
@@ -114,4 +105,7 @@ public class Item extends Entity
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
    }
+
+
+   
 }
