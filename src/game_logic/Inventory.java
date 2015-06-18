@@ -89,6 +89,10 @@ public class Inventory
       return false;    
    }
    
+   public Item[] getItems() {
+      return items;
+   }
+   
    //returns the whole inventory as a string
    public String toString()
    {

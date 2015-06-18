@@ -1,11 +1,14 @@
 package game_logic;
 
+import org.newdawn.slick.Image;
+
 public class Item extends Entity
 {
    protected boolean stackable;
    protected int quantity;
    protected int maxQuantity;
    protected String description;
+   protected Image image;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
@@ -67,6 +70,14 @@ public class Item extends Entity
    public String getDescription()
    {
       return description;
+   }
+   
+   public Image getImage() {
+      return image;
+   }
+   
+   public void setImage(Image im) {
+      image = im;
    }
    
    public static void main(String[] args)
