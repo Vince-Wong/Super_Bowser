@@ -39,7 +39,7 @@ public class WorldOne extends WorldTemplate
        testItem2.setImage(new Image("res/ChainSaw.png"));
        testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
        testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
-       testItem3.setImage(new Image("res/Hammer.png"));
+       testItem3.setImage(new Image("res/Hammer.png").getScaledCopy(0.5F));
        items.add(testItem2);
        items.add(testItem3);
 

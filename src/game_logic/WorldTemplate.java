@@ -40,31 +40,6 @@ public class WorldTemplate extends BasicGameState
          throws SlickException
    {
       bowser = new Bowser();
-
-      Item chainsaw = new Item("chainsaw", false, 1, 5, "This is a f***in chainsaw. What more do you want to know, huh?");
-      chainsaw.setImage(new Image("res/ChainSaw.png"));
-      Item chainsaw2 = new Item("chainsaw2", false, 1, 5, "This is a f***in chainsaw");
-      chainsaw2.setImage(new Image("res/ChainSaw.png"));
-      Item chainsaw3 = new Item("chainsaw3", false, 1, 5, "This is a f***in chainsaw");
-      chainsaw3.setImage(new Image("res/ChainSaw.png"));
-      Item chainsaw4 = new Item("chainsaw4", false, 1, 5, "This is a f***in chainsaw");
-      chainsaw4.setImage(new Image("res/ChainSaw.png"));
-      Item chainsaw5 = new Item("chainsaw5", false, 1, 5, "This is a f***in chainsaw");
-      chainsaw5.setImage(new Image("res/ChainSaw.png"));
-      Item chainsaw6 = new Item("chainsaw6", false, 1, 5, "This is a f***in chainsaw");
-      chainsaw6.setImage(new Image("res/ChainSaw.png"));
-      //      Item chainsaw7 = new Item("chainsaw7", false, 1, 5, "This is a f***in chainsaw");
-      //      chainsaw7.setImage(new Image("res/ChainSaw.png"));
-
-      bowser.getInventory().addItem(chainsaw);
-      bowser.getInventory().addItem(chainsaw2);
-      bowser.getInventory().addItem(chainsaw3);
-      bowser.getInventory().addItem(chainsaw4);
-      bowser.getInventory().addItem(chainsaw5);
-      bowser.getInventory().addItem(chainsaw6);
-      //      bowser.getInventory().addItem(chainsaw7);
-
-      //      bowser.getInventory().toString();
    }
 
    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -74,13 +49,9 @@ public class WorldTemplate extends BasicGameState
       map.render(0, 0);
 
       //renders items
-      if(!(items == null))
+      for (Item thing : items)
       {
-         for (Item thing : items)
-         {
-            g.fill(thing.getShape());
-            g.drawImage(thing.getImage(), thing.getShape().getX(), thing.getShape().getY());
-         }
+         g.drawImage(thing.getImage(), thing.getShape().getX(), thing.getShape().getY());
       }
 
       // renders Bowser
@@ -173,10 +144,6 @@ public class WorldTemplate extends BasicGameState
          }
       }
    }
-
-
-
-
 
    private void readMenuOption(Input in, StateBasedGame sbg) {
       if(in.isKeyDown(Input.KEY_R))
