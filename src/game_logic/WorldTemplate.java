@@ -22,25 +22,25 @@ public class WorldTemplate extends BasicGameState
    protected static final int WINDOW_WIDTH = 800;
    protected static final int WINDOW_HEIGHT = 640;
 
-    protected boolean quit = false;
-    private long counter = 0;
-    private long ticks = 0;
-    
-    protected static Bowser bowser;
-    protected TiledMap map;
-    protected int objectLayer;
-    protected int itemsLayer;
-    protected ArrayList<Item> items;
-    protected ArrayList<Mob> mobs;
-    
-    public WorldTemplate(int State){}
-    
+   protected boolean quit = false;
+   private long counter = 0;
+   private long ticks = 0;
+
+   protected static Bowser bowser;
+   protected TiledMap map;
+   protected int objectLayer;
+   protected int itemsLayer;
+   protected ArrayList<Item> items;
+   protected ArrayList<Mob> mobs;
+
+   public WorldTemplate(int State){}
+
    // make bowser at the beginning
    public void init(GameContainer gc, StateBasedGame sbg)
          throws SlickException
    {
       bowser = new Bowser();
-      
+
       Item chainsaw = new Item("chainsaw", false, 1, 5, "This is a f***in chainsaw. What more do you want to know, huh?");
       chainsaw.setImage(new Image("res/ChainSaw.png"));
       Item chainsaw2 = new Item("chainsaw2", false, 1, 5, "This is a f***in chainsaw");
@@ -53,8 +53,8 @@ public class WorldTemplate extends BasicGameState
       chainsaw5.setImage(new Image("res/ChainSaw.png"));
       Item chainsaw6 = new Item("chainsaw6", false, 1, 5, "This is a f***in chainsaw");
       chainsaw6.setImage(new Image("res/ChainSaw.png"));
-//      Item chainsaw7 = new Item("chainsaw7", false, 1, 5, "This is a f***in chainsaw");
-//      chainsaw7.setImage(new Image("res/ChainSaw.png"));
+      //      Item chainsaw7 = new Item("chainsaw7", false, 1, 5, "This is a f***in chainsaw");
+      //      chainsaw7.setImage(new Image("res/ChainSaw.png"));
 
       bowser.getInventory().addItem(chainsaw);
       bowser.getInventory().addItem(chainsaw2);
@@ -62,9 +62,9 @@ public class WorldTemplate extends BasicGameState
       bowser.getInventory().addItem(chainsaw4);
       bowser.getInventory().addItem(chainsaw5);
       bowser.getInventory().addItem(chainsaw6);
-//      bowser.getInventory().addItem(chainsaw7);
+      //      bowser.getInventory().addItem(chainsaw7);
 
-//      bowser.getInventory().toString();
+      //      bowser.getInventory().toString();
    }
 
    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -72,8 +72,8 @@ public class WorldTemplate extends BasicGameState
    {
       // renders the map
       map.render(0, 0);
-      
-    //renders items
+
+      //renders items
       if(!(items == null))
       {
          for (Item thing : items)
@@ -82,7 +82,7 @@ public class WorldTemplate extends BasicGameState
             g.drawImage(thing.getImage(), thing.getShape().getX(), thing.getShape().getY());
          }
       }
-      
+
       // renders Bowser
       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
             bowser.getY() * Character.SIZE);
@@ -93,27 +93,27 @@ public class WorldTemplate extends BasicGameState
                toad.getY() * Character.SIZE);
       }
 
-        // renders the menu
-        if(quit)
-        {
-          g.setColor(Color.red);
-          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
-          
-          g.setColor(Color.black);
-          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
+      // renders the menu
+      if(quit)
+      {
+         g.setColor(Color.red);
+         g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
 
-          g.setColor(Color.white);
-          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
-          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
-          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-          if(!quit)
-          {
-             g.clear();
-          }
-       }
-    }
+         g.setColor(Color.black);
+         g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
 
-// based on input, update bowser's state
+         g.setColor(Color.white);
+         g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
+         g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
+         g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+         if(!quit)
+         {
+            g.clear();
+         }
+      }
+   }
+
+   // based on input, update bowser's state
    public void update(GameContainer gc, StateBasedGame sbg, int delta)
          throws SlickException
    {
@@ -156,27 +156,27 @@ public class WorldTemplate extends BasicGameState
       if(items != null)
          detectCollision();
    }
-       
- 
-    private void detectCollision() {
-       int k;
-       for (k = 0; k < items.size(); k++) {
-          if (bowser.getShape().intersects(items.get(k).getShape())) 
-          {
-             items.get(k).onCollision(bowser);
-             //Does this work in arraylists?
-             if(!items.get(k).getOnScreen())
-             {
-                items.remove(k);
-                System.out.println(bowser.getInventory().toString()); //TODO For testing
-             }
-          }
-       }
-    }
-    
 
-  
-  
+
+   private void detectCollision() {
+      int k;
+      for (k = 0; k < items.size(); k++) {
+         if (bowser.getShape().intersects(items.get(k).getShape())) 
+         {
+            items.get(k).onCollision(bowser);
+            //Does this work in arraylists?
+            if(!items.get(k).getOnScreen())
+            {
+               items.remove(k);
+               System.out.println(bowser.getInventory().toString()); //TODO For testing
+            }
+         }
+      }
+   }
+
+
+
+
 
    private void readMenuOption(Input in, StateBasedGame sbg) {
       if(in.isKeyDown(Input.KEY_R))

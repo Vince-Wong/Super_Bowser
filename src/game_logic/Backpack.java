@@ -33,9 +33,8 @@ public class Backpack extends BasicGameState
 	private Inventory inventory;
 	private TextField description;
 	
-	public Backpack(int State){
-		
-	}
+	public Backpack(int State){}
+	
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
 		backpack = new Image("res/Backpack2.jpg");
@@ -45,6 +44,7 @@ public class Backpack extends BasicGameState
 		inventory = WorldTemplate.bowser.getInventory();
 		description = new TextField(gc, new TrueTypeFont(new Font(java.awt.Font.DIALOG, java.awt.Font.PLAIN, 20), true), 390,120,310,100);
 	}
+	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException{
 		g.drawImage(backpack,0,0);
@@ -74,6 +74,7 @@ public class Backpack extends BasicGameState
 	}
 	
 	private void displayInventory(Graphics g) {
+	   inventory = WorldTemplate.bowser.getInventory();  //TODO quick fix, remove later if there is a better way to implement this
 	   Item[] items = inventory.getItems();
 	   int i, j, x, y;
 	   for (i = 0; i*ROW_SIZE < inventory.currentSize; i++) {
