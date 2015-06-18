@@ -27,14 +27,17 @@ public class WorldTwo extends WorldTemplate
        map = new TiledMap("res/WorldTwoMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
+       
+       mobs = new ArrayList<>();
+       mobs.add(new MobLR("testYToad", 17, 5, 23));
+       mobs.add(new MobUD("testYToad2", 13, 5, 10));
     }
     
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
-       map.render(0,0);
-       super.render(gc, sbg, g);
-
+       super.update(gc, sbg, delta);
+       
        //bowser re-enters previous world
        if(bowser.getX()==0 && bowser.getY()==10)
        {
