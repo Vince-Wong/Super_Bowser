@@ -6,6 +6,7 @@ import org.newdawn.slick.SpriteSheet;
 public abstract class Character extends Entity
 {
    protected static final int SIZE = 32;
+   protected static final int PADDING = 2; 
    
    protected static final int FWD = 0;
    protected static final int BACK = 1;

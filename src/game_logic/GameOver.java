@@ -4,45 +4,43 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class Backpack extends BasicGameState{
-	Image backpack;
-	public String mouse = "No Input yet..";
-	public String Play = "PRESS I TO GO BACK TO GAME!";
+public class GameOver extends BasicGameState{
+//	Image death;
+	String mouse = "No Input yet..";
+	String instructions = "PRESS ENTER TO START OVER!";
+	String replay = "YOU ARE DEAD! HOW SAD. :'(";
 	private SpriteSheet bowserSheet;
 	private Animation bowserAnimation;
-	public static int prevScreenID;
-	public Backpack(int State){
+	public GameOver(int State){
 		
 	}
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException{
-		backpack = new Image("res/Backpack.png");
-		bowserSheet = new SpriteSheet("res/EnterInventory.png",32,32);
+//		death = new Image("res/menuMario.png");
+		bowserSheet = new SpriteSheet("res/BowserExcited.png",80,80);
 		bowserAnimation = new Animation(bowserSheet,250);
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException{
-		g.drawImage(backpack,0,0);
+//		g.drawImage(death,0,0);
 		g.drawString(mouse,10,30);
-		g.drawString(Play,410,70);
-		g.drawString(WorldTemplate.bowser.toString(), 410, 90);
-		bowserAnimation.draw(100, 100);
+		g.drawString(replay,260,210);
+		g.drawString(instructions, 260, 410);
+		bowserAnimation.draw(350, 300);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException{
+			throws SlickException
+	{
 		bowserAnimation.update(delta);
 		Input input = gc.getInput();
 		int xpos = Mouse.getX();
 		int ypos = WorldTemplate.WINDOW_HEIGHT-Mouse.getY();
 		mouse = ("x: " + xpos + " y: "+ ypos);
-		if(input.isKeyPressed(Input.KEY_I))
+		if(input.isKeyDown(Input.KEY_ENTER))
 		{
-			sbg.enterState(prevScreenID);	
+		   sbg.initStatesList(gc);
+		   sbg.enterState(0);	
 		}
-	}
-	
-	//cause "i" is 9 in the alphabet
-	public int getID(){
-		return 9;
 	}	
+	public int getID(){return 666;}	
 }
