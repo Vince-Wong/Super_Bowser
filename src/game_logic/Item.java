@@ -10,7 +10,7 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    protected boolean onScreen;
-   public static final int ITEM_WIDTH = 31, ITEM_HEIGHT = 31;
+   public static final int ITEM_WIDTH = 32, ITEM_HEIGHT = 32;
    protected Image image;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
@@ -25,15 +25,26 @@ public class Item extends Entity
       setShape(new Rectangle(64, 32*6, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
    }
    
-   //constructor that takes all parameters
+   /**
+    * Constructor that takes all parameters to build item
+    * @param name
+    * @param stackable
+    * @param quantity
+    * @param maxQuantity
+    * @param description
+    * @param spawnTileX - X coordinate of map tile
+    * @param spawnTileY - Y coordinate of map tile
+    * @param itemImage - location of item image
+    * @throws SlickException
+    */
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
-      String description, int spawnX, int spawnY, String itemImage) 
+      String description, int spawnTileX, int spawnTileY, String itemImage) 
       throws SlickException
    {
       this(name, stackable, quantity, maxQuantity, description);
-      this.getShape().setX(spawnX*32);
-      this.getShape().setY(spawnY*32);
-      this.image = new Image("itemImage");
+      this.getShape().setX(spawnTileX*32);
+      this.getShape().setY(spawnTileY*32);
+      this.image = new Image(itemImage);
    }
    
 

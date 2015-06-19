@@ -136,7 +136,6 @@ public class WorldTemplate extends BasicGameState
          if (bowser.getShape().intersects(items.get(k).getShape())) 
          {
             items.get(k).onCollision(bowser);
-            //Does this work in arraylists?
             if(!items.get(k).getOnScreen())
             {
                items.remove(k);
