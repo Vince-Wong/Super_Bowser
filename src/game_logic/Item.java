@@ -2,6 +2,7 @@ package game_logic;
 
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 public class Item extends Entity
 {
    protected boolean stackable;
@@ -22,6 +23,17 @@ public class Item extends Entity
       this.maxQuantity = maxQuantity;
       this.onScreen = true;
       setShape(new Rectangle(64, 32*6, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
+   }
+   
+   //constructor that takes all parameters
+   public Item(String name, boolean stackable, int quantity, int maxQuantity, 
+      String description, int spawnX, int spawnY, String itemImage) 
+      throws SlickException
+   {
+      this(name, stackable, quantity, maxQuantity, description);
+      this.getShape().setX(spawnX*32);
+      this.getShape().setY(spawnY*32);
+      this.image = new Image("itemImage");
    }
    
 
