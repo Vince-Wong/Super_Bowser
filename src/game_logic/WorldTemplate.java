@@ -123,6 +123,7 @@ public class WorldTemplate extends BasicGameState
       else {
          readMenuOption(input, sbg);
       }
+      
       //for item collision as of right now
       if(items != null)
          detectCollision();
