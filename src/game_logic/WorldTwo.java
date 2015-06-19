@@ -31,6 +31,8 @@ public class WorldTwo extends WorldTemplate
        mobs = new ArrayList<>();
        mobs.add(new MobLR("testYToad", 17, 5, 23));
        mobs.add(new MobUD("testYToad2", 13, 5, 10));
+       
+       items = new ArrayList<>();
     }
     
     public void update(GameContainer gc, StateBasedGame sbg, int delta) 

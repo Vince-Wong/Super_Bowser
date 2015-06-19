@@ -47,7 +47,7 @@ public class WorldTemplate extends BasicGameState
    {
       // renders the map
       map.render(0, 0);
-
+      g.drawString(WorldTemplate.bowser.toString(), 5, 5);
       //renders items
       for (Item thing : items)
       {
@@ -165,8 +165,21 @@ public class WorldTemplate extends BasicGameState
       // if Bowser hasn't moved in the last DELAY milliseconds
       if (counter >= DELAY)
       {
+         if(in.isKeyDown(Input.KEY_SPACE)) 
+         {
+            /* Bowser needs 750ms to complete attack animation during which he can't move
+             * Fire Claw animation is 3 frames at 250ms per frame
+             */
+            counter = -550;
+            if (bowser.getFace()) {
+               bowser.setCurrentAnim(Bowser.FIRE_R);
+            }
+            else {
+               bowser.setCurrentAnim(Bowser.FIRE_L);
+            }
+         }           
          // if input is UP
-         if(in.isKeyDown(Input.KEY_W))
+         else if(in.isKeyDown(Input.KEY_W))
          {
             // if the tile above Bowser's current position is the floor layer
             if(map.getTileId(bowser.getX(),bowser.getY()-1,objectLayer)==0)
@@ -228,15 +241,22 @@ public class WorldTemplate extends BasicGameState
    }
 
    private void checkDamage() {
-      for (Mob guy : mobs) {
+      for (int i = 0; i < mobs.size(); i++) {
+         Mob guy = mobs.get(i);
          if (bowser.getShape().intersects(guy.getShape())) {
-            bowser.changeHealth(-guy.getDamage());
-            // Bowser gets knocked back 2 tiles from the direction he is facing
-            if (bowser.getFace()) {
-               bowser.moveHorizontal(-2);
+            if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
+                  || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
+               mobs.remove(i);
             }
             else {
-               bowser.moveHorizontal(2);
+               bowser.changeHealth(-guy.getDamage());
+               // Bowser gets knocked back 1 tiles from the direction he is facing
+               if (bowser.getFace()) {
+                  bowser.moveHorizontal(-1);
+               }
+               else {
+                  bowser.moveHorizontal(1);
+               }
             }
          }
       }
