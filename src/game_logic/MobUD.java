@@ -8,6 +8,18 @@ import org.newdawn.slick.geom.Rectangle;
 public class MobUD extends Mob
 {
    final int y0, y1;
+   
+   public MobUD(String name, int spawnX, int spawnY, int rangeY, boolean overload) 
+   {
+      setName(name);
+      setShape(new Rectangle(spawnX*SIZE+PADDING, spawnY*SIZE+PADDING, SIZE-PADDING*2, SIZE-PADDING*2));
+      setInventory(new Inventory());
+      setDamage(3);
+      faceRight();
+      
+      y0 = spawnY;
+      y1 = rangeY;
+   }
 
    public MobUD(String name, int spawnX, int spawnY, int rangeY) 
          throws SlickException
@@ -35,6 +47,24 @@ public class MobUD extends Mob
       
       y0 = spawnY;
       y1 = rangeY;
+   }
+   
+   public void move(boolean overload) {
+      int y = getY();
+      if (y == y0) {
+         moveVertical(1);
+      } 
+      else if (y == y1) {
+         moveVertical(-1);
+      } 
+      else {
+         if (Math.random() > 0.5) {
+            moveVertical(1);
+         }
+         else {
+            moveVertical(-1);
+         }
+      }
    }
    
    public void move() {
