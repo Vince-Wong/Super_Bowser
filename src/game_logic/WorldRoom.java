@@ -15,42 +15,36 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldOne extends WorldTemplate
+public class WorldRoom extends WorldTemplate
 {   
-    public WorldOne(int state){
+    public WorldRoom(int state){
        super(state);
     }
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-       map = new TiledMap("res/worldOneMap.tmx");
+
+       map = new TiledMap("res/RoomMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-       
+
        mobs = new ArrayList<>();
-       mobs.add(new MobFollow("testBoo", 3, 9));
     }
     
     public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
        super.update(gc, sbg, delta);
-   
-       //Bowser enters second map if he exits the first map
-       if(bowser.getX()==24 && bowser.getY()==11)
+       
+       //Bowser enters previous world
+       if((bowser.getX()==12 ||bowser.getX()==12)&& bowser.getY()==19)
        {
-          sbg.enterState(2);
-          WorldTemplate.bowser.setX(1);
-          WorldTemplate.bowser.setY(10);
-       }
-       if(bowser.getX()==11 && bowser.getY()==10)
-       {
-          sbg.enterState(8);
+          sbg.enterState(1);
           WorldTemplate.bowser.setX(11);
-          WorldTemplate.bowser.setY(19);
+          WorldTemplate.bowser.setY(11);
        }
     }    
      
-    public int getID() { return 1; }
+    public int getID() { return 8; }
   
 }
