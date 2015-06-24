@@ -12,9 +12,9 @@ public class NPC extends Character{
 	public int ID;
 	//public FileReader fileReader = new FileReader(FILENAME);
 	
-	public NPC()
+	public NPC(int x, int y)
 	{
-		setShape(new Rectangle(300, 300, 41, 38));
+		setShape(new Rectangle(x, y, SIZE, SIZE));
 	}
 	
 	/**
@@ -47,6 +47,11 @@ public class NPC extends Character{
 		return length;
 	}
 	
+	public int getSizeDialogue(int i)
+	{
+		int length = dialogue[ID][i].length();
+		return length;
+	}
 	
 	public void setID(int ID)
 	{
@@ -62,17 +67,18 @@ public class NPC extends Character{
 	public static void main(String[] str)
 	{
 		
-		NPC oldLady = new NPC();
-	    oldLady.setID(1);
+		NPC oldLady = new NPC(300, 300);
+	    oldLady.setID(7);
 	    
 	    System.out.println(oldLady.dialogue[0][1]);
-	    System.out.println(oldLady.dialogue[1][1]);
-	    System.out.println(oldLady.dialogue[2][1]);
+	    System.out.println(oldLady.getSizeDialogue(1));
+	    //System.out.println(oldLady.dialogue[1][1]);
+	  //  System.out.println(oldLady.dialogue[2][1]);
 	    //oldLady.getDialogue(0);
 	    //oldLady.getDialogue(1);
 	    
 	    System.out.println("----------TO STRING----------");
-		oldLady.reader.toString();
+		//oldLady.reader.toString();
 		
 	}
 	

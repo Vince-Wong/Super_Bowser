@@ -82,12 +82,12 @@ public class FileReader {
 			{
 				String data = scanner.nextLine();
 				String[] token = data.split("&");
-				numDialogue = token.length;
+				numDialogue = token.length-1;
 				
 				parsedDialogue[counter] = new String[numDialogue];
-				for(int i = 1; i < token.length; i++)
+				for(int i = 0; i < numDialogue; i++)
 				{
-					parsedDialogue[counter][i] = token[i];
+					parsedDialogue[counter][i] = token[i+1];
 				}
 			}
 		}
@@ -118,14 +118,14 @@ public class FileReader {
 	 * This main is used to test the file reader.
 	 * @param str
 	 */
-	/*public static void main(String[] str)
+	public static void main(String[] str)
 	{
 		FileReader reader = new FileReader("res/dialogue.txt");
 		
 		int[] NPC_ID = reader.getNPC_ID();
 		String[][] dialogue = reader.getParsedDialogue();
 		
-		NPC oldLady = new NPC();
+		NPC oldLady = new NPC(1,1);
 	    oldLady.setID(1);
 	    
 	   // oldLady.getDialogue(0);
@@ -134,6 +134,6 @@ public class FileReader {
 	    System.out.println("----------TO STRING----------");
 		reader.toString();
 		
-	}*/
+	}
 	
 }

@@ -17,12 +17,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldOne extends WorldTemplate
+public class Room1 extends WorldTemplate
 {   
 	TypewriterTest tw = new TypewriterTest();
 	private NPC oldLady = new NPC(Character.SIZE*12, Character.SIZE*10);
 	private Image oldLadyI;
 	private Image dialogueBox;
+	private Image temp;
 	private boolean chat = false;
 	private boolean chatBubble = false;
 	private boolean chatBar = false;
@@ -30,20 +31,21 @@ public class WorldOne extends WorldTemplate
 	private int dialogueNumber = -1;
 
 
-	public WorldOne(int state){
+	public Room1(int state){
 		super(state);
 	}
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
 		map = new TiledMap("res/worldOneMap.tmx");
+		temp = new Image("res/TempBackground.jpg");
 		objectLayer = map.getLayerIndex("Buildings");
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		//mobs.add(new MobFollow("testBoo", 3, 9));
+		mobs.add(new MobFollow("Dying mob", 3, 9));
 
-		oldLady.setID(0);
+		oldLady.setID(2);
 		oldLadyI = new Image("res/OldLady.png");
 		dialogueBox = new Image("res/dialogueBox.png");
 
@@ -54,6 +56,7 @@ public class WorldOne extends WorldTemplate
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException
 	{
+		temp.draw(0, 0);
 		super.render(gc, sbg, g);
 		
 		if(YellToPlayer)
@@ -63,7 +66,7 @@ public class WorldOne extends WorldTemplate
 			int x = Character.SIZE*9 + 20;
 			int y = Character.SIZE*8 + 5;
 			g.setColor(Color.black);
-			g.drawString("Quick, over here!", x, y);
+			g.drawString("Come on, over here!", x, y);
 		}
 		
 		
@@ -98,7 +101,6 @@ public class WorldOne extends WorldTemplate
 					g.drawString(text, x, y);
 				}
 			}
-
 		}
 	}
 
@@ -109,12 +111,8 @@ public class WorldOne extends WorldTemplate
 		tick += delta;
 		super.update(gc, sbg, delta);
 
-
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
-
-
-
 
 		if(tick >= 5000)
 		{
@@ -132,7 +130,6 @@ public class WorldOne extends WorldTemplate
 			chatBubble = false;
 			chatBar = false;
 			dialogueNumber = -1;
-			System.out.println(bowser.getX() + " " + bowser.getY());
 		}
 
 		if(bowser.getShape().intersects(oldLady.getShape()) && input.isKeyPressed(Input.KEY_E))
@@ -154,26 +151,17 @@ public class WorldOne extends WorldTemplate
 				chatBar = true;
 		}
 
-		//Bowser enters Room map from first map
-				if(bowser.getX()==11 && bowser.getY()==10)
-				{
-					sbg.enterState(20);
-					WorldTemplate.bowser.setX(5);
-					WorldTemplate.bowser.setY(15);
-				}
-
-				
-		//Bowser enters second map if he exits the first map
-		if(bowser.getX()==24 && bowser.getY()==11)
+		
+		//Bowser exits Room map to first map
+		if(bowser.getX()==5 && bowser.getY()==17)
 		{
-			sbg.enterState(2);
-			WorldTemplate.bowser.setX(1);
-			WorldTemplate.bowser.setY(10);
+			sbg.enterState(1);
+			WorldTemplate.bowser.setX(11);
+			WorldTemplate.bowser.setY(11);
 		}
-
 
 	}    
 
-	public int getID() { return 1; }
+	public int getID() { return 20; }
 
 }
