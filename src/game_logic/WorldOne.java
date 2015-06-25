@@ -27,6 +27,9 @@ public class WorldOne extends WorldTemplate
 	private boolean chatBar = false;
 	private boolean YellToPlayer = false;
 	private int dialogueNumber = -1;
+	
+	//TODO test items, remove later
+   private Item testItem1, testItem2, testItem3, fireFlower;
 
 
 	public WorldOne(int state){
@@ -35,12 +38,25 @@ public class WorldOne extends WorldTemplate
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
-		map = new TiledMap("res/worldOneMap.tmx");
-		objectLayer = map.getLayerIndex("Buildings");
-		map.getTileId(0,0, objectLayer);
+	   //tiled map with 3 layers: background, flowers, and buildings
+      map = new TiledMap("res/worldOneMap.tmx");
+      objectLayer = map.getLayerIndex("Buildings");
+      map.getTileId(0,0, objectLayer);
+      
+      //TODO test items, remove later
+      items = new ArrayList<>();
+      testItem2 = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
+      testItem2.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
+      testItem2.setImage(new Image("res/ChainSaw.png"));
+      testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
+      testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
+      testItem3.setImage(new Image("res/Hammer.png"));
+      fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
+      items.add(testItem2);
+      items.add(testItem3);
 
-		mobs = new ArrayList<>();
-		mobs.add(new MobFollow("testBoo", 3, 9));
+      mobs = new ArrayList<>();
+      mobs.add(new MobFollow("testBoo", 3, 9, testItem3));
 
 		oldLady.setID(0);
 		oldLadyI = new Image("res/OldLady.png");
@@ -110,9 +126,6 @@ public class WorldOne extends WorldTemplate
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
 
-
-
-
 		if(tick >= 5000)
 		{
 			tick = 0;
@@ -166,11 +179,10 @@ public class WorldOne extends WorldTemplate
 			sbg.enterState(2);
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(10);
-		}
-
-
+		}	
 	}    
 
 	public int getID() { return 1; }
+   
 
 }

@@ -32,6 +32,13 @@ public class MobFollow extends Mob
       faceRight();
    }
    
+   public MobFollow(String name, int spawnX, int spawnY, Item item)
+         throws SlickException
+   {
+      this(name, spawnX, spawnY);
+      this.inventory.addItem(item);
+   }
+
    // default movement of the mob: move toward bowser
    // After Mobs are instantiated and placed in an ArrayList
    // need to call in a loop within WorldTemplate

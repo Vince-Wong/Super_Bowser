@@ -30,6 +30,7 @@ public class WorldTemplate extends BasicGameState
    protected TiledMap map;
    protected int objectLayer;
    protected int itemsLayer;
+   protected ArrayList<Item> items;
    protected ArrayList<Mob> mobs;
 
    public WorldTemplate(int State){}
@@ -38,7 +39,7 @@ public class WorldTemplate extends BasicGameState
    public void init(GameContainer gc, StateBasedGame sbg)
          throws SlickException
    {
-      bowser = new Bowser();    
+      bowser = new Bowser();
    }
 
    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
@@ -46,6 +47,15 @@ public class WorldTemplate extends BasicGameState
    {
       // renders the map
       map.render(0, 0);
+      g.drawString(WorldTemplate.bowser.toString(), 5, 5);
+      //renders items
+      if(items != null)
+      {
+         for (Item thing : items)
+            g.drawImage(thing.getImage(), thing.getShape().getX(), thing.getShape().getY());
+      }
+      
+
       // renders Bowser
       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
             bowser.getY() * Character.SIZE);
@@ -65,7 +75,6 @@ public class WorldTemplate extends BasicGameState
          g.setColor(Color.black);
          g.fillRect(WINDOW_WIDTH/2 - 30, WINDOW_HEIGHT/2 - 130, 180, 180);
 
-
          g.setColor(Color.white);
          g.drawString("Resume (R)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 100);
          g.drawString("Main Menu (M)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 50);
@@ -76,6 +85,7 @@ public class WorldTemplate extends BasicGameState
          }
       }
    }
+
    // based on input, update bowser's state
    public void update(GameContainer gc, StateBasedGame sbg, int delta)
          throws SlickException
@@ -115,6 +125,26 @@ public class WorldTemplate extends BasicGameState
       else {
          readMenuOption(input, sbg);
       }
+      
+      //for item collision as of right now
+      if(items != null)
+         detectCollision();
+   }
+
+
+   private void detectCollision() {
+      int k;
+      for (k = 0; k < items.size(); k++) {
+         if (bowser.getShape().intersects(items.get(k).getShape())) 
+         {
+            items.get(k).onCollision(bowser);
+            if(!items.get(k).getOnScreen())
+            {
+               items.remove(k);
+               System.out.println(bowser.getInventory().toString()); //TODO For testing
+            }
+         }
+      }
    }
 
    private void readMenuOption(Input in, StateBasedGame sbg) {
@@ -137,8 +167,21 @@ public class WorldTemplate extends BasicGameState
       // if Bowser hasn't moved in the last DELAY milliseconds
       if (counter >= DELAY)
       {
+         if(in.isKeyDown(Input.KEY_SPACE)) 
+         {
+            /* Bowser needs 750ms to complete attack animation during which he can't move
+             * Fire Claw animation is 3 frames at 250ms per frame
+             */
+            counter = -550;
+            if (bowser.getFace()) {
+               bowser.setCurrentAnim(Bowser.FIRE_R);
+            }
+            else {
+               bowser.setCurrentAnim(Bowser.FIRE_L);
+            }
+         }           
          // if input is UP
-         if(in.isKeyDown(Input.KEY_W))
+         else if(in.isKeyDown(Input.KEY_W))
          {
             // if the tile above Bowser's current position is the floor layer
             if(map.getTileId(bowser.getX(),bowser.getY()-1,objectLayer)==0)
@@ -198,22 +241,81 @@ public class WorldTemplate extends BasicGameState
          }
       }
    }
-
+   
+   /**
+    * Drops an item from a mob and removes it from the characters inventory
+    * @param character
+    * @param dropItemName
+    */
+   private void mobDrop(String mobName, String dropItemName)
+   {
+      int k;
+      float x,y;
+      for(k = 0; k < mobs.size(); k ++)
+      {
+         if(mobs.get(k).getName() == mobName)
+         {
+            Item spawnItem = mobs.get(k).getInventory().findItem(dropItemName);
+            mobs.get(k).getInventory().removeItem(spawnItem);
+            x = mobs.get(k).getShape().getX();
+            y = mobs.get(k).getShape().getY();
+            spawnItem.getShape().setX(x);
+            spawnItem.getShape().setY(y+32);
+            items.add(spawnItem);
+                 
+         }
+      } 
+   }
+   
+   /**
+    * drops all of the items in mob inventory 1 tile below the mob's position
+    * @param mobName
+    */
+   private void mobDrop(String mobName)
+   {
+      int k;
+      int x,y;
+      Item spawnItem;
+      for(k = 0; k < mobs.size(); k ++)
+      {
+         if(mobs.get(k).getName() == mobName && mobs.get(k).getInventory().getCurrentSize() > 0)
+         {
+            x = (int)mobs.get(k).getShape().getX();
+            y = (int)mobs.get(k).getShape().getY();        
+            for (Item thing : mobs.get(k).getInventory().getItems())
+            {
+               spawnItem = thing;
+               spawnItem.getShape().setX(x);
+               spawnItem.getShape().setY(y+32);
+               items.add(spawnItem);
+               mobs.get(k).getInventory().removeItem(thing);
+            }     
+         }
+      } 
+   }
+   
    private void checkDamage() {
-      for (Mob guy : mobs) {
+      for (int i = 0; i < mobs.size(); i++) {
+         Mob guy = mobs.get(i);
          if (bowser.getShape().intersects(guy.getShape())) {
-            bowser.changeHealth(-guy.getDamage());
-            // Bowser gets knocked back 2 tiles from the direction he is facing
-            if (bowser.getFace()) {
-               bowser.moveHorizontal(-2);
+            if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
+                  || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
+//               mobDrop(mobs.get(i).getName());   //TODO fix mobDrop() and re-implement this line 
+               mobs.remove(i);
             }
             else {
-               bowser.moveHorizontal(2);
+               bowser.changeHealth(-guy.getDamage());
+               // Bowser gets knocked back 1 tiles from the direction he is facing
+               if (bowser.getFace()) {
+                  bowser.moveHorizontal(-1);
+               }
+               else {
+                  bowser.moveHorizontal(1);
+               }
             }
          }
       }
    }
 
    public int getID() { return 10; }
-
 }

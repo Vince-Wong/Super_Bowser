@@ -29,6 +29,8 @@ public class WorldThree extends WorldTemplate
        map.getTileId(0,0, objectLayer);
 
        mobs = new ArrayList<>();
+       
+       items = new ArrayList<>();
     }
     
     public void update(GameContainer gc, StateBasedGame sbg, int delta) 

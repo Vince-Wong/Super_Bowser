@@ -8,6 +8,18 @@ import org.newdawn.slick.geom.Rectangle;
 public class MobLR extends Mob
 {
    final int x0, x1;
+   
+   public MobLR(String name, int spawnX, int spawnY, int rangeX, boolean overload) 
+   {
+      setName(name);
+      setShape(new Rectangle(spawnX*SIZE+PADDING, spawnY*SIZE+PADDING, SIZE-PADDING*2, SIZE-PADDING*2));
+      setInventory(new Inventory());
+      setDamage(3);
+      faceRight();
+      
+      x0 = spawnX;
+      x1 = rangeX;
+   }
 
    public MobLR(String name, int spawnX, int spawnY, int rangeX) 
          throws SlickException
@@ -35,6 +47,24 @@ public class MobLR extends Mob
       
       x0 = spawnX;
       x1 = rangeX;
+   }
+   
+   public void move(boolean overload) {
+      int x = getX();
+      if (x == x0) {
+         moveHorizontal(1);
+      } 
+      else if (x == x1) {
+         moveHorizontal(-1);
+      } 
+      else {
+         if (Math.random() > 0.5) {
+            moveHorizontal(1);
+         }
+         else {
+            moveHorizontal(-1);
+         }
+      }
    }
    
    public void move() {

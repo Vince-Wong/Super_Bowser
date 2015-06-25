@@ -1,11 +1,17 @@
 package game_logic;
 
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 public class Item extends Entity
 {
    protected boolean stackable;
    protected int quantity;
    protected int maxQuantity;
    protected String description;
+   protected boolean onScreen;
+   public static final int ITEM_WIDTH = 32, ITEM_HEIGHT = 32;
+   protected Image image;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 
       String description)
@@ -15,6 +21,30 @@ public class Item extends Entity
       this.description = description;
       this.quantity = quantity;
       this.maxQuantity = maxQuantity;
+      this.onScreen = true;
+      setShape(new Rectangle(64, 32*6, ITEM_WIDTH, ITEM_HEIGHT));   //TODO must fix later
+   }
+   
+   /**
+    * Constructor that takes all parameters to build item
+    * @param name
+    * @param stackable
+    * @param quantity
+    * @param maxQuantity
+    * @param description
+    * @param spawnTileX - X coordinate of map tile
+    * @param spawnTileY - Y coordinate of map tile
+    * @param itemImage - location of item image
+    * @throws SlickException
+    */
+   public Item(String name, boolean stackable, int quantity, int maxQuantity, 
+      String description, int spawnTileX, int spawnTileY, String itemImage) 
+      throws SlickException
+   {
+      this(name, stackable, quantity, maxQuantity, description);
+      this.getShape().setX(spawnTileX*32);
+      this.getShape().setY(spawnTileY*32);
+      this.image = new Image(itemImage);
    }
    
 
@@ -40,6 +70,13 @@ public class Item extends Entity
          return false;    
    }
    
+   public void onCollision(Entity ent)
+   {
+      Bowser myBow = (Bowser)ent;
+      if(myBow.getInventory().addItem(this))
+         this.setOnScreen(false);
+   } 
+   
    public String toString()
    {
       String details = "\nItem Name: " + this.name + "\nstackable: " + this.stackable 
@@ -53,12 +90,6 @@ public class Item extends Entity
       return this.stackable;
    }
    
-   //Do we need this method???
-   public Item getItem()
-   {
-      return this;
-   }
-   
    public int getQuantity()
    {
       return quantity;
@@ -69,6 +100,15 @@ public class Item extends Entity
       return description;
    }
    
+   public boolean getOnScreen() { return onScreen; }
+   public void setOnScreen(Boolean state) { onScreen = state;}
+   public Image getImage() {
+      return image;
+   }
+   
+   public void setImage(Image im) {
+      image = im;
+   }
    public static void main(String[] args)
    {
       // TODO Auto-generated method stub
@@ -88,12 +128,30 @@ public class Item extends Entity
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
    }
-
-   public void onCollision(Entity ent)
+   
+   //finds the correct item command to use
+   public boolean useItem(Item itemUsed)
    {
-      // TODO Auto-generated method stub
-      
+      switch (itemUsed.getName())
+      {
+         case "mushroom":
+            if(useMushroom())
+               return true;
+            return false;
+         default:
+            return false;
+      }
    }
    
-   
+   //bowser gains 3 health
+   private boolean useMushroom()
+   {
+      if (WorldTemplate.bowser.getHealth() < Bowser.START_HEALTH)
+      {
+         WorldTemplate.bowser.changeHealth(3);
+         WorldTemplate.bowser.getInventory().removeItem(this); //Check to see if this will work
+         return true;
+      }
+      return false;
+   }
 }

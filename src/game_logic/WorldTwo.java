@@ -28,6 +28,7 @@ public class WorldTwo extends WorldTemplate
 	private boolean YellToPlayer = false;
 	private boolean bothAlive = true;
 	private int dialogueNumber = -1;
+	private Item fireFlower;
 
 
 	public WorldTwo(int state){
@@ -49,6 +50,11 @@ public class WorldTwo extends WorldTemplate
 		oldLadyI = new Image("res/OldLady.png");
 		dialogueBox = new Image("res/dialogueBox.png");
 		YellToPlayer = true;
+		
+      //Create items for the map
+      items = new ArrayList<>();
+      fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
+      items.add(fireFlower);
 	}
 
 
@@ -176,5 +182,4 @@ public class WorldTwo extends WorldTemplate
 	}    
 
 	public int getID() { return 2; }
-
 }
