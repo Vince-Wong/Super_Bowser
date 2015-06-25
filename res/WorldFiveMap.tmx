@@ -16,7 +16,7 @@
  </layer>
  <layer name="Buildings" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA9shw8Cwg8aYXmCjOAPDJiDeDMRbgHgGO/kY3SwYOA9kXwDii0B8CWqHkhjpGKQP3SwYwOYecu1Ax8h24NL3WYYwxmcnsXZwSTAwcAMxDxDzAjEfEPNLUNcODaB5mkCsBcTaQKwDxLpUtsMNaJ47EHsAsScQewGxN5XtQMYgQO34QMbIgNh0NmrH4LWDFoBW5o4CygAAZ91LC9AHAAA=
+   H4sIAAAAAAAAA9shw8Cwg8aYXmCjOAPDJiDeDMRbgHgGO/kY3SwYOA9kXwDii0B8CWqHkhjpGKQP3SwYwOYecu1Ax8h24NL3WYYwxmcnsXZwSTAwcAMxDxDzAjEfEPNLUNcODaB5mkCsBcTaQKwDxLpUtsMNaJ47EHsAsScQewGxN5XtQMYgQO34QMbIgNh0NmrH4LWDGBAiiUoTAjBzQepJweToIdZN5AJ62kHrsAIAUv09CtAHAAA=
   </data>
  </layer>
 </map>
