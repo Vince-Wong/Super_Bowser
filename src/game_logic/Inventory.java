@@ -12,7 +12,7 @@ public class Inventory
       this.items = new Item[MAX_SIZE + 1];
    }
       
-   /**
+   /** 
     * Attempts to add item object to inventory
     * @param newItem - item object being added
     * @return - true if item was added, false if it wasn't
@@ -52,20 +52,28 @@ public class Inventory
    }
    
    /**
-    * removes item from inventory using item name to search inventory
+    * overloaded version of removeItem which takes an Item as a parameter 
     * @param itemRemoved
     * @return - true if item was removed, false if it was not
     */
    public boolean removeItem(Item itemRemoved)
    {
-      //TODO
-      //I still don't know how to remove something from an array so this is an
-      //equivalent work around for now. 
+      String itemName = itemRemoved.getName();
+      return this.removeItem(itemName);
+   }
+   
+   /**
+    * removes item from inventory using item name to search inventory
+    * @param itemName
+    * @return
+    */
+   public boolean removeItem(String itemName)
+   {
       int k,j;
       Item temp;
       for(k = 0; k < currentSize; k++)
       {
-         if(itemRemoved.getName().equals(items[k].getName()))
+         if(itemName.equals(items[k].getName()))
          {   
             if(!items[k].decreaesQuantity())
             {
@@ -85,6 +93,20 @@ public class Inventory
    
    public Item[] getItems() {
       return items;
+   }
+   
+   public int getCurrentSize()
+   {
+      return currentSize;
+   }
+   
+   public Item findItem(String itemName)
+   {
+      int k;
+      for(k = 0; k < currentSize; k++)
+         if(itemName.equals(items[k].getName()))
+            return items[k]; 
+      return null;
    }
    
    //returns the whole inventory as a string

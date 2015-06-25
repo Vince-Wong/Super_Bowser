@@ -239,13 +239,62 @@ public class WorldTemplate extends BasicGameState
          }
       }
    }
-
+   
+   /**
+    * Drops an item from a mob and removes it from the characters inventory
+    * @param character
+    * @param dropItemName
+    */
+   private void mobDrop(String mobName, String dropItemName)
+   {
+      int k;
+      float x,y;
+      for(k = 0; k < mobs.size(); k ++)
+      {
+         if(mobs.get(k).getName() == mobName)
+         {
+            Item spawnItem = mobs.get(k).getInventory().findItem(dropItemName);
+            mobs.get(k).getInventory().removeItem(spawnItem);
+            x = mobs.get(k).getShape().getX();
+            y = mobs.get(k).getShape().getY();
+            spawnItem.getShape().setX(x);
+            spawnItem.getShape().setY(y+32);
+            items.add(spawnItem);
+                 
+         }
+      } 
+   }
+   
+   private void mobDrop(String mobName)
+   {
+      int k;
+      int x,y;
+      Item spawnItem;
+      for(k = 0; k < mobs.size(); k ++)
+      {
+         if(mobs.get(k).getName() == mobName && mobs.get(k).getInventory().getCurrentSize() > 0)
+         {
+            x = (int)mobs.get(k).getShape().getX();
+            y = (int)mobs.get(k).getShape().getY();        
+            for (Item thing : mobs.get(k).getInventory().getItems())
+            {
+               spawnItem = thing;
+               spawnItem.getShape().setX(x);
+               spawnItem.getShape().setY(y+32);
+               items.add(spawnItem);
+               mobs.get(k).getInventory().removeItem(thing);
+            }     
+         }
+      } 
+   }
+   
    private void checkDamage() {
       for (int i = 0; i < mobs.size(); i++) {
          Mob guy = mobs.get(i);
          if (bowser.getShape().intersects(guy.getShape())) {
             if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
                   || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
+               mobDrop(mobs.get(i).getName());
                mobs.remove(i);
             }
             else {

@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 public class Bowser extends Character
 {
-   private static final int START_HEALTH = 10;
+   public static final int START_HEALTH = 10;
    protected static final int PADDING = 2;
    protected static final int FIRE_R = 4;
    protected static final int FIRE_L = 5;

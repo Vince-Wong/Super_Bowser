@@ -22,7 +22,7 @@ public abstract class Character extends Entity
    // facing right is true; facing left is false
    private boolean face;
    private int health;
-   private Inventory inventory;
+   protected Inventory inventory;
    
    public void setSprites(SpriteSheet[] mySprites) { sprites = mySprites; }
    

@@ -22,7 +22,7 @@ public class WorldOne extends WorldTemplate
     }
     
     //TODO test items, remove later
-    private Item testItem1, testItem2, testItem3;
+    private Item testItem1, testItem2, testItem3, fireFlower;
     
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
@@ -40,11 +40,12 @@ public class WorldOne extends WorldTemplate
        testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
        testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
        testItem3.setImage(new Image("res/Hammer.png"));
+       fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
        items.add(testItem2);
        items.add(testItem3);
 
        mobs = new ArrayList<>();
-       mobs.add(new MobFollow("testBoo", 3, 9));
+       mobs.add(new MobFollow("testBoo", 3, 9, testItem3));
     }
     
 

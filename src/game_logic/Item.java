@@ -128,7 +128,30 @@ public class Item extends Entity
       itemTwo.increaseQuantity();
       System.out.println(itemTwo.toString());
    }
-
-
    
+   //finds the correct item command to use
+   public boolean useItem(Item itemUsed)
+   {
+      switch (itemUsed.getName())
+      {
+         case "mushroom":
+            if(useMushroom())
+               return true;
+            return false;
+         default:
+            return false;
+      }
+   }
+   
+   //bowser gains 3 health
+   private boolean useMushroom()
+   {
+      if (WorldTemplate.bowser.getHealth() < Bowser.START_HEALTH)
+      {
+         WorldTemplate.bowser.changeHealth(3);
+         WorldTemplate.bowser.getInventory().removeItem(this); //Check to see if this will work
+         return true;
+      }
+      return false;
+   }
 }
