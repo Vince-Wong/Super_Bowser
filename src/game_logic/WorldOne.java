@@ -60,8 +60,8 @@ public class WorldOne extends WorldTemplate
 		{
 			dialogueBox.draw(Character.SIZE*9 + 16, Character.SIZE*8);
 			g.setColor(Color.black);
-			int x = Character.SIZE*9 + 20;
-			int y = Character.SIZE*8 + 5;
+			int x = Character.SIZE*9 + 30;
+			int y = Character.SIZE*8 + 15;
 			g.setColor(Color.black);
 			g.drawString("Quick, over here!", x, y);
 		}
@@ -78,8 +78,8 @@ public class WorldOne extends WorldTemplate
 				{
 					dialogueBox.draw(Character.SIZE*9 + 16, Character.SIZE*8);
 					g.setColor(Color.black);
-					int x = Character.SIZE*9 + 20;
-					int y = Character.SIZE*8 + 5;
+					int x = Character.SIZE*9 + 30;
+					int y = Character.SIZE*8 + 15;
 					g.setColor(Color.black);
 
 					g.drawString(text, x, y);
@@ -158,7 +158,7 @@ public class WorldOne extends WorldTemplate
 				if(bowser.getX()==11 && bowser.getY()==10)
 				{
 					sbg.enterState(20);
-					WorldTemplate.bowser.setX(5);
+					WorldTemplate.bowser.setX(10);
 					WorldTemplate.bowser.setY(15);
 				}
 

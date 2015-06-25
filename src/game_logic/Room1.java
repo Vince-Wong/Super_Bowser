@@ -20,7 +20,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Room1 extends WorldTemplate
 {   
 	TypewriterTest tw = new TypewriterTest();
-	private NPC oldLady = new NPC(Character.SIZE*12, Character.SIZE*10);
+	private NPC oldLady = new NPC(Character.SIZE*18, Character.SIZE*16);
 	private Image oldLadyI;
 	private Image dialogueBox;
 	private Image temp;
@@ -28,8 +28,8 @@ public class Room1 extends WorldTemplate
 	private boolean chatBubble = false;
 	private boolean chatBar = false;
 	private boolean YellToPlayer = false;
+	private boolean hasItem = false;
 	private int dialogueNumber = -1;
-
 
 	public Room1(int state){
 		super(state);
@@ -37,13 +37,12 @@ public class Room1 extends WorldTemplate
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
-		map = new TiledMap("res/worldOneMap.tmx");
-		temp = new Image("res/TempBackground.jpg");
+		map = new TiledMap("res/BasicMap.tmx");
 		objectLayer = map.getLayerIndex("Buildings");
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		mobs.add(new MobFollow("Dying mob", 3, 9));
+		//mobs.add(new MobFollow("Dying mob", 3, 9));
 
 		oldLady.setID(1);
 		oldLadyI = new Image("res/OldLady.png");
@@ -56,21 +55,20 @@ public class Room1 extends WorldTemplate
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException
 	{
-		temp.draw(0, 0);
 		super.render(gc, sbg, g);
 		
 		if(YellToPlayer)
 		{
-			dialogueBox.draw(Character.SIZE*9 + 16, Character.SIZE*8);
+			dialogueBox.draw(Character.SIZE*16 + 16, Character.SIZE*14);
 			g.setColor(Color.black);
-			int x = Character.SIZE*9 + 20;
-			int y = Character.SIZE*8 + 5;
+			int x = Character.SIZE*16 + 30;
+			int y = Character.SIZE*14 + 15;
 			g.setColor(Color.black);
 			g.drawString("Come on, over here!", x, y);
 		}
 		
 		
-		oldLadyI.draw(Character.SIZE*12, Character.SIZE*10, Character.SIZE, Character.SIZE);
+		oldLadyI.draw(Character.SIZE*19, Character.SIZE*16, Character.SIZE, Character.SIZE);
 
 		if(chat == true)
 		{
@@ -79,10 +77,10 @@ public class Room1 extends WorldTemplate
 
 				if(chatBubble)
 				{
-					dialogueBox.draw(Character.SIZE*9 + 16, Character.SIZE*8);
+					dialogueBox.draw(Character.SIZE*16 + 16, Character.SIZE*14);
 					g.setColor(Color.black);
-					int x = Character.SIZE*9 + 20;
-					int y = Character.SIZE*8 + 5;
+					int x = Character.SIZE*15 + 30;
+					int y = Character.SIZE*14 + 15;
 					g.setColor(Color.black);
 
 					g.drawString(text, x, y);
@@ -151,6 +149,13 @@ public class Room1 extends WorldTemplate
 				chatBar = true;
 		}
 
+		
+		//changes HAIRY GODMOTHE'S DIALOGUE
+		if(hasItem)
+		{
+			oldLady.setID(2);
+		}
+		
 		
 		//Bowser exits Room map to first map
 		if(bowser.getX()==5 && bowser.getY()==17)
