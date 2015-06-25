@@ -8,10 +8,11 @@ public class Game extends StateBasedGame{
                                         + "The Quest to Defend the Castle";
     public static final int menu = 0;
     public static final int worldTemp = 10;
-    public static final int backpack = 9;
+    public static final int backpack = 9; //i = 9
     public static final int worldOne = 1;   
     public static final int worldTwo = 2; 
     public static final int worldThree = 3;
+    public static final int room1 = 20; //t = 20
     public static final int gameOver = 666;
  
     public Game(String gamename){
@@ -22,6 +23,7 @@ public class Game extends StateBasedGame{
         this.addState(new WorldOne(worldOne));
         this.addState(new WorldTwo(worldTwo));
         this.addState(new WorldThree(worldThree));
+        this.addState(new Room1(room1));
         this.addState(new GameOver(gameOver));
     }
     public void initStatesList(GameContainer gc) throws SlickException{
@@ -31,6 +33,7 @@ public class Game extends StateBasedGame{
         this.getState(worldOne).init(gc, this);
         this.getState(worldTwo).init(gc, this);
         this.getState(worldThree).init(gc, this);
+        this.getState(room1).init(gc, this);
         this.getState(gameOver).init(gc, this);
         this.enterState(menu);
 
