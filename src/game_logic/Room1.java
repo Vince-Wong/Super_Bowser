@@ -1,11 +1,13 @@
 package game_logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.management.timer.Timer;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -15,64 +17,58 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldTwo extends WorldTemplate
+public class Room1 extends WorldTemplate
 {   
-	private int shiftX = 4;
-	private int shiftY = -5;
-	private NPC oldLady = new NPC(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY));
+	TypewriterTest tw = new TypewriterTest();
+	private NPC oldLady = new NPC(Character.SIZE*18, Character.SIZE*16);
 	private Image oldLadyI;
 	private Image dialogueBox;
+	private Image temp;
 	private boolean chat = false;
 	private boolean chatBubble = false;
 	private boolean chatBar = false;
 	private boolean YellToPlayer = false;
-	private boolean bothAlive = true;
+	private boolean hasItem = false;
 	private int dialogueNumber = -1;
 
-
-	public WorldTwo(int state){
+	public Room1(int state){
 		super(state);
 	}
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
-		//tiled map with 3 layers: background, flowers, and buildings
-		map = new TiledMap("res/WorldTwoMap.tmx");
+		map = new TiledMap("res/BasicMap.tmx");
 		objectLayer = map.getLayerIndex("Buildings");
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		mobs.add(new MobLR("testYToad", 17, 5, 23));
-		mobs.add(new MobUD("testYToad2", 13, 5, 10));
+		//mobs.add(new MobFollow("Dying mob", 3, 9));
 
-		oldLady.setID(0);
+		oldLady.setID(1);
 		oldLadyI = new Image("res/OldLady.png");
 		dialogueBox = new Image("res/dialogueBox.png");
+
+		
 		YellToPlayer = true;
 	}
-
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException
 	{
 		super.render(gc, sbg, g);
-
+		
 		if(YellToPlayer)
 		{
-			dialogueBox.draw(Character.SIZE*(9 + shiftX) + 16, Character.SIZE*(8 + shiftY));
+			dialogueBox.draw(Character.SIZE*16 + 16, Character.SIZE*14);
 			g.setColor(Color.black);
-			int x = Character.SIZE*(9 + shiftX) + 30;
-			int y = Character.SIZE*(8 + shiftY) + 15;
+			int x = Character.SIZE*16 + 30;
+			int y = Character.SIZE*14 + 15;
 			g.setColor(Color.black);
-			if(bothAlive)
-				g.drawString("Help me & kill'em", x, y);
-			if(bothAlive == false)
-				g.drawString("Thank you so much.", x, y);
-
+			g.drawString("Come on, over here!", x, y);
 		}
-
-
-		oldLadyI.draw(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY), Character.SIZE, Character.SIZE);
+		
+		
+		oldLadyI.draw(Character.SIZE*19, Character.SIZE*16, Character.SIZE, Character.SIZE);
 
 		if(chat == true)
 		{
@@ -81,10 +77,10 @@ public class WorldTwo extends WorldTemplate
 
 				if(chatBubble)
 				{
-					dialogueBox.draw(Character.SIZE*(9 + shiftX) + 16, Character.SIZE*(8 + shiftY));
+					dialogueBox.draw(Character.SIZE*16 + 16, Character.SIZE*14);
 					g.setColor(Color.black);
-					int x = Character.SIZE*(9 + shiftX) + 30;
-					int y = Character.SIZE*(8 + shiftY) + 15;
+					int x = Character.SIZE*15 + 30;
+					int y = Character.SIZE*14 + 15;
 					g.setColor(Color.black);
 
 					g.drawString(text, x, y);
@@ -103,7 +99,6 @@ public class WorldTwo extends WorldTemplate
 					g.drawString(text, x, y);
 				}
 			}
-
 		}
 	}
 
@@ -114,12 +109,8 @@ public class WorldTwo extends WorldTemplate
 		tick += delta;
 		super.update(gc, sbg, delta);
 
-
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
-
-
-
 
 		if(tick >= 5000)
 		{
@@ -137,7 +128,6 @@ public class WorldTwo extends WorldTemplate
 			chatBubble = false;
 			chatBar = false;
 			dialogueNumber = -1;
-			System.out.println(bowser.getX() + " " + bowser.getY());
 		}
 
 		if(bowser.getShape().intersects(oldLady.getShape()) && input.isKeyPressed(Input.KEY_E))
@@ -158,23 +148,25 @@ public class WorldTwo extends WorldTemplate
 			else
 				chatBar = true;
 		}
+
 		
-		//bowser re-enters previous world
-		if(bowser.getX()==0 && bowser.getY()==10)
+		//changes HAIRY GODMOTHE'S DIALOGUE
+		if(hasItem)
+		{
+			oldLady.setID(2);
+		}
+		
+		
+		//Bowser exits Room map to first map
+		if(bowser.getX()==5 && bowser.getY()==17)
 		{
 			sbg.enterState(1);
-			WorldTemplate.bowser.setX(23);
+			WorldTemplate.bowser.setX(11);
 			WorldTemplate.bowser.setY(11);
 		}
-		//bowser enters new world.
-		if(bowser.getX()==24 && bowser.getY()==3)
-		{
-			sbg.enterState(3);
-			WorldTemplate.bowser.setX(1);
-			WorldTemplate.bowser.setY(3);
-		}   
+
 	}    
 
-	public int getID() { return 2; }
+	public int getID() { return 20; }
 
 }

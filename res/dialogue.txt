@@ -1,0 +1,9 @@
+USE '&' TO SEPERATE DIALOGUES.   This first line is skipped. 
+0&Come quickly into my house!
+1&OOOOOooooooooooooooooooooooooooo hello my precious.&It is me you hairy godmother, do you remember what happened?&You were making a "forget me" gas and it all went very wrong.&There was an explosion and the entire kingdom was exposed to the gas.&Only I remember because being your Hairy godmother they hairs protected me.&Prove to me that you will be able to survive out there on your own&and that you still know how to fight and protect yourself&Go KILL that MONSTER and GET his WEAPON then come back to me.
+2&Good Now that you have the weapon you can go.& Head outside and find the creature that was trying to attack you when you woke up.
+3&
+4&
+5&
+6&
+7&
