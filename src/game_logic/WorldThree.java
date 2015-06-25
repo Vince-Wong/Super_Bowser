@@ -37,9 +37,15 @@ public class WorldThree extends WorldTemplate
        super.update(gc, sbg, delta);
        Game.prevState = this;
 	    //Bowser enters previous world
+       if(bowser.getX()==0 && bowser.getY()==3)
+       {        
+          sbg.enterState(2);
+          WorldTemplate.bowser.setX(23);
+          WorldTemplate.bowser.setY(5);
+       }
+       //Bowser enters next world
        if(bowser.getX()==23 && bowser.getY()==0)
-       {
-         
+       {        
           sbg.enterState(4);
           WorldTemplate.bowser.setX(1);
           WorldTemplate.bowser.setY(10);
@@ -60,6 +66,7 @@ public class WorldThree extends WorldTemplate
           WorldTemplate.bowser.setX(12);
           WorldTemplate.bowser.setY(18);
        }
+       
        
     }       
     public int getID() { return 3; }  
