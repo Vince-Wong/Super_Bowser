@@ -19,7 +19,6 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldOne extends WorldTemplate
 {   
-	TypewriterTest tw = new TypewriterTest();
 	private NPC oldLady = new NPC(Character.SIZE*12, Character.SIZE*10);
 	private Image oldLadyI;
 	private Image dialogueBox;
@@ -41,13 +40,11 @@ public class WorldOne extends WorldTemplate
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		//mobs.add(new MobFollow("testBoo", 3, 9));
+		mobs.add(new MobFollow("testBoo", 3, 9));
 
 		oldLady.setID(0);
 		oldLadyI = new Image("res/OldLady.png");
 		dialogueBox = new Image("res/dialogueBox.png");
-
-		
 		YellToPlayer = true;
 	}
 
