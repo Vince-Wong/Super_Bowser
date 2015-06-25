@@ -120,7 +120,7 @@ public class WorldTwo extends WorldTemplate
 		tick += delta;
 		super.update(gc, sbg, delta);
 
-
+		Game.prevState = this;
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
 
@@ -168,17 +168,24 @@ public class WorldTwo extends WorldTemplate
 		//bowser re-enters previous world
 		if(bowser.getX()==0 && bowser.getY()==10)
 		{
-			sbg.enterState(1);
+         sbg.enterState(1);
 			WorldTemplate.bowser.setX(23);
 			WorldTemplate.bowser.setY(11);
 		}
 		//bowser enters new world.
 		if(bowser.getX()==24 && bowser.getY()==3)
 		{
-			sbg.enterState(3);
+         sbg.enterState(3);
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(3);
 		}   
+		 //bowser enters house
+      if(bowser.getX()==6 && bowser.getY()==5)
+      {
+         sbg.enterState(7);
+         WorldTemplate.bowser.setX(12);
+         WorldTemplate.bowser.setY(18);
+      }
 	}    
 
 	public int getID() { return 2; }

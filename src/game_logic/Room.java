@@ -15,9 +15,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldRoom extends WorldTemplate
+public class Room extends WorldTemplate
 {   
-    public WorldRoom(int state){
+    public Room(int state){
        super(state);
     }
     // make bowser at the beginning
@@ -29,23 +29,32 @@ public class WorldRoom extends WorldTemplate
        map.getTileId(0,0, objectLayer);
 
        mobs = new ArrayList<>();
+       
+       items = new ArrayList<>();
     }
     
     public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
        super.update(gc, sbg, delta);
-       
+       BasicGameState prevState = Game.prevState;
        //Bowser enters previous world
-       if((bowser.getX()==12)&& bowser.getY()==19)
+       if(bowser.getX()==12 && bowser.getY()==19)
        {
-          Game.prevState = this;
-          sbg.enterState(1);
-          WorldTemplate.bowser.setX(11);
-          WorldTemplate.bowser.setY(11);
-       }
-    }    
-     
-    public int getID() { return 8; }
+         System.out.println("ID: "+prevState.getID());
+          if(prevState.getID()==2)
+          {
+             sbg.enterState(prevState.getID());
+             WorldTemplate.bowser.setX(6);
+             WorldTemplate.bowser.setY(6);
+          }
+          if(prevState.getID()==3)
+          { sbg.enterState(prevState.getID());
+             WorldTemplate.bowser.setX(11);
+             WorldTemplate.bowser.setY(3);
+          }
+       }    
+    }
+    public int getID() { return 7; }
   
 }

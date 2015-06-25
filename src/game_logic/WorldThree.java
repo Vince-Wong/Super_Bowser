@@ -27,26 +27,40 @@ public class WorldThree extends WorldTemplate
        map = new TiledMap("res/worldThree.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
-
-       mobs = new ArrayList<>();
        
+       mobs = new ArrayList<>();      
        items = new ArrayList<>();
-    }
-    
+    }    
     public void update(GameContainer gc, StateBasedGame sbg, int delta) 
            throws SlickException
     {
        super.update(gc, sbg, delta);
-       
+       Game.prevState = this;
 	    //Bowser enters previous world
        if(bowser.getX()==23 && bowser.getY()==0)
        {
+         
           sbg.enterState(4);
           WorldTemplate.bowser.setX(1);
           WorldTemplate.bowser.setY(10);
        }
-    }    
-     
-    public int getID() { return 3; }
-  
+       //bowser enters a room when over a door
+       if(((bowser.getX()==3 ||bowser.getX()==6||bowser.getX()==9
+         ||bowser.getX()==13||bowser.getX()==16||bowser.getX()==18||bowser.getX()==21)
+         && bowser.getY()==2)||
+         (bowser.getX()==1 && bowser.getY()==7)||
+         (bowser.getX()==18 && bowser.getY()==6)||
+         (bowser.getX()==23 && bowser.getY()==9)||
+         (bowser.getX()==19 && bowser.getY()==14)||
+         ((bowser.getX()==8||bowser.getX()==10||bowser.getX()==12)&&bowser.getY()==10)||
+         ((bowser.getX()==1 ||bowser.getX()==4)&& bowser.getY()==11)||
+         ((bowser.getX()==17||bowser.getX()==20||bowser.getX()==23)&& bowser.getY()==17))         
+       {
+          sbg.enterState(7);
+          WorldTemplate.bowser.setX(12);
+          WorldTemplate.bowser.setY(18);
+       }
+       
+    }       
+    public int getID() { return 3; }  
 }

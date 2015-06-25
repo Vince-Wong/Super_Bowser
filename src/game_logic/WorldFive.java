@@ -35,19 +35,19 @@ public class WorldFive extends WorldTemplate
            throws SlickException
     {
        super.update(gc, sbg, delta);
-       
+       Game.prevState = this;
        //Bowser enters previous world
        if(bowser.getX()==12 && bowser.getY()==19)
        {
-          sbg.enterState(4);
+          sbg.enterState(2);
           WorldTemplate.bowser.setX(23);
           WorldTemplate.bowser.setY(10);
        }
        if(bowser.getX()==12 && bowser.getY()==9)
        {
           sbg.enterState(6);
-          WorldTemplate.bowser.setX(23);
-          WorldTemplate.bowser.setY(3);
+          WorldTemplate.bowser.setX(12);
+          WorldTemplate.bowser.setY(11);
        }
     }    
      
