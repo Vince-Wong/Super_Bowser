@@ -42,7 +42,10 @@ public class Room1 extends WorldTemplate
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		//mobs.add(new MobFollow("Dying mob", 3, 9));
+		mobs.add(new MobStand("practice mob1", 1, 3));
+		mobs.add(new MobStand("practice mob2", 3, 6));
+		mobs.add(new MobStand("practice mob3", 7, 6));
+		mobs.add(new MobStand("practice mob4", 5, 3));
 
 		oldLady.setID(1);
 		oldLadyI = new Image("res/OldLady.png");

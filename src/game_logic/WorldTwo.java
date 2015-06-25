@@ -1,8 +1,11 @@
 package game_logic;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.management.timer.Timer;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
@@ -17,6 +20,11 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldTwo extends WorldTemplate
 {   
+	String fileName3 = "res/Sounds/themeSong.wav";
+	String fileName4 = "res/Sounds/switch_State.wav";
+	Clip themeSong;
+	Clip switchState;
+	
 	private int shiftX = 4;
 	private int shiftY = -5;
 	private NPC oldLady = new NPC(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY));
@@ -33,7 +41,45 @@ public class WorldTwo extends WorldTemplate
 
 	public WorldTwo(int state){
 		super(state);
+		try
+		{
+			File url = new File(fileName3);
+
+			//Create a Clip object
+			themeSong = AudioSystem.getClip();
+			//Open the url
+			themeSong.open(AudioSystem.getAudioInputStream(url));
+			//Play the clip
+			
+			//themeSong.start();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
 	}
+
+	public void playSound(String fileName, Clip clip) 
+	{
+		try
+		{
+			File url = new File(fileName);
+
+			//Create a Clip object
+			clip = AudioSystem.getClip();
+			//Open the url
+			clip.open(AudioSystem.getAudioInputStream(url));
+			//Play the clip
+			Thread.sleep(2000);
+			clip.start();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+
+	}
+	
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
@@ -167,17 +213,19 @@ public class WorldTwo extends WorldTemplate
 		
 		//bowser re-enters previous world
 		if(bowser.getX()==0 && bowser.getY()==10)
-		{
-         sbg.enterState(1);
+		{			
+			sbg.enterState(1);
 			WorldTemplate.bowser.setX(23);
 			WorldTemplate.bowser.setY(11);
+			this.playSound(fileName4, switchState);
 		}
 		//bowser enters new world.
 		if(bowser.getX()==24 && bowser.getY()==3)
 		{
-         sbg.enterState(3);
+			sbg.enterState(3);
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(3);
+			this.playSound(fileName4, switchState);
 		}   
 		 //bowser enters house
       if(bowser.getX()==6 && bowser.getY()==5)

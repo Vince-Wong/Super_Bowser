@@ -1,9 +1,12 @@
 package game_logic;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.management.timer.Timer;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
@@ -19,6 +22,11 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldOne extends WorldTemplate
 {   
+	String fileName3 = "res/Sounds/themeSong.wav";
+	String fileName4 = "res/Sounds/switch_State.wav";
+	Clip themeSong;
+	Clip switchState;
+
 	private NPC oldLady = new NPC(Character.SIZE*12, Character.SIZE*10);
 	private Image oldLadyI;
 	private Image dialogueBox;
@@ -27,36 +35,74 @@ public class WorldOne extends WorldTemplate
 	private boolean chatBar = false;
 	private boolean YellToPlayer = false;
 	private int dialogueNumber = -1;
-	
+
 	//TODO test items, remove later
-   private Item testItem1, testItem2, testItem3, fireFlower;
+	private Item testItem1, testItem2, testItem3, fireFlower;
 
 
 	public WorldOne(int state){
 		super(state);
+		try
+		{
+			themeSong.stop();
+			File url = new File(fileName3);
+
+			//Create a Clip object
+			themeSong = AudioSystem.getClip();
+			//Open the url
+			themeSong.open(AudioSystem.getAudioInputStream(url));
+			//Play the clip
+			//themeSong.start();
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
 	}
+
+	public void playSound(String fileName, Clip clip) 
+	{
+		try
+		{
+			File url = new File(fileName);
+
+			//Create a Clip object
+			clip = AudioSystem.getClip();
+			//Open the url
+			clip.open(AudioSystem.getAudioInputStream(url));
+			//Play the clip
+			clip.start();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+
+	}
+
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
-	   //tiled map with 3 layers: background, flowers, and buildings
-      map = new TiledMap("res/worldOneMap.tmx");
-      objectLayer = map.getLayerIndex("Buildings");
-      map.getTileId(0,0, objectLayer);
-      
-      //TODO test items, remove later
-      items = new ArrayList<>();
-      testItem2 = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
-      testItem2.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
-      testItem2.setImage(new Image("res/ChainSaw.png"));
-      testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
-      testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
-      testItem3.setImage(new Image("res/Hammer.png"));
-      fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
-      items.add(testItem2);
-      items.add(testItem3);
+		//tiled map with 3 layers: background, flowers, and buildings
+		map = new TiledMap("res/worldOneMap.tmx");
+		objectLayer = map.getLayerIndex("Buildings");
+		map.getTileId(0,0, objectLayer);
 
-      mobs = new ArrayList<>();
-      mobs.add(new MobFollow("testBoo", 3, 9, testItem3));
+		//TODO test items, remove later
+		items = new ArrayList<>();
+		testItem2 = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
+		testItem2.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
+		testItem2.setImage(new Image("res/ChainSaw.png"));
+		testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
+		testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
+		testItem3.setImage(new Image("res/Hammer.png"));
+		fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
+		items.add(testItem2);
+		items.add(testItem3);
+
+		mobs = new ArrayList<>();
+		mobs.add(new MobFollow("testBoo", 3, 9, testItem3));
 
 		oldLady.setID(0);
 		oldLadyI = new Image("res/OldLady.png");
@@ -68,7 +114,7 @@ public class WorldOne extends WorldTemplate
 			throws SlickException
 	{
 		super.render(gc, sbg, g);
-		
+
 		if(YellToPlayer)
 		{
 			dialogueBox.draw(Character.SIZE*9 + 16, Character.SIZE*8);
@@ -78,8 +124,8 @@ public class WorldOne extends WorldTemplate
 			g.setColor(Color.black);
 			g.drawString("Quick, over here!", x, y);
 		}
-		
-		
+
+
 		oldLadyI.draw(Character.SIZE*12, Character.SIZE*10, Character.SIZE, Character.SIZE);
 
 		if(chat == true)
@@ -123,7 +169,7 @@ public class WorldOne extends WorldTemplate
 		tick += delta;
 		super.update(gc, sbg, delta);
 
-
+		
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
 
@@ -166,22 +212,26 @@ public class WorldOne extends WorldTemplate
 		}
 
 		//Bowser enters Room map from first map
-				if(bowser.getX()==11 && bowser.getY()==10)
-				{
-		         sbg.enterState(20);
-					WorldTemplate.bowser.setX(12);
-					WorldTemplate.bowser.setY(18);
-				}				
+
+		if(bowser.getX()==11 && bowser.getY()==10)
+		{
+			sbg.enterState(20);
+			WorldTemplate.bowser.setX(10);
+			WorldTemplate.bowser.setY(15);
+			this.playSound(fileName4, switchState);
+		}
 		//Bowser enters second map if he exits the first map
 		if(bowser.getX()==24 && bowser.getY()==11)
 		{
 		   sbg.enterState(2);
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(10);
+			this.playSound(fileName4, switchState);
+			
 		}	
 	}    
 
 	public int getID() { return 1; }
-   
+
 
 }

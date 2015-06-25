@@ -1,8 +1,11 @@
 package game_logic;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.management.timer.Timer;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
@@ -23,6 +26,7 @@ public class WorldTemplate extends BasicGameState
    protected static final int WINDOW_HEIGHT = 640;
 
    protected boolean quit = false;
+   private boolean pauseMenu = false;
    private long counter = 0;
    private long ticks = 0;
 
@@ -33,7 +37,44 @@ public class WorldTemplate extends BasicGameState
    protected ArrayList<Item> items;
    protected ArrayList<Mob> mobs;
 
-   public WorldTemplate(int State){}
+   String fileName1 = "res/Sounds/pause.wav";
+   Clip pause;
+   
+   public WorldTemplate(int State){
+	   try
+		{
+			File url = new File(fileName1);
+
+			//Create a Clip object
+			pause = AudioSystem.getClip();
+			//Open the url
+			pause.open(AudioSystem.getAudioInputStream(url));
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+	}
+
+	public void playSound(String fileName, Clip clip) 
+	{
+		try
+		{
+			File url = new File(fileName);
+
+			//Create a Clip object
+			clip = AudioSystem.getClip();
+			//Open the url
+			clip.open(AudioSystem.getAudioInputStream(url));
+			//Play the clip
+			clip.start();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+	}
 
    // make bowser at the beginning
    public void init(GameContainer gc, StateBasedGame sbg)
@@ -66,9 +107,14 @@ public class WorldTemplate extends BasicGameState
                toad.getY() * Character.SIZE);
       }
 
+      
       // renders the menu
       if(quit)
       {
+    	  pauseMenu = true;
+    	 if(pauseMenu)
+    		 pause.start();
+    	 
          g.setColor(Color.red);
          g.fillRect(WINDOW_WIDTH/2 - 40, WINDOW_HEIGHT/2 - 140, 200, 200);
 
@@ -81,6 +127,8 @@ public class WorldTemplate extends BasicGameState
          g.drawString("Quit Game (Q)", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
          if(!quit)
          {
+        	pauseMenu = false;
+        	pause.stop();
             g.clear();
          }
       }
@@ -110,9 +158,10 @@ public class WorldTemplate extends BasicGameState
          }
 
          // Open Menu
-         if(input.isKeyDown(Input.KEY_ESCAPE))
+         if(input.isKeyPressed(Input.KEY_ESCAPE))
          {
             quit = true;
+            pause.start();
          }
 
          checkDamage();
