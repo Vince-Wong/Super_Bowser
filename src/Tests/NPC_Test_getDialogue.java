@@ -9,7 +9,7 @@ public class NPC_Test_getDialogue {
 	
 	@Test
 	public void test() {
-		NPC npc = new NPC();
+		NPC npc = new NPC(32,32);  //TODO please fix peter, 2 random ints in constructor as a place holder for now so I can merge the branches
 		
 		npc.setID(5);
 		
