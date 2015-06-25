@@ -158,7 +158,7 @@ public class Room1 extends WorldTemplate
 		
 		
 		//Bowser exits Room map to first map
-		if(bowser.getX()==5 && bowser.getY()==17)
+		if(bowser.getX()==12 && bowser.getY()==19)
 		{
 			sbg.enterState(1);
 			WorldTemplate.bowser.setX(11);
