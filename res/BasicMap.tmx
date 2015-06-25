@@ -5,12 +5,12 @@
  </tileset>
  <layer name="Background" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+MQYWDgpCHmgGJ62EEPPFzCatSOUTtG7Ri1Y9SO4VVHAQDLXpuf0AcAAA==
+   H4sIAAAAAAAAA+MQYWDgpCHmgGJ62EEPPFzCatSOUTtG7Ri1Y9SOwVtHtTKSrgcAFnLku9AHAAA=
   </data>
  </layer>
  <layer name="Buildings" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+MQYWDgoAOmJRi1Y9SOUTtG7Ri1Y9SOwW4HrTEAH4+TYNAHAAA=
+   H4sIAAAAAAAAA+MQYWDgoAOmJRi1Y9SOUTtG7Ri1Y9SOwW4HsXgFDypNLAYAXv/kLdAHAAA=
   </data>
  </layer>
 </map>
