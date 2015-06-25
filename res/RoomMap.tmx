@@ -10,7 +10,7 @@
  </layer>
  <layer name="Buildings" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAytmZWAoAeJSNDyfizgxXHJlQFwOxBVADAIbgXQBGwNDIRsD1cFWoNlabBA7qA0+AM38CMSfkPwBAz+5MNWbsjAwmLGQZocu0O16QKzPRnt/EBNWE4Hun0QEnoLmT5g/PhFhxzmg3vNE4ItodsD8QcuwgvmDXumK1v5AD6tdwHS7G4j3APFeLGmYFEBKuiIXkJKuyAWj6Yp4QO/y6i0Qv8NiB0wNuQA5XZlwA8tuboSZMD5MDaX+0EcyA5uZ+5hRMS5xbOqQ4wMArkG3AdAHAAA=
+   H4sIAAAAAAAAAytmZWAoAeJSNDyfizgxXHJlQFwOxBVADAIbgXQBGwNDIRsD1cFWoNlabBA7qA0+AM38CMSfkPwBAz+5MNWbsjAwmLGQZocu0O16QKzPRnt/EBNWE4Hun0QEnoLmT5g/PhFhxzmg3vNE4ItodsD8QcuwgvmDXumK1v5AD6tdwHS7G4j3APFeLGmYFEBKuiIXkJKuyAWj6Yp4QO/y6i0Qv8NiB0wNuQA5XZlwA8tuboSZMD5MDaX+0EcyA5uZ+5hRsS47dnF0jGweyA4Aj+yUbNAHAAA=
   </data>
  </layer>
  <layer name="Misc 1" width="25" height="20">

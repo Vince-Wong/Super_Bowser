@@ -15,9 +15,11 @@ public class Game extends StateBasedGame{
     public static final int worldFour = 4;
     public static final int worldFive = 5;
     public static final int youWin = 6;
+    public static final int room = 7;
     public static final int room1 = 20; //t = 20
-    public static final int gameOver = 666;
- 
+    public static final int gameOver = 666; 
+    public static WorldTemplate prevState = null;
+    
     public Game(String gamename){
         super(gamename);
         this.addState(new Menu(menu));
@@ -29,6 +31,7 @@ public class Game extends StateBasedGame{
         this.addState(new WorldFour(worldFour));
         this.addState(new WorldFive(worldFive));
         this.addState(new YouWin(youWin));
+        this.addState(new Room(room));
         this.addState(new Room1(room1));
         this.addState(new GameOver(gameOver));
     }
@@ -42,6 +45,7 @@ public class Game extends StateBasedGame{
         this.getState(room1).init(gc, this);
         this.getState(worldFour).init(gc, this);
         this.getState(worldFive).init(gc, this);
+        this.getState(room).init(gc, this);
         this.getState(room1).init(gc, this);
         this.getState(youWin).init(gc, this);
         this.getState(gameOver).init(gc, this);

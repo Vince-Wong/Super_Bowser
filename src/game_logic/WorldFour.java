@@ -35,7 +35,7 @@ public class WorldFour extends WorldTemplate
            throws SlickException
     {
        super.update(gc, sbg, delta);
-       
+       Game.prevState = this;
        //Bowser enters previous world
        if(bowser.getX()==0 && bowser.getY()==10)
        {

@@ -164,6 +164,7 @@ public class WorldOne extends WorldTemplate
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) 
 			throws SlickException
 	{
+	   Game.prevState = this;
 		tick += delta;
 		super.update(gc, sbg, delta);
 
@@ -210,6 +211,7 @@ public class WorldOne extends WorldTemplate
 		}
 
 		//Bowser enters Room map from first map
+
 		if(bowser.getX()==11 && bowser.getY()==10)
 		{
 			sbg.enterState(20);
@@ -217,12 +219,10 @@ public class WorldOne extends WorldTemplate
 			WorldTemplate.bowser.setY(15);
 			this.playSound(fileName4, switchState);
 		}
-
-
 		//Bowser enters second map if he exits the first map
 		if(bowser.getX()==24 && bowser.getY()==11)
 		{
-			sbg.enterState(2);
+		   sbg.enterState(2);
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(10);
 			this.playSound(fileName4, switchState);
