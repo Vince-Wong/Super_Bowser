@@ -52,13 +52,17 @@ public class WorldTemplate extends BasicGameState
       if(items != null)
       {
          for (Item thing : items)
+         {
             g.drawImage(thing.getImage(), thing.getShape().getX(), thing.getShape().getY());
+//            g.draw(thing.getShape());  //TODO uncomment to see shape in game
+         }   
       }
-      
+
 
       // renders Bowser
       bowser.getCurrentAnim().draw(bowser.getX() * Character.SIZE,
             bowser.getY() * Character.SIZE);
+//      g.draw(bowser.getShape()); //TODO uncomment to see shape in game
 
       // renders Mobs
       for (Mob toad : mobs) {
@@ -125,7 +129,7 @@ public class WorldTemplate extends BasicGameState
       else {
          readMenuOption(input, sbg);
       }
-      
+
       //for item collision as of right now
       if(items != null)
          detectCollision();
@@ -241,7 +245,7 @@ public class WorldTemplate extends BasicGameState
          }
       }
    }
-   
+
    /**
     * Drops an item from a mob and removes it from the characters inventory
     * @param character
@@ -262,45 +266,47 @@ public class WorldTemplate extends BasicGameState
             spawnItem.getShape().setX(x);
             spawnItem.getShape().setY(y+32);
             items.add(spawnItem);
-                 
          }
       } 
    }
-   
+
    /**
     * drops all of the items in mob inventory 1 tile below the mob's position
     * @param mobName
     */
    private void mobDrop(String mobName)
    {
-      int k;
-      int x,y;
-      Item spawnItem;
+      int j, k, x, y, inventorySize;
+
+      Item spawnItem, thing = null;
       for(k = 0; k < mobs.size(); k ++)
       {
          if(mobs.get(k).getName() == mobName && mobs.get(k).getInventory().getCurrentSize() > 0)
          {
             x = (int)mobs.get(k).getShape().getX();
-            y = (int)mobs.get(k).getShape().getY();        
-            for (Item thing : mobs.get(k).getInventory().getItems())
+            y = (int)mobs.get(k).getShape().getY();  
+            inventorySize = mobs.get(k).getInventory().getCurrentSize();
+            while(inventorySize != 0)
             {
+               thing = mobs.get(k).getInventory().getIndexItem(0);       
                spawnItem = thing;
                spawnItem.getShape().setX(x);
                spawnItem.getShape().setY(y+32);
                items.add(spawnItem);
                mobs.get(k).getInventory().removeItem(thing);
+               inventorySize --;
             }     
          }
       } 
    }
-   
+
    private void checkDamage() {
       for (int i = 0; i < mobs.size(); i++) {
          Mob guy = mobs.get(i);
          if (bowser.getShape().intersects(guy.getShape())) {
             if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
                   || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
-//               mobDrop(mobs.get(i).getName());   //TODO fix mobDrop() and re-implement this line 
+               mobDrop(mobs.get(i).getName());   //TODO fix mobDrop() and re-implement this line 
                mobs.remove(i);
             }
             else {
