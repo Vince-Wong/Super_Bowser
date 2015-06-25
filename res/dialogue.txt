@@ -1,6 +1,6 @@
 USE '&' TO SEPERATE DIALOGUES.   This first line is skipped. 
 0&Come quickly into my house!
-1&Ooooooooooooooooo hello my precious.&It is me you hairy godmother, I am here
+1&Ooooooooooooooooo hello my precious.&It is me you hairy godmother, do you remember what happened?&You were making a "forget me" gas and it all went very wrong.&There was an explosion and the entire kingdom was exposed to the gas.&Only I remember because being your Hairy godmother they hairs protected me.&
 2&tweet, tweet
 3&nofin to say
 4&I hope you all know by now,

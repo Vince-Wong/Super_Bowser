@@ -45,7 +45,7 @@ public class Room1 extends WorldTemplate
 		mobs = new ArrayList<>();
 		mobs.add(new MobFollow("Dying mob", 3, 9));
 
-		oldLady.setID(2);
+		oldLady.setID(1);
 		oldLadyI = new Image("res/OldLady.png");
 		dialogueBox = new Image("res/dialogueBox.png");
 
