@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="BuildingSprite" tilewidth="32" tileheight="32">
+  <image source="BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA/MUY2DwpAPmFMHNx8ZGV0+sHcj60c3CRZNrDz53U2oHvjAb6nYQSg/DFW8Xxc8nRS96mMHkaWkHsjpktbTyB6V2gGhs6Rc9rHCFHSE7YOZjKw+wmYnuJ2LtOC+K8AMt7DiPpP68KPXT1SimHwYApvwAItAHAAA=
+  </data>
+ </layer>
+ <layer name="Buildings" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA0sWY2BIpgOmJRi1Y9SOUTtG7Ri1Y9SOwW4HrTEABpt3dNAHAAA=
+  </data>
+ </layer>
+</map>

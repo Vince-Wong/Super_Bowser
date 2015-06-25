@@ -15,16 +15,15 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldThree extends WorldTemplate
+public class YouWin extends WorldTemplate
 {   
-    public WorldThree(int state){
+    public YouWin(int state){
        super(state);
     }
     // make bowser at the beginning
     public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
     {
-
-       map = new TiledMap("res/worldThree.tmx");
+       map = new TiledMap("res/YouWinMap.tmx");
        objectLayer = map.getLayerIndex("Buildings");
        map.getTileId(0,0, objectLayer);
 
@@ -35,16 +34,8 @@ public class WorldThree extends WorldTemplate
            throws SlickException
     {
        super.update(gc, sbg, delta);
-       
-	    //Bowser enters previous world
-       if(bowser.getX()==23 && bowser.getY()==0)
-       {
-          sbg.enterState(4);
-          WorldTemplate.bowser.setX(1);
-          WorldTemplate.bowser.setY(10);
-       }
     }    
      
-    public int getID() { return 3; }
+    public int getID() { return 6; }
   
 }

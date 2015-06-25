@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Game Boy Advance - Super Mario Advance 4 Super Mario Bros 3 - Tiles" tilewidth="32" tileheight="32">
+  <image source="Game Boy Advance - Super Mario Advance 4 Super Mario Bros 3 - Tiles.png" trans="ff00ff" width="982" height="452"/>
+ </tileset>
+ <tileset firstgid="421" name="BuildingSprite" tilewidth="32" tileheight="32">
+  <image source="BuildingSprite.png" trans="ff00ff" width="1968" height="3174"/>
+ </tileset>
+ <layer name="Background" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA6uTYGCoG8WjGA/Wh2JccuSYRQgTYzeldhCym9rmkmrfKB7Fo3gUk4IBXTycQtAHAAA=
+  </data>
+ </layer>
+ <layer name="Misc 1" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAVDAZwD4vNAfIGGdrwB4rdYxH34IJhWAGY+MqaHHch2EWMnITX47MClFySuLjaKicWjYBSMAtwAAJiAPmDQBwAA
+  </data>
+ </layer>
+ <layer name="Buildings" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAVDAZwD4vNAfAGILwLxJSBmlUDFyACXOC4AUvcGSL8F4ndA/B6IPzCg6ke3DyZHih1cjAwM3EDMA8S8QMzHiFstLrvxqQdhDaCZmkCsBcTaQKyDww587sTlVxhwA5rpDsQeQOwJxF4k2gECs5Ho2Uh8agJamYvPLlr6A1fcUBOPglEwVAEA9FPfINAHAAA=
+  </data>
+ </layer>
+</map>
