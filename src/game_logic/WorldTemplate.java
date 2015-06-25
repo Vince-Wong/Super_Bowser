@@ -265,6 +265,10 @@ public class WorldTemplate extends BasicGameState
       } 
    }
    
+   /**
+    * drops all of the items in mob inventory 1 tile below the mob's position
+    * @param mobName
+    */
    private void mobDrop(String mobName)
    {
       int k;
@@ -294,7 +298,7 @@ public class WorldTemplate extends BasicGameState
          if (bowser.getShape().intersects(guy.getShape())) {
             if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
                   || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
-               mobDrop(mobs.get(i).getName());
+//               mobDrop(mobs.get(i).getName());   //TODO fix mobDrop() and re-implement this line 
                mobs.remove(i);
             }
             else {
