@@ -9,7 +9,6 @@ public class Game extends StateBasedGame{
     public static final int menu = 0;
     public static final int worldTemp = 10;
     public static final int backpack = 9;
-    public static final int worldRoom = 8;  
     public static final int worldOne = 1;   
     public static final int worldTwo = 2; 
     public static final int worldThree = 3;
@@ -20,7 +19,6 @@ public class Game extends StateBasedGame{
         this.addState(new Menu(menu));
         this.addState(new WorldTemplate(worldTemp));
         this.addState(new Backpack(backpack));
-        this.addState(new WorldRoom(worldRoom));
         this.addState(new WorldOne(worldOne));
         this.addState(new WorldTwo(worldTwo));
         this.addState(new WorldThree(worldThree));
@@ -30,7 +28,6 @@ public class Game extends StateBasedGame{
         this.getState(menu).init(gc, this);
         this.getState(worldTemp).init(gc, this);
         this.getState(backpack).init(gc, this);
-        this.getState(worldRoom).init(gc, this);
         this.getState(worldOne).init(gc, this);
         this.getState(worldTwo).init(gc, this);
         this.getState(worldThree).init(gc, this);

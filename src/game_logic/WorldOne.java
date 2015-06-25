@@ -43,12 +43,6 @@ public class WorldOne extends WorldTemplate
           WorldTemplate.bowser.setX(1);
           WorldTemplate.bowser.setY(10);
        }
-       if(bowser.getX()==11 && bowser.getY()==10)
-       {
-          sbg.enterState(8);
-          WorldTemplate.bowser.setX(11);
-          WorldTemplate.bowser.setY(19);
-       }
     }    
      
     public int getID() { return 1; }
