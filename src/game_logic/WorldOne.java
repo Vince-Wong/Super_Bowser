@@ -37,7 +37,7 @@ public class WorldOne extends WorldTemplate
 	private int dialogueNumber = -1;
 
 	//TODO test items, remove later
-	private Item testItem1, testItem2, testItem3, fireFlower;
+	private Item testItem1, chainsaw, hammer, fireFlower;
 
 
 	public WorldOne(int state){
@@ -91,18 +91,17 @@ public class WorldOne extends WorldTemplate
 
 		//TODO test items, remove later
 		items = new ArrayList<>();
-		testItem2 = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
-		testItem2.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
-		testItem2.setImage(new Image("res/ChainSaw.png"));
-		testItem3 = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
-		testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
-		testItem3.setImage(new Image("res/Hammer.png"));
+		chainsaw = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
+		chainsaw.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
+		chainsaw.setImage(new Image("res/ChainSaw.png"));
+		hammer = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
+		hammer.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
+		hammer.setImage(new Image("res/Hammer.png"));
 		fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
-		items.add(testItem2);
-		items.add(testItem3);
+		
 
 		mobs = new ArrayList<>();
-		mobs.add(new MobFollow("testBoo", 3, 9, testItem3));
+		mobs.add(new MobFollow("testBoo", 3, 9, hammer));
 
 		oldLady.setID(0);
 		oldLadyI = new Image("res/OldLady.png");
