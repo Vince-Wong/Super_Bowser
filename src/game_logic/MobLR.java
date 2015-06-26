@@ -14,7 +14,7 @@ public class MobLR extends Mob
       setName(name);
       setShape(new Rectangle(spawnX*SIZE+PADDING, spawnY*SIZE+PADDING, SIZE-PADDING*2, SIZE-PADDING*2));
       setInventory(new Inventory());
-      setDamage(3);
+      setDamage(2);
       faceRight();
       
       x0 = spawnX;

@@ -98,8 +98,6 @@ public class WorldOne extends WorldTemplate
 		testItem3.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
 		testItem3.setImage(new Image("res/Hammer.png"));
 		fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
-		items.add(testItem2);
-		items.add(testItem3);
 
 		mobs = new ArrayList<>();
 		mobs.add(new MobFollow("testBoo", 3, 9, testItem3));

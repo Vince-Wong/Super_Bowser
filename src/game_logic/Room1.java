@@ -30,6 +30,7 @@ public class Room1 extends WorldTemplate
 	private boolean YellToPlayer = false;
 	private boolean hasItem = false;
 	private int dialogueNumber = -1;
+	private Item hammer;
 
 	public Room1(int state){
 		super(state);
@@ -37,15 +38,18 @@ public class Room1 extends WorldTemplate
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
+		
 		map = new TiledMap("res/BasicMap.tmx");
 		objectLayer = map.getLayerIndex("Buildings");
 		map.getTileId(0,0, objectLayer);
 
 		mobs = new ArrayList<>();
-		mobs.add(new MobStand("practice mob1", 1, 3));
-		mobs.add(new MobStand("practice mob2", 3, 6));
-		mobs.add(new MobStand("practice mob3", 7, 6));
-		mobs.add(new MobStand("practice mob4", 5, 3));
+		mobs.add(new MobFollow("practice mob1", 1, 3));
+		mobs.add(new MobFollow("practice mob2", 3, 6));
+		mobs.add(new MobFollow("practice mob3", 5, 6));
+		
+		mobs.get(0).getInventory().addItem(new Item("HammerDrop", false,1,1, "Take to old Lady", 1,1, "res/Hammer.png"));
+
 
 		oldLady.setID(1);
 		oldLadyI = new Image("res/OldLady.png");
@@ -115,6 +119,7 @@ public class Room1 extends WorldTemplate
 		Input input = gc.getInput();
 		int size = oldLady.getSizeDialogue()-1;
 
+		
 		if(tick >= 5000)
 		{
 			tick = 0;
@@ -152,6 +157,8 @@ public class Room1 extends WorldTemplate
 				chatBar = true;
 		}
 
+		if(bowser.getX()==1 && bowser.getY()==3)
+			hasItem = true;
 		
 		//changes HAIRY GODMOTHE'S DIALOGUE
 		if(hasItem)
@@ -167,6 +174,10 @@ public class Room1 extends WorldTemplate
 			WorldTemplate.bowser.setX(11);
 			WorldTemplate.bowser.setY(11);
 		}
+//		for(int i =0; i< mobs.size();i++){
+//			 if(bowser.getShape().intersects(mobs.get(i).getShape())&& gc.key)
+//		}
+		
 
 	}    
 

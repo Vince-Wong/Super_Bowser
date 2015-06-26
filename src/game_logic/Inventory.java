@@ -109,6 +109,16 @@ public class Inventory
       return null;
    }
    
+   /**
+    * Returns a string
+    * @param itemName
+    * @return
+    */
+   public String findItemString(String itemName)
+   {
+      return findItem(itemName).getName();
+   }
+   
    //returns the whole inventory as a string
    public String toString()
    {

@@ -27,8 +27,8 @@ public class WorldTwo extends WorldTemplate
 	
 	private int shiftX = 4;
 	private int shiftY = -5;
-	private NPC oldLady = new NPC(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY));
-	private Image oldLadyI;
+	private NPC koopa = new NPC(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY));
+	private Image koopaI;
 	private Image dialogueBox;
 	private boolean chat = false;
 	private boolean chatBubble = false;
@@ -70,7 +70,6 @@ public class WorldTwo extends WorldTemplate
 			//Open the url
 			clip.open(AudioSystem.getAudioInputStream(url));
 			//Play the clip
-			Thread.sleep(2000);
 			clip.start();
 		}
 		catch (Exception e)
@@ -92,8 +91,8 @@ public class WorldTwo extends WorldTemplate
 		mobs.add(new MobLR("testYToad", 17, 5, 23));
 		mobs.add(new MobUD("testYToad2", 13, 5, 10));
 
-		oldLady.setID(0);
-		oldLadyI = new Image("res/OldLady.png");
+		koopa.setID(0);
+		koopaI = new Image("res/GreenKoopaTalks.png");
 		dialogueBox = new Image("res/dialogueBox.png");
 		YellToPlayer = true;
 		
@@ -124,12 +123,12 @@ public class WorldTwo extends WorldTemplate
 		}
 
 
-		oldLadyI.draw(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY), Character.SIZE, Character.SIZE);
+		koopaI.draw(Character.SIZE*(12 + shiftX), Character.SIZE*(10 + shiftY), Character.SIZE, Character.SIZE);
 
 		if(chat == true)
 		{
-			if(dialogueNumber < oldLady.getSizeDialogue()){
-				String text = oldLady.getDialogue(dialogueNumber);
+			if(dialogueNumber < koopa.getSizeDialogue()){
+				String text = koopa.getDialogue(dialogueNumber);
 
 				if(chatBubble)
 				{
@@ -168,7 +167,7 @@ public class WorldTwo extends WorldTemplate
 
 
 		Input input = gc.getInput();
-		int size = oldLady.getSizeDialogue()-1;
+		int size = koopa.getSizeDialogue()-1;
 
 
 
@@ -192,7 +191,7 @@ public class WorldTwo extends WorldTemplate
 			System.out.println(bowser.getX() + " " + bowser.getY());
 		}
 
-		if(bowser.getShape().intersects(oldLady.getShape()) && input.isKeyPressed(Input.KEY_E))
+		if(bowser.getShape().intersects(koopa.getShape()) && input.isKeyPressed(Input.KEY_E))
 		{
 			YellToPlayer = false;
 			chatBubble = false;
@@ -204,7 +203,7 @@ public class WorldTwo extends WorldTemplate
 				System.out.println(dialogueNumber);
 			}
 			chat = true;
-			int characterLeng = oldLady.getSizeDialogue(dialogueNumber);
+			int characterLeng = koopa.getSizeDialogue(dialogueNumber);
 			if(characterLeng < 20)
 				chatBubble = true;
 			else

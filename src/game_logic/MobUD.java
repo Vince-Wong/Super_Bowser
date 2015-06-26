@@ -42,7 +42,7 @@ public class MobUD extends Mob
       
       setCurrentAnim(FWD_STILL);
       setInventory(new Inventory());
-      setDamage(3);
+      setDamage(2);
       faceRight();
       
       y0 = spawnY;

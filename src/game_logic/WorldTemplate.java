@@ -14,6 +14,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -346,6 +347,7 @@ public class WorldTemplate extends BasicGameState
    private void checkDamage() {
       for (int i = 0; i < mobs.size(); i++) {
          Mob guy = mobs.get(i);
+         
          if (bowser.getShape().intersects(guy.getShape())) {
             if (bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_L)
                   || bowser.getCurrentAnim() == bowser.getAnimation(Bowser.FIRE_R)) {
