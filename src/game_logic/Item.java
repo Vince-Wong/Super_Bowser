@@ -10,7 +10,7 @@ public class Item extends Entity
    protected int maxQuantity;
    protected String description;
    protected boolean onScreen;
-   public static final int ITEM_WIDTH = 32, ITEM_HEIGHT = 32;
+   public static final int ITEM_WIDTH = 25, ITEM_HEIGHT = 25;
    protected Image image;
    
    public Item(String name, boolean stackable, int quantity, int maxQuantity, 

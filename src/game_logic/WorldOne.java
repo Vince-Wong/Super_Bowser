@@ -84,24 +84,25 @@ public class WorldOne extends WorldTemplate
 	// make bowser at the beginning
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException
 	{
-		//tiled map with 3 layers: background, flowers, and buildings
-		map = new TiledMap("res/worldOneMap.tmx");
-		objectLayer = map.getLayerIndex("Buildings");
-		map.getTileId(0,0, objectLayer);
+	   //tiled map with 3 layers: background, flowers, and buildings
+      map = new TiledMap("res/worldOneMap.tmx");
+      objectLayer = map.getLayerIndex("Buildings");
+      map.getTileId(0,0, objectLayer);
+      
+      //TODO test items, remove later
+      items = new ArrayList<>();
+      chainsaw = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
+      chainsaw.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
+      chainsaw.setImage(new Image("res/ChainSaw.png"));
+      hammer = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
+      hammer.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
+      hammer.setImage(new Image("res/Hammer.png"));
+      fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
 
-		//TODO test items, remove later
-		items = new ArrayList<>();
-		chainsaw = new Item("ChainsawTest", false, 1, 2, "It's a chainsaw!!!");
-		chainsaw.getShape().setLocation(Character.SIZE * 8, Character.SIZE * 9);
-		chainsaw.setImage(new Image("res/ChainSaw.png"));
-		hammer = new Item("The Hamma", false, 1, 1, "Basic Hammer, find me some nails?");
-		hammer.getShape().setLocation(Character.SIZE * 10, Character.SIZE * 11);
-		hammer.setImage(new Image("res/Hammer.png"));
-		fireFlower = new Item("Fire Flower", false, 1, 1, "FIRE!!!!", 11, 12, "res/Fire Flower.png");
-		
 
-		mobs = new ArrayList<>();
-		mobs.add(new MobFollow("testBoo", 3, 9, hammer));
+      mobs = new ArrayList<>();
+      mobs.add(new MobFollow("testBoo", 3, 9));
+      mobs.get(0).getInventory().addItem(chainsaw);
 
 		oldLady.setID(0);
 		oldLadyI = new Image("res/OldLady.png");
@@ -226,7 +227,6 @@ public class WorldOne extends WorldTemplate
 			WorldTemplate.bowser.setX(1);
 			WorldTemplate.bowser.setY(10);
 			this.playSound(fileName4, switchState);
-			
 		}	
 	}    
 
