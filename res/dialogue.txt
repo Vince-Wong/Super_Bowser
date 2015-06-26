@@ -5,8 +5,7 @@ USE '&' TO SEPERATE DIALOGUES.   This first line is skipped.
 3&Remember, to hit, press "Spacebar"&If you need to view inventory, press "I".&If you need to pause, press "esc"
 4&Kill the creepy guys outside my house&and I will give you whatever you want!
 5&WHO ARE YOU?! YOU CAN'T PASS UNLESS YOU ARE BOWSER&
-6&How's your day going Bowser? Going home?&
+6&How's your day going Bowser? Going home?
 7&I DON'T HAVE ANYTHING GO AWAY
 8&Here you go, I found this in my cat
-9&Potion? I don't have a POTION?!& WHO TOLD YOU?!& NOT OVER MY DEAD BODY&
-10&
+9&Potion? I don't have a POTION?!& WHO TOLD YOU?!& NOT OVER MY DEAD BODY
