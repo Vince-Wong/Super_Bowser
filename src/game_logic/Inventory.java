@@ -95,6 +95,11 @@ public class Inventory
       return items;
    }
    
+   public Item getIndexItem(int index)
+   {
+      return items[index];
+   }
+   
    public int getCurrentSize()
    {
       return currentSize;
