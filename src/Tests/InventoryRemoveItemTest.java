@@ -1,6 +1,8 @@
-package game_logic;
+package Tests;
 
 import static org.junit.Assert.*;
+import game_logic.Inventory;
+import game_logic.Item;
 
 import org.junit.Test;
 

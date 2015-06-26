@@ -1,6 +1,7 @@
-package game_logic;
+package Tests;
 
 import static org.junit.Assert.*;
+import game_logic.MobLR;
 
 import org.junit.Test;
 import org.newdawn.slick.SlickException;
