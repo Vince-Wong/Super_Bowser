@@ -6,6 +6,13 @@ Bowser, the main villain from Nintendo's _Mario_ franchise.
 
 Please see "Team 2 Project 2 Proposal" for more info.
 
+Setup:
+- Add .classpath and .project files to the project folder
+- Configure Build Path
+  - Add User Library Slick2D found in lib folder
+  - Edit Slick2D library's native library location and change to lib/lwjgl-2.9.3/native/*OS
+    - *OS = OS your computer is running on(windows, linux, macosx, or solaris)
+
 Instructions:
 To begin playing, run the Game.java file.
 
@@ -16,7 +23,7 @@ Use E to talk to friendly characters you encounter in the game. After initiating
 Use SPACE to attack and destroy your enemies!
 
 Credits:
-Tiled - Map Editor by Thorbjørn Lindeijer
+Tiled - Map Editor by ThorbjÃ¸rn Lindeijer
 
 Sprites from:
 MarioUniverse.com
